@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  pull_request: { types: [opened, synchronize, reopened] }
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with: { version: 9 }
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm i
+      - name: Pull tokens (mock if no secret)
+        env:
+          FIGMA_PAT: ${{ secrets.FIGMA_PAT }}
+          FIGMA_FILE_KEY: ${{ secrets.FIGMA_FILE_KEY }}
+        run: |
+          if [ -n "${FIGMA_PAT}" ]; then
+            pnpm mcp:pull:tokens
+          else
+            USE_MOCK=true pnpm mcp:pull:tokens
+          fi
+          pnpm build:tokens
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm test:a11y
+      - run: pnpm storybook:build
+      - run: npx http-server dist-storybook -s -p 6006 &
+      - run: pnpm visual:test
+      - name: Token diff
+        id: tokendiff
+        env:
+          FIGMA_PAT: ${{ secrets.FIGMA_PAT }}
+          FIGMA_FILE_KEY: ${{ secrets.FIGMA_FILE_KEY }}
+        run: |
+          if [ -n "${FIGMA_PAT}" ]; then
+            pnpm mcp:diff | tee tokendiff.md
+          else
+            echo "## Token Diff Report\n\nSkipped live diff (no FIGMA_PAT in fork)" | tee tokendiff.md
+          fi
+      - name: Post PR comment
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('tokendiff.md', 'utf8');
+            const { owner, repo, number } = context.issue;
+            const header = '## Token Diff Report';
+            const { data: comments } = await github.rest.issues.listComments({ owner, repo, issue_number: number });
+            const existing = comments.find(c => c.body && c.body.includes(header));
+            if (existing) {
+              await github.rest.issues.updateComment({ owner, repo, comment_id: existing.id, body });
+            } else {
+              await github.rest.issues.createComment({ owner, repo, issue_number: number, body });
+            }
+

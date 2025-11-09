@@ -1,0 +1,11 @@
+.button {
+  background: var(--color-bg-brand, var(--color-bg-default, #2563eb));
+  color: var(--color-text-default, #111111);
+  border-radius: var(--radius-md, 8px);
+  padding: 0 var(--space-4, 16px);
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+}
+

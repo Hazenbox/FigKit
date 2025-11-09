@@ -1,0 +1,48 @@
+{
+  "variables": [
+    {
+      "name": "✦._text.text-default",
+      "resolvedValues": {
+        "Core/Light": "#111111",
+        "Core/Dark": "#fafafa"
+      },
+      "type": "COLOR"
+    },
+    {
+      "name": "✦._bg.bg-default",
+      "resolvedValues": {
+        "Core/Light": "#ffffff",
+        "Core/Dark": "#0b0b0b"
+      },
+      "type": "COLOR"
+    },
+    {
+      "name": "✦._bg.bg-brand",
+      "resolvedValues": {
+        "Core/Light": "#2563eb",
+        "Core/Dark": "#3b82f6"
+      },
+      "type": "COLOR"
+    },
+    {
+      "name": "radius.md",
+      "resolvedValues": { 
+        "Core/Light": "8px",
+        "Core/Dark": "8px"
+      },
+      "type": "FLOAT"
+    },
+    {
+      "name": "space.4",
+      "resolvedValues": { 
+        "Core/Light": "16px",
+        "Core/Dark": "16px"
+      },
+      "type": "FLOAT"
+    }
+  ],
+  "collections": [
+    { "name": "Core", "modes": ["Light", "Dark"] },
+    { "name": "Brand", "modes": ["Acme", "Omega"] }
+  ]
+}

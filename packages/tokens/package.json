@@ -1,0 +1,15 @@
+{
+  "name": "@org/tokens",
+  "version": "1.0.1",
+  "type": "module",
+  "description": "",
+  "main": "dist/tokens.js",
+  "scripts": {
+    "build": "node build.js",
+    "typecheck": "echo 'No TypeScript files in tokens package'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.11.0"
+}

@@ -1,0 +1,19 @@
+{
+  "added": [],
+  "removed": [
+    [
+      "color.bg.brand.primary",
+      "#2563eb",
+      "→",
+      ""
+    ]
+  ],
+  "changed": [
+    [
+      "color.text.default",
+      "#000000",
+      "→",
+      "#111111"
+    ]
+  ]
+}

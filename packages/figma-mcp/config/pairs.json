@@ -1,0 +1,4 @@
+[
+  { "fg": "color/fg/text/primary", "bg": "color/bg/surface", "min": 4.5, "label": "Body text on surface" },
+  { "fg": "color/fg/text/primary", "bg": "color/bg/brand/primary", "min": 4.5, "label": "Text on brand" }
+]

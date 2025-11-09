@@ -1,0 +1,16 @@
+{
+  "files": [
+    "packages/tokens/src/tokens.json",
+    "packages/ui/src/components/Button.tsx",
+    "packages/docs/stories/UIButton.stories.tsx",
+    "packages/docs/stories/TokenStatus.stories.tsx",
+    "packages/figma-mcp/config/mapping.json",
+    "packages/figma-mcp/config/pairs.json"
+  ],
+  "directories": [
+    "packages/ui/src/components",
+    "packages/tokens/src",
+    "packages/docs/stories"
+  ]
+}
+

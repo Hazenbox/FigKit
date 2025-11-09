@@ -1,0 +1,11 @@
+{
+  "name": "@org/themes",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/tokens.css",
+  "exports": {
+    "./dist/tokens.css": "./dist/tokens.css",
+    "./tokens.css": "./dist/tokens.css"
+  }
+}
+
