@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import '@org/themes/dist/tokens.css'
-import '@org/ui/index.css'
+import '@figkit/themes/dist/tokens.css'
+import '@figkit/ui/index.css'
 import './index.css'
 import App from './App.tsx'
 

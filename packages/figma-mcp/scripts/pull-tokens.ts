@@ -5,15 +5,18 @@ import { mapToStyleDictionary } from './utils/map.js';
 import { writeJSON } from './utils/fs.js';
 
 export async function pullTokens(options: { mode?: string } = {}) {
-  const fileKey = process.env.FIGMA_FILE_KEY!;
-  if (!fileKey) throw new Error('FIGMA_FILE_KEY missing');
+  // fileKey is optional if using UI3_Variables.json
+  const fileKey = process.env.FIGMA_FILE_KEY;
 
-  const raw = await fetchVariables(fileKey);
+  const raw = await fetchVariables(fileKey || '');
 
   // Generate files for each collection/mode combination
   // Format: {brand}.{theme}.json (e.g., default.light.json, figjam.dark.json)
   const filesWritten: string[] = [];
 
+  // Group by brand/theme combinations
+  const brandThemeMap = new Map<string, any>();
+  
   for (const collection of raw.collections) {
     for (const mode of collection.modes || []) {
       const modeKey = `${collection.name}/${mode}`;
@@ -24,17 +27,68 @@ export async function pullTokens(options: { mode?: string } = {}) {
       const sd = await mapToStyleDictionary(raw, modeKey);
 
       // Normalize collection name to brand name
-      // Core -> default, Brand -> brand, etc.
-      const brandName = collection.name.toLowerCase() === 'core' 
-        ? 'default' 
-        : collection.name.toLowerCase();
+      // Colors -> default (UI3 uses "Colors" as the main collection)
+      // Sizing and Typography are universal (not brand-specific)
+      let brandName: string;
+      let themeName: string;
       
-      const themeName = mode.toLowerCase();
-      const filename = `packages/tokens/dist/${brandName}.${themeName}.json`;
-
-      await writeJSON(filename, sd);
-      filesWritten.push(filename);
+      if (collection.name === 'Colors') {
+        brandName = 'default';
+        themeName = mode.toLowerCase();
+      } else if (collection.name === 'Sizing' || collection.name === 'Typography') {
+        // Sizing and Typography are universal - merge into all brand/theme files
+        // We'll handle this separately
+        brandName = 'default';
+        themeName = 'light'; // Default, will be merged into all
+      } else {
+        brandName = collection.name.toLowerCase();
+        themeName = mode.toLowerCase();
+      }
+      
+      const key = `${brandName}.${themeName}`;
+      
+      if (!brandThemeMap.has(key)) {
+        brandThemeMap.set(key, {});
+      }
+      
+      // Merge tokens into the brand/theme object
+      Object.assign(brandThemeMap.get(key), sd);
     }
+  }
+  
+  // For Sizing and Typography, merge into all brand/theme combinations
+  const sizingTokens = brandThemeMap.get('default.light') || {};
+  const typographyTokens = brandThemeMap.get('default.light') || {};
+  
+  // Extract Sizing and Typography tokens
+  const sizingOnly: any = {};
+  const typographyOnly: any = {};
+  
+  for (const [key, value] of Object.entries(sizingTokens)) {
+    if (key.startsWith('space.') || key.startsWith('radius.')) {
+      sizingOnly[key] = value;
+    }
+  }
+  
+  for (const [key, value] of Object.entries(typographyTokens)) {
+    if (key.startsWith('font.') || key.startsWith('body.')) {
+      typographyOnly[key] = value;
+    }
+  }
+  
+  // Merge Sizing and Typography into all brand/theme files
+  for (const [key, tokens] of brandThemeMap.entries()) {
+    if (key.startsWith('default.')) {
+      Object.assign(tokens, sizingOnly);
+      Object.assign(tokens, typographyOnly);
+    }
+  }
+  
+  // Write merged files
+  for (const [key, tokens] of brandThemeMap.entries()) {
+    const filename = `packages/tokens/dist/${key}.json`;
+    await writeJSON(filename, tokens);
+    filesWritten.push(filename);
   }
 
   // Also write a default tokens.json for backward compatibility (Core/Light)

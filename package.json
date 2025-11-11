@@ -1,4 +1,33 @@
 {
+	"name": "@figkit/design-system",
+	"version": "0.1.0",
+	"description": "A comprehensive design system with React components, design tokens, and Figma integration",
+	"private": true,
+	"workspaces": [
+		"packages/*",
+		"apps/*"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Hazenbox/FigKit.git"
+	},
+	"keywords": [
+		"design-system",
+		"react",
+		"components",
+		"design-tokens",
+		"figma",
+		"storybook",
+		"ui",
+		"themes"
+	],
+	"author": "",
+	"license": "ISC",
+	"packageManager": "pnpm@10.11.0",
+	"engines": {
+		"node": ">=18.12.0",
+		"pnpm": ">=9.0.0"
+	},
 	"scripts": {
 		"build:tokens": "node packages/themes/build.js",
 		"build": "pnpm -r build",
@@ -9,8 +38,11 @@
 		"storybook:build": "pnpm --filter @org/docs build-storybook -o dist-storybook",
 		"storybook:serve": "npx http-server dist-storybook -s -p 6006",
 		"visual:test": "playwright test",
-		"mcp:pull:tokens": "tsx packages/figma-mcp/scripts/pull-tokens.ts",
+		"mcp:pull:tokens": "tsx packages/figma-mcp/scripts/pull-tokens-from-files.ts",
+		"mcp:pull:tokens:legacy": "tsx packages/figma-mcp/scripts/pull-tokens.ts",
 		"mcp:diff": "tsx packages/figma-mcp/scripts/diff-tokens.ts",
+		"mcp:pull:component": "tsx packages/figma-mcp/scripts/pull-component.ts",
+		"mcp:update:story": "tsx packages/figma-mcp/scripts/update-storybook.ts",
 		"changeset": "changeset",
 		"release:version": "changeset version && pnpm i --lockfile-only",
 		"release:publish": "changeset publish",

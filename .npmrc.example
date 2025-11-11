@@ -1,0 +1,8 @@
+# Example .npmrc for publishing
+# Copy this to .npmrc and update with your npm registry settings
+
+# For scoped packages (@org/*)
+@org:registry=https://registry.npmjs.org/
+
+# Authentication (use npm login instead of hardcoding)
+# //registry.npmjs.org/:_authToken=YOUR_TOKEN_HERE

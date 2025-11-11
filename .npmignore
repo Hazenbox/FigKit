@@ -1,0 +1,62 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build outputs (will be generated)
+dist/
+dist-storybook/
+*.tsbuildinfo
+
+# Development files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Testing
+coverage/
+.nyc_output/
+*.log
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Misc
+.DS_Store
+*.pem
+.cache/
+
+# Source files (only dist should be published)
+src/
+packages/*/src/
+apps/
+tests/
+variables/
+
+# Config files
+*.config.ts
+*.config.js
+vitest.config.*
+playwright.config.*
+tsconfig.json
+tsconfig.*.json
+
+# Documentation (keep README, ignore others)
+*.md
+!README.md
+
+# CI/CD
+.github/
+.changeset/
+
+# Storybook
+.storybook/
+storybook-static/
+
+# Figma MCP (internal tooling)
+packages/figma-mcp/
+

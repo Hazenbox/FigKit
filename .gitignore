@@ -52,3 +52,5 @@ lerna-debug.log*
 *.tmp
 *.temp
 tokendiff.md
+storybook-static/
+dist-storybook/

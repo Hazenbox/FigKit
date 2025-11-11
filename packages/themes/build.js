@@ -20,7 +20,21 @@ function tokensToCSS(tokens, prefix = '') {
     const fullKey = prefix ? `${prefix}-${normalizedKey}` : normalizedKey;
     if (value && typeof value === 'object' && 'value' in value) {
       // Token with value
-      css += `  --${fullKey}: ${value.value};\n`;
+      let tokenValue = value.value;
+      // Add units for spacing and radius tokens
+      if (fullKey.startsWith('space-') || fullKey.startsWith('radius-')) {
+        // If it's a number or numeric string without units, add px
+        if (typeof tokenValue === 'number' || (typeof tokenValue === 'string' && /^\d+$/.test(tokenValue))) {
+          tokenValue = `${tokenValue}px`;
+        }
+      }
+      // Add units for typography size/height/spacing
+      if (fullKey.includes('fontSize') || fullKey.includes('lineHeight') || fullKey.includes('letterSpacing')) {
+        if (typeof tokenValue === 'number' || (typeof tokenValue === 'string' && /^-?\d+(\.\d+)?$/.test(tokenValue))) {
+          tokenValue = `${tokenValue}px`;
+        }
+      }
+      css += `  --${fullKey}: ${tokenValue};\n`;
     } else if (value && typeof value === 'object') {
       // Nested object, recurse
       css += tokensToCSS(value, fullKey);
@@ -45,6 +59,13 @@ async function buildThemesCSS() {
     if (!match) continue;
     
     const [, brand, theme] = match;
+    
+    // Skip "colors", "sizing", "typography" brands - these are old format
+    if (brand === 'colors' || brand === 'sizing' || brand === 'typography') continue;
+    
+    // Skip files with dashes in theme name (old format like "devmode-dark")
+    if (theme.includes('-')) continue;
+    
     const content = await readFile(join(tokensDistDir, file), 'utf-8');
     const tokens = JSON.parse(content);
     
@@ -57,8 +78,19 @@ async function buildThemesCSS() {
   // Generate CSS with attribute selectors
   let css = '/**\n * Do not edit directly, this file was auto-generated.\n */\n\n';
   
-  for (const [brand, themeMap] of brandThemeMap) {
-    for (const [theme, tokens] of themeMap) {
+  // Sort brands and themes to ensure consistent ordering
+  // Put light themes before dark themes for each brand
+  const sortedBrands = Array.from(brandThemeMap.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+  
+  for (const [brand, themeMap] of sortedBrands) {
+    // Sort themes: light before dark
+    const sortedThemes = Array.from(themeMap.entries()).sort((a, b) => {
+      if (a[0] === 'light') return -1;
+      if (b[0] === 'light') return 1;
+      return a[0].localeCompare(b[0]);
+    });
+    
+    for (const [theme, tokens] of sortedThemes) {
       const selector = `:root[data-brand="${brand}"][data-theme="${theme}"]`;
       css += `${selector} {\n`;
       css += tokensToCSS(tokens);

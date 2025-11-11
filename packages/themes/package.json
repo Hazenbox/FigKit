@@ -1,11 +1,33 @@
 {
-  "name": "@org/themes",
-  "version": "0.0.0",
+  "name": "@figkit/themes",
+  "version": "0.1.0",
+  "description": "Design system themes with multi-brand and multi-theme CSS variables",
   "type": "module",
-  "main": "dist/tokens.css",
+  "main": "./dist/tokens.css",
   "exports": {
     "./dist/tokens.css": "./dist/tokens.css",
     "./tokens.css": "./dist/tokens.css"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "prepublishOnly": "node build.js"
+  },
+  "keywords": [
+    "css",
+    "themes",
+    "design-tokens",
+    "design-system",
+    "css-variables"
+  ],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hazenbox/FigKit.git",
+    "directory": "packages/themes"
   }
 }
 

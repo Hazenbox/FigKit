@@ -1,10 +1,11 @@
 {
-  "name": "@org/patterns",
+  "name": "@figkit/patterns",
   "version": "0.1.0",
+  "description": "Composed UI patterns built on top of @figkit/ui components",
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -14,13 +15,18 @@
     "./index.css": "./dist/index.css",
     "./dist/index.css": "./dist/index.css"
   },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsc -w",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
-    "@org/ui": "workspace:*"
+    "@figkit/ui": "^0.1.0"
   },
   "peerDependencies": {
     "react": "^18 || ^19",
@@ -29,5 +35,19 @@
   "devDependencies": {
     "tsup": "^8.0.0",
     "typescript": "^5.6.3"
+  },
+  "keywords": [
+    "react",
+    "patterns",
+    "ui",
+    "design-system",
+    "components"
+  ],
+  "author": "",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Hazenbox/FigKit.git",
+    "directory": "packages/patterns"
   }
 }

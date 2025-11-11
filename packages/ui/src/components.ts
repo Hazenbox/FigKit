@@ -1,12 +1,6 @@
-export { Button } from './components/Button';
-export type { ButtonProps } from './components/Button';
-
-export { Tabs, TabsList, TabsTrigger, TabsContent } from './components/Tabs';
-export type { TabsProps, TabsListProps, TabsTriggerProps, TabsContentProps } from './components/Tabs';
-
-export { Dialog, DialogTrigger, DialogContent, DialogTitle, DialogDescription } from './components/Dialog';
-export type { DialogProps, DialogTriggerProps, DialogContentProps, DialogTitleProps, DialogDescriptionProps } from './components/Dialog';
-
-export { Input } from './components/Input';
-export type { InputProps } from './components/Input';
-
+export { Button } from './button/Button';
+export type { ButtonProps, ButtonVariant, ButtonSize } from './button/Button';
+export { Checkbox } from './checkbox/Checkbox';
+export type { CheckboxProps } from './checkbox/Checkbox';
+export { Tab, Tabs } from './tab';
+export type { TabProps, TabsProps, TabsItem } from './tab';

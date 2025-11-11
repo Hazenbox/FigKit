@@ -1,0 +1,112 @@
+/* Tokenized Tab component - matches Figma exactly using CSS variables */
+
+/* Tab container */
+.tab {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  position: relative;
+  flex-shrink: 0;
+  background: var(--color-bg-default, var(--color-bg, #ffffff));
+  cursor: default;
+  user-select: none;
+}
+
+.tab--clickable {
+  cursor: pointer;
+}
+
+/* Tab content wrapper */
+.tab-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+/* Tab text */
+.tab-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--body-medium-fontFamily, var(--font-family-default, 'Inter'));
+  font-size: var(--body-medium-fontSize, 11px);
+  font-weight: var(--body-medium-fontWeight, var(--font-weight-medium, 450));
+  line-height: var(--body-medium-lineHeight, 16px);
+  letter-spacing: var(--body-medium-letterSpacing, 0.5px);
+  color: var(--color-text-secondary, rgba(0, 0, 0, 0.5));
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  flex-shrink: 0;
+}
+
+/* Selected tab text - uses strong variant */
+.tab-text--selected {
+  font-family: var(--body-medium-strong-fontFamily, var(--body-medium-fontFamily, var(--font-family-default, 'Inter')));
+  font-size: var(--body-medium-strong-fontSize, var(--body-medium-fontSize, 11px));
+  font-weight: var(--body-medium-strong-fontWeight, var(--font-weight-strong, 550));
+  line-height: var(--body-medium-strong-lineHeight, var(--body-medium-lineHeight, 16px));
+  letter-spacing: var(--body-medium-strong-letterSpacing, var(--body-medium-letterSpacing, 0.5px));
+  color: var(--color-text-default, var(--color-text, rgba(0, 0, 0, 0.9)));
+}
+
+/* Selected tab background */
+.tab--selected {
+  background: var(--color-bg-secondary, var(--color-bg-secondary, #f5f5f5));
+}
+
+/* Badge */
+.tab-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  min-width: 16px;
+  padding: 0 var(--space-1, 4px);
+  background: var(--color-bg-selected, var(--color-bg-selected, #e5f4ff));
+  border-radius: var(--radius-sm, 4px);
+  margin-left: var(--space-1, 4px);
+  flex-shrink: 0;
+}
+
+.tab-badge-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: var(--body-medium-fontFamily, var(--font-family-default, 'Inter'));
+  font-size: var(--body-medium-fontSize, 11px);
+  font-weight: var(--body-medium-fontWeight, var(--font-weight-medium, 500));
+  line-height: var(--body-medium-lineHeight, 16px);
+  letter-spacing: var(--body-medium-letterSpacing, 0.5px);
+  color: var(--color-text-default, var(--color-text, rgba(0, 0, 0, 0.9)));
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Hover state */
+.tab--hover:not(.tab--selected) {
+  background: var(--color-bg-hover, var(--color-bg-hover, #f5f5f5));
+}
+
+.tab--hover .tab-text:not(.tab-text--selected) {
+  color: var(--color-text, var(--color-text-default, rgba(0, 0, 0, 0.9)));
+}
+
+/* Focused state */
+.tab--focused {
+  outline: 2px solid var(--color-border-selected-strong, #007be5);
+  outline-offset: -2px;
+}
+
+/* Tabs container */
+.tabs {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+}
+

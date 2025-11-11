@@ -1,49 +1,96 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState } from 'react';
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@org/ui';
-
-const TabsExample = () => {
-  const [value, setValue] = useState('tab1');
-
-  return (
-    <Tabs value={value} onValueChange={setValue}>
-      <TabsList>
-        <TabsTrigger value="tab1">Tab 1</TabsTrigger>
-        <TabsTrigger value="tab2">Tab 2</TabsTrigger>
-        <TabsTrigger value="tab3">Tab 3</TabsTrigger>
-      </TabsList>
-      <TabsContent value="tab1">
-        <p>Content for Tab 1</p>
-      </TabsContent>
-      <TabsContent value="tab2">
-        <p>Content for Tab 2</p>
-      </TabsContent>
-      <TabsContent value="tab3">
-        <p>Content for Tab 3</p>
-      </TabsContent>
-    </Tabs>
-  );
-};
+import React from 'react';
+import { Tabs } from '@figkit/ui';
 
 const meta = {
   title: 'UI/Tabs',
-  component: TabsExample,
+  component: Tabs,
   parameters: {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} satisfies Meta<typeof TabsExample>;
+} satisfies Meta<typeof Tabs>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
-
-export const Wide: Story = {
+export const Default: Story = {
   render: () => (
-    <div style={{ width: '600px' }}>
-      <TabsExample />
-    </div>
+    <Tabs
+      items={[
+        { label: 'Active Tab' },
+        { label: 'Second tab' },
+      ]}
+      defaultValue={0}
+    />
   ),
+};
+
+export const Three: Story = {
+  render: () => (
+    <Tabs
+      items={[
+        { label: 'Active tab' },
+        { label: 'Second tab' },
+        { label: 'Third tab' },
+      ]}
+      defaultValue={0}
+    />
+  ),
+};
+
+export const Four: Story = {
+  render: () => (
+    <Tabs
+      items={[
+        { label: 'Active Tab' },
+        { label: 'Second tab' },
+        { label: 'Third tab' },
+        { label: 'Fourth tab' },
+      ]}
+      defaultValue={0}
+    />
+  ),
+};
+
+export const WithBadges: Story = {
+  render: () => (
+    <Tabs
+      items={[
+        { label: 'Active Tab', badge: '21' },
+        { label: 'Second tab' },
+        { label: 'Third tab', badge: '5' },
+      ]}
+      defaultValue={0}
+    />
+  ),
+};
+
+export const Single: Story = {
+  render: () => (
+    <Tabs
+      items={[
+        { label: 'Single Tab Title' },
+      ]}
+      defaultValue={0}
+    />
+  ),
+};
+
+export const Interactive: Story = {
+  render: () => {
+    const [value, setValue] = React.useState(0);
+    return (
+      <Tabs
+        items={[
+          { label: 'First tab' },
+          { label: 'Second tab' },
+          { label: 'Third tab' },
+        ]}
+        value={value}
+        onChange={setValue}
+      />
+    );
+  },
 };
 

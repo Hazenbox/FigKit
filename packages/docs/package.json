@@ -4,9 +4,9 @@
   "type": "module",
   "private": true,
   "dependencies": {
-    "@org/ui": "workspace:*",
-    "@org/tokens": "workspace:*",
-    "@org/patterns": "workspace:*"
+    "@figkit/ui": "workspace:*",
+    "@figkit/tokens": "workspace:*",
+    "@figkit/patterns": "workspace:*"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^4.1.2",

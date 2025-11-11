@@ -1,0 +1,25 @@
+# Source files
+src/
+*.ts
+*.tsx
+!*.d.ts
+
+# Development files
+tsconfig.json
+vitest.config.*
+vitest.setup.ts
+vitest.d.ts
+
+# Testing
+__tests__/
+*.test.*
+*.spec.*
+coverage/
+
+# Build config
+tsup.config.*
+
+# Documentation
+*.md
+!README.md
+

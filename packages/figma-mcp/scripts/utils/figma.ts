@@ -4,6 +4,19 @@ import { readJSON } from './fs.js';
 const BASE = 'https://api.figma.com/v1';
 
 export async function fetchVariables(fileKey: string) {
+  // Check if UI3_Variables.json exists - use it if available
+  try {
+    const { parseUI3Variables } = await import('./parse-ui3-json.js');
+    const ui3Data = await parseUI3Variables();
+    console.log('✅ Using UI3_Variables.json file');
+    return ui3Data;
+  } catch (err: any) {
+    // If UI3 file doesn't exist or parsing fails, continue with API/mock
+    if (err.code !== 'ENOENT') {
+      console.warn('⚠️  Could not parse UI3_Variables.json, falling back to API/mock:', err.message);
+    }
+  }
+  
   if (process.env.USE_MOCK === 'true') {
     return readJSON<any>('packages/figma-mcp/config/mock-variables.json');
   }

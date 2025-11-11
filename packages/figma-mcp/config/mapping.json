@@ -822,8 +822,55 @@
       "✦.fullscreen.special.textcomponentonlightcanvas": "color.misc.special.textcomponentonlightcanvas",
       "✦.fullscreen.special.icononlightcanvassecondary": "color.misc.special.icononlightcanvassecondary",
       "✦.fullscreen.special.borderselectedimmutablenode": "color.misc.special.borderselectedimmutablenode",
+      "radius.sm": "radius.sm",
       "radius.md": "radius.md",
-      "space.4": "space.4"
+      "radius.lg": "radius.lg",
+      "radius.none": "radius.none",
+      "radius.full": "radius.full",
+      "space.0": "space.0",
+      "space.1": "space.1",
+      "space.2": "space.2",
+      "space.3": "space.3",
+      "space.4": "space.4",
+      "space.5": "space.5",
+      "space.6": "space.6",
+      "font.family.default": "font.family.default",
+      "font.family.display": "font.family.display",
+      "font.family.mono": "font.family.mono",
+      "font.weight.default": "font.weight.default",
+      "font.weight.medium": "font.weight.medium",
+      "font.weight.strong": "font.weight.strong",
+      "font.weight.heavy": "font.weight.heavy",
+      "body.large.fontFamily": "body.large.fontFamily",
+      "body.large.fontSize": "body.large.fontSize",
+      "body.large.fontWeight": "body.large.fontWeight",
+      "body.large.lineHeight": "body.large.lineHeight",
+      "body.large.letterSpacing": "body.large.letterSpacing",
+      "body.large.strong.fontFamily": "body.large.strong.fontFamily",
+      "body.large.strong.fontSize": "body.large.strong.fontSize",
+      "body.large.strong.fontWeight": "body.large.strong.fontWeight",
+      "body.large.strong.lineHeight": "body.large.strong.lineHeight",
+      "body.large.strong.letterSpacing": "body.large.strong.letterSpacing",
+      "body.medium.fontFamily": "body.medium.fontFamily",
+      "body.medium.fontSize": "body.medium.fontSize",
+      "body.medium.fontWeight": "body.medium.fontWeight",
+      "body.medium.lineHeight": "body.medium.lineHeight",
+      "body.medium.letterSpacing": "body.medium.letterSpacing",
+      "body.medium.strong.fontFamily": "body.medium.strong.fontFamily",
+      "body.medium.strong.fontSize": "body.medium.strong.fontSize",
+      "body.medium.strong.fontWeight": "body.medium.strong.fontWeight",
+      "body.medium.strong.lineHeight": "body.medium.strong.lineHeight",
+      "body.medium.strong.letterSpacing": "body.medium.strong.letterSpacing",
+      "body.small.fontFamily": "body.small.fontFamily",
+      "body.small.fontSize": "body.small.fontSize",
+      "body.small.fontWeight": "body.small.fontWeight",
+      "body.small.lineHeight": "body.small.lineHeight",
+      "body.small.letterSpacing": "body.small.letterSpacing",
+      "body.small.strong.fontFamily": "body.small.strong.fontFamily",
+      "body.small.strong.fontSize": "body.small.strong.fontSize",
+      "body.small.strong.fontWeight": "body.small.strong.fontWeight",
+      "body.small.strong.lineHeight": "body.small.strong.lineHeight",
+      "body.small.strong.letterSpacing": "body.small.strong.letterSpacing"
     },
     "collections": {
       "Colors": {
@@ -836,6 +883,16 @@
           "DevMode-Dark": "devmode:dark",
           "Slides-Light": "slides:light",
           "Slides-Dark": "slides:dark"
+        }
+      },
+      "Sizing": {
+        "modes": {
+          "Default": "default:light"
+        }
+      },
+      "Typography": {
+        "modes": {
+          "Mode 1": "default:light"
         }
       }
     },

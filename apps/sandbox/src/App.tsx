@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Button } from '@org/ui'
+import { Button } from '@figkit/ui'
 import './App.css'
 
 function App() {

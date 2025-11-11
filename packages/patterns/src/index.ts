@@ -1,3 +1,5 @@
-export { FilterBar } from './FilterBar';
-export type { FilterBarProps } from './FilterBar';
+// Export your patterns here
+// Example:
+// export { MyPattern } from './MyPattern';
+// export type { MyPatternProps } from './MyPattern';
 
