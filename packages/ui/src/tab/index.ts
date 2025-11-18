@@ -1,5 +1,2 @@
-export { Tab } from './Tab';
-export type { TabProps } from './Tab';
-export { Tabs } from './Tabs';
-export type { TabsProps, TabsItem } from './Tabs';
-
+export * from './Tab';
+export * from './Tabs';

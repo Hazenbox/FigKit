@@ -1,6 +1,15 @@
+export { Avatar } from './avatar/Avatar';
+export type { AvatarProps } from './avatar/Avatar';
+export { Badge } from './badge/Badge';
+export type { BadgeProps } from './badge/Badge';
 export { Button } from './button/Button';
-export type { ButtonProps, ButtonVariant, ButtonSize } from './button/Button';
+export type { ButtonProps } from './button/Button';
 export { Checkbox } from './checkbox/Checkbox';
 export type { CheckboxProps } from './checkbox/Checkbox';
-export { Tab, Tabs } from './tab';
-export type { TabProps, TabsProps, TabsItem } from './tab';
+export { Tab } from './tab/Tab';
+export type { TabProps } from './tab/Tab';
+export { Tabs } from './tab/Tabs';
+export type { TabsProps, TabsItem } from './tab/Tabs';
+export { TextInput } from './text-input/TextInput';
+export type { TextInputProps } from './text-input/TextInput';
+export * from './icons';

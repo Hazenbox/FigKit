@@ -21,7 +21,18 @@ const preview: Preview = {
       // 'error' - fail CI on a11y violations
       // 'off' - skip a11y checks entirely
       test: 'todo'
-    }
+    },
+
+    options: {
+        storySort: {
+          order: [
+            'Foundations',
+            ['Colors', 'Typography', 'Spacing', 'Border Radius', 'Shadows', 'Layout', 'Dimensions', 'Icons'],
+            'Components',
+            ['Avatar', 'Badge', 'Button', 'Checkbox', 'Tab', 'Tabs', 'TextInput'],
+          ],
+        },
+    },
   },
 };
 
@@ -59,41 +70,149 @@ const ThemeWrapper = ({ children, brand, theme }: { children: React.ReactNode; b
   useEffect(() => {
     if (typeof document === 'undefined') return;
     
-    // Inject global styles for background color
-    let styleElement = document.getElementById('storybook-theme-bg-style');
+    // Inject Inter font from Google Fonts (non-blocking)
+    let fontLink = document.getElementById('inter-font-link');
+    if (!fontLink) {
+      fontLink = document.createElement('link');
+      fontLink.id = 'inter-font-link';
+      fontLink.rel = 'stylesheet';
+      fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap';
+      document.head.appendChild(fontLink);
+    }
+    
+    // Inject global styles for Storybook UI and background
+    let styleElement = document.getElementById('storybook-theme-style');
     if (!styleElement) {
       styleElement = document.createElement('style');
-      styleElement.id = 'storybook-theme-bg-style';
+      styleElement.id = 'storybook-theme-style';
       document.head.appendChild(styleElement);
     }
     
     const setAttributes = () => {
-      document.documentElement.setAttribute('data-brand', brand);
-      document.documentElement.setAttribute('data-theme', theme);
-      
-      // Update background color via CSS variable
-      if (styleElement) {
-        styleElement.textContent = `
-          body,
-          #storybook-root,
-          .sb-wrapper,
-          .sb-main-padded,
-          .sb-show-main {
-            background-color: var(--color-bg-default, #ffffff) !important;
-            transition: background-color 0.2s ease;
-          }
-        `;
+      try {
+        // Set data attributes on document element
+        document.documentElement.setAttribute('data-brand', brand);
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        // Get computed CSS variables for current theme (with safe fallbacks)
+        const computedStyle = getComputedStyle(document.documentElement);
+        const bgDefault = computedStyle.getPropertyValue('--color-bg-default').trim() || (theme === 'dark' ? '#1e1e1e' : '#ffffff');
+        const textDefault = computedStyle.getPropertyValue('--color-text-default').trim() || (theme === 'dark' ? 'rgba(255, 255, 255, 0.9)' : 'rgba(0, 0, 0, 0.9)');
+        const bgSecondary = computedStyle.getPropertyValue('--color-bg-secondary').trim() || (theme === 'dark' ? '#2c2c2c' : '#f5f5f5');
+        const borderDefault = computedStyle.getPropertyValue('--color-border-component-default').trim() || (theme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)');
+        
+        // Update Storybook UI and component area with comprehensive styling
+        if (styleElement) {
+          styleElement.textContent = `
+            /* Apply Inter font to Storybook and all components */
+            *,
+            *::before,
+            *::after {
+              font-family: 'Inter', var(--font-family-default, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+            }
+            
+            /* Ensure Storybook UI uses Inter */
+            body,
+            #storybook-root,
+            .sb-wrapper,
+            .sb-main-padded,
+            .sb-show-main,
+            .sidebar-container,
+            .sidebar-header,
+            .sb-bar,
+            .toolbar,
+            .toolbar-wrapper,
+            .panel-container,
+            .panel-wrapper,
+            input,
+            select,
+            textarea,
+            button,
+            pre,
+            code,
+            a,
+            h1, h2, h3, h4, h5, h6,
+            p,
+            span,
+            div {
+              font-family: 'Inter', var(--font-family-default, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif !important;
+            }
+            
+            /* Storybook component area background */
+            body,
+            #storybook-root,
+            .sb-wrapper,
+            .sb-main-padded,
+            .sb-show-main {
+              background-color: ${bgDefault} !important;
+              color: ${textDefault} !important;
+              transition: background-color 0.2s ease, color 0.2s ease;
+            }
+            
+            /* Storybook sidebar */
+            .sidebar-container,
+            .sidebar-header {
+              background-color: ${bgSecondary} !important;
+              border-color: ${borderDefault} !important;
+            }
+            
+            /* Storybook toolbar */
+            .sb-bar,
+            .toolbar,
+            .toolbar-wrapper {
+              background-color: ${bgSecondary} !important;
+              border-color: ${borderDefault} !important;
+            }
+            
+            /* Storybook panels */
+            .panel-container,
+            .panel-wrapper {
+              background-color: ${bgDefault} !important;
+              color: ${textDefault} !important;
+            }
+            
+            /* Storybook inputs and controls */
+            input,
+            select,
+            textarea {
+              background-color: ${bgDefault} !important;
+              color: ${textDefault} !important;
+              border-color: ${borderDefault} !important;
+            }
+            
+            /* Storybook code blocks */
+            pre,
+            code {
+              background-color: ${bgSecondary} !important;
+              color: ${textDefault} !important;
+            }
+            
+            /* Storybook links */
+            a {
+              color: var(--color-text-brand, #007be5) !important;
+            }
+          `;
+        }
+        
+        // Also set body background directly as fallback
+        if (document.body) {
+          document.body.style.backgroundColor = bgDefault;
+          document.body.style.color = textDefault;
+        }
+      } catch (error) {
+        console.warn('Error setting theme attributes:', error);
       }
     };
     
-    // Set immediately
-    setAttributes();
+    // Set with a delay to ensure DOM is ready
+    const timeoutId = setTimeout(() => {
+      setAttributes();
+    }, 50);
     
-    // Set on next frame to ensure it happens after any DOM updates
-    requestAnimationFrame(setAttributes);
-    
-    // Also set with a small delay as a fallback
-    const timeoutId = setTimeout(setAttributes, 0);
+    // Also set on next frame
+    requestAnimationFrame(() => {
+      setAttributes();
+    });
     
     return () => {
       clearTimeout(timeoutId);

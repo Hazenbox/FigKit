@@ -3,7 +3,7 @@ import React from 'react';
 import { Tabs } from '@figkit/ui';
 
 const meta = {
-  title: 'UI/Tabs',
+  title: 'Components/Tabs',
   component: Tabs,
   parameters: {
     layout: 'centered',

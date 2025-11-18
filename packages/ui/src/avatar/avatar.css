@@ -1,0 +1,177 @@
+/* Avatar Component - 100% Figma match with token-based styling */
+
+/* Base avatar styles */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  overflow: hidden;
+  user-select: none;
+  box-sizing: border-box;
+}
+
+.avatar-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-initials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--body-large-fontFamily, var(--font-family-default, 'Inter'));
+  font-size: var(--body-large-fontSize, 13px);
+  font-weight: var(--body-large-fontWeight, 450);
+  line-height: var(--body-large-lineHeight, 22px);
+  letter-spacing: var(--body-large-letterSpacing, -0.25px);
+  color: var(--color-text-onbrand, #ffffff);
+  text-align: center;
+}
+
+.avatar-overflow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--body-large-fontFamily, var(--font-family-default, 'Inter'));
+  font-size: var(--body-large-fontSize, 13px);
+  font-weight: var(--body-large-fontWeight, 450);
+  line-height: var(--body-large-lineHeight, 22px);
+  letter-spacing: var(--body-large-letterSpacing, -0.25px);
+  color: var(--color-text-onbrand, #ffffff);
+  text-align: center;
+}
+
+.avatar-org-icon {
+  width: 60%;
+  height: 60%;
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+.avatar-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+/* ===== SIZES ===== */
+
+/* Small (24px) */
+.avatar--small {
+  width: 24px;
+  height: 24px;
+}
+
+/* Default (32px) */
+.avatar--default {
+  width: 32px;
+  height: 32px;
+}
+
+/* Large (40px) */
+.avatar--large {
+  width: 40px;
+  height: 40px;
+}
+
+/* ===== SHAPES ===== */
+
+.avatar--circle {
+  border-radius: var(--radius-full, 50%);
+}
+
+.avatar--square {
+  border-radius: var(--radius-md, 5px);
+}
+
+/* ===== VARIANTS ===== */
+
+/* Photo variant - transparent background, shows image */
+.avatar--photo {
+  background: transparent;
+  border: 1px solid var(--color-border-component-default, rgba(0, 0, 0, 0.1));
+}
+
+/* Purple variant */
+.avatar--purple {
+  background: var(--color-bg-figjam-default, var(--color-bg-figjam, #9747ff));
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+/* Blue variant */
+.avatar--blue {
+  background: var(--color-bg-brand-default, var(--color-bg-brand, #0d99ff));
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+/* Pink variant */
+.avatar--pink {
+  background: var(--color-bg-assistive-default, var(--color-bg-assistive, #ff24bd));
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+/* Red variant */
+.avatar--red {
+  background: var(--color-bg-danger-default, var(--color-bg-danger, #f24822));
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+/* Yellow variant */
+.avatar--yellow {
+  background: var(--color-bg-warning-default, var(--color-bg-warning, #ffcd29));
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+/* Green variant */
+.avatar--green {
+  background: var(--color-bg-success-default, var(--color-bg-success, #14ae5c));
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+/* Grey variant */
+.avatar--grey {
+  background: var(--color-bg-secondary, #f5f5f5);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+/* Overflow Unread variant */
+.avatar--overflow-unread {
+  background: var(--color-bg-brand-default, var(--color-bg-brand, #0d99ff));
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+/* Overflow Read variant */
+.avatar--overflow-read {
+  background: var(--color-bg-secondary, #f5f5f5);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+/* Org variant */
+.avatar--org {
+  background: var(--color-bg-component-default, var(--color-bg-secondary, #f5f5f5));
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+  border: 1px solid var(--color-border-component-default, rgba(0, 0, 0, 0.1));
+}
+
+/* ===== STATES ===== */
+
+.avatar--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Focus state (for interactive avatars) */
+.avatar:focus-visible {
+  outline: 2px solid var(--color-border-selected, var(--color-bg-brand, #0d99ff));
+  outline-offset: 2px;
+}

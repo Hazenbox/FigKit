@@ -1,0 +1,224 @@
+/* 100% Figma-to-Code match - All properties extracted from Figma */
+/* Base styles extracted directly from Figma node */
+.badge {
+  mix-blend-mode: normal;
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border-default, #e6e6e6);
+  padding: 0 var(--space-1, 4px);
+  gap: var(--space-1, 4px);
+  height: 16px;
+  border-radius: 5px; /* Extracted from Figma node.cornerRadius - exact value: 5px */
+  background-color: transparent;
+  font-family: var(--body-small-fontFamily, var(--font-family-default, 'Inter'));
+  font-size: var(--body-small-fontSize, 9px);
+  font-weight: var(--body-small-fontWeight, var(--font-weight-default, 450));
+  line-height: var(--body-small-lineHeight, 14px);
+  letter-spacing: var(--body-small-letterSpacing, 0.5px);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+  white-space: nowrap;
+  user-select: none;
+  cursor: default;
+  transition: all 0.2s ease;
+}
+
+.badge-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+}
+
+.badge-icon--lead {
+  margin-right: var(--space-1, 4px);
+  width: 12px;
+  height: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Variant-specific styles extracted from Figma with all states */
+.badge--default {
+  border-color: var(--color-border-default, #e6e6e6);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.badge--default.badge--strong {
+  background-color: var(--color-bg-default, #ffffff);
+  border-color: var(--color-border-default, #e6e6e6);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.badge--brand {
+  border-color: var(--color-bg-brand-tertiary, #bde3ff);
+  color: var(--color-text-brand, #007be5);
+}
+
+.badge--brand.badge--strong {
+  background-color: var(--color-bg-brand-default, #0d99ff);
+  border-color: var(--color-bg-brand-default, #0d99ff);
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+.badge--component {
+  border-color: var(--color-bg-component-tertiary, #e4ccff);
+  color: var(--color-text-figjam, #8638e5);
+}
+
+.badge--component.badge--strong {
+  background-color: var(--color-bg-component-default, #9747ff);
+  border-color: var(--color-bg-component-default, #9747ff);
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+.badge--danger {
+  border-color: var(--color-bg-danger-tertiary, #ffc7c2);
+  color: var(--color-text-danger, #dc3412);
+}
+
+.badge--danger.badge--strong {
+  background-color: var(--color-bg-danger-default, #f24822);
+  border-color: var(--color-bg-danger-default, #f24822);
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+.badge--feedback {
+  border-color: var(--color-bg-brand-tertiary, #bde3ff);
+  color: var(--color-text-brand, #007be5);
+  padding-left: var(--space-1, 4px);
+  padding-right: 0;
+}
+
+.badge--figjam {
+  border-color: var(--color-bg-component-tertiary, #e4ccff);
+  color: var(--color-text-figjam, #8638e5);
+}
+
+.badge--figjam.badge--strong {
+  background-color: var(--color-bg-figjam, #9747ff);
+  border-color: var(--color-bg-figjam, #9747ff);
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+.badge--invert {
+  border-color: var(--color-border-default, #e6e6e6);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.badge--invert.badge--strong {
+  background-color: var(--color-bg-default, #ffffff);
+  border-color: var(--color-border-default, #e6e6e6);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.badge--selected {
+  border-color: var(--color-border-selected, #0d99ff);
+  color: var(--color-text-brand, #007be5);
+}
+
+.badge--success {
+  border-color: var(--color-bg-success-tertiary, #aff4c6);
+  color: var(--color-text-success, #009951);
+}
+
+.badge--success.badge--strong {
+  background-color: var(--color-bg-success, #14ae5c);
+  border-color: var(--color-bg-success, #14ae5c);
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+.badge--variable {
+  border-color: var(--color-border-default, #e6e6e6);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+  padding-right: 0;
+}
+
+.badge--variable-selected {
+  border-color: var(--color-border-selected, #0d99ff);
+  color: var(--color-text-brand, #007be5);
+  padding-right: 0;
+}
+
+.badge--warn {
+  border-color: var(--color-bg-warning-tertiary, #ffe8a3);
+  color: var(--color-text-warning, #b86200);
+}
+
+.badge--warn.badge--strong {
+  background-color: var(--color-bg-warning, #ffcd29);
+  border-color: var(--color-bg-warning, #ffcd29);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.badge--merged {
+  background-color: var(--color-bg-default, #ffffff);
+  border-color: var(--color-bg-success-tertiary, #aff4c6);
+  color: var(--color-text-success, #009951);
+}
+
+.badge--archived {
+  background-color: var(--color-bg-default, #ffffff);
+  border-color: var(--color-border-default, #e6e6e6);
+  color: var(--color-text-secondary, rgba(0, 0, 0, 0.5));
+}
+
+.badge--menu {
+  background-color: var(--color-bg-menu, #1e1e1e);
+  border: none;
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+/* Size variants */
+.badge--default {
+  height: 16px;
+  padding: 0 var(--space-1, 4px);
+  font-size: var(--body-small-fontSize, 9px);
+  line-height: var(--body-small-lineHeight, 14px);
+}
+
+.badge--large {
+  height: 20px;
+  padding: 0 var(--space-2, 8px);
+  font-size: var(--body-medium-fontSize, 11px);
+  line-height: var(--body-medium-lineHeight, 16px);
+}
+
+.badge--wide {
+  width: 100%;
+  height: 16px;
+  padding: 0 var(--space-1, 4px);
+  font-size: var(--body-small-fontSize, 9px);
+  line-height: var(--body-small-lineHeight, 14px);
+}
+
+/* Disabled state */
+.badge:disabled,
+.badge--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Icon alignment */
+.badge--icon-left {
+  flex-direction: row;
+}
+
+.badge--icon-center {
+  flex-direction: row;
+  justify-content: center;
+}

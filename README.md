@@ -1,4 +1,4 @@
-# @org/design-system
+# @figkit/design-system
 
 A comprehensive design system monorepo with React components, design tokens, and Figma integration. Ready for npm publishing and consumption by other teams.
 
@@ -111,7 +111,7 @@ pnpm build:tokens
 pnpm build
 
 # Run Storybook
-pnpm -F @org/docs storybook
+pnpm -F @figkit/docs storybook
 ```
 
 ### Available Scripts

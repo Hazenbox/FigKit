@@ -1,0 +1,26 @@
+import React from 'react';
+import type { SVGProps } from 'react';
+
+export interface BorderSmallIconProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'height'> {
+  size?: number | string;
+  color?: string;
+}
+
+export const BorderSmallIcon = ({ 
+  size = 24, 
+  color = 'currentColor',
+  ...props 
+}: BorderSmallIconProps) => {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      {...props}
+    >
+      <path fillRule="evenodd" clipRule="evenodd" d="M6 7C6 6.44772 6.44772 6 7 6H7.5H16.5H17C17.5523 6 18 6.44772 18 7V7.5V16.5V17C18 17.5523 17.5523 18 17 18H16.5H7.5H7C6.44772 18 6 17.5523 6 17V16.5V7.5V7ZM9 9V15H15V9H9ZM7.5 7H7V7.5V8V16V16.5V17H7.5H8H16H16.5H17V16.5V16V8V7.5V7H16.5H16H8H7.5ZM8 9V8H9H15H16V9V15V16H15H9H8V15V9Z" fill="black" fillOpacity="0.9"/>
+    </svg>
+  );
+};

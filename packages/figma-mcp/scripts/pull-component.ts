@@ -5,6 +5,7 @@ import { mapFigmaKeyToSemantic, getTokenFallback } from './utils/token-map.js';
 import { emitReactComponent, kebab, pascalCase } from './utils/codegen.js';
 import { extractColorsFromNode } from './utils/extract-colors.js';
 import { resolveBoundVariable } from './utils/resolve-variables.js';
+import { extractAllProperties, propertiesToCSS } from './utils/extract-all-properties.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -52,8 +53,57 @@ async function main() {
     }
   }
 
-  // Extract actual color values from Figma node (or primary variant if available)
+  // Extract ALL properties from Figma node (100% extraction)
   const colorSource = (node.type === 'COMPONENT_SET' && variantInstances.length > 0 && variantInstances.find((c: any) => c.name?.toLowerCase().includes('primary'))) || node;
+  
+  console.log('🔍 Extracting ALL properties from Figma node (100% extraction)...');
+  const allProperties = extractAllProperties(colorSource);
+  
+  // Extract properties for each variant if component set
+  const variantPropertiesMap = new Map<string, any>();
+  if (node.type === 'COMPONENT_SET' && variantInstances.length > 0) {
+    console.log('📋 Extracting properties for all variants...');
+    
+    // Fetch full node data for each variant to get all properties
+    for (const variant of variantInstances) {
+      try {
+        // If variant has an ID, fetch its full data
+        if (variant.id) {
+          const { node: fullVariantNode } = await fetchNode(fileKey, variant.id);
+          const variantName = fullVariantNode.name?.toLowerCase() || variant.name?.toLowerCase() || 'default';
+          const variantProps = extractAllProperties(fullVariantNode);
+          variantPropertiesMap.set(variantName, variantProps);
+          console.log(`   ✅ Extracted ${variantName}: ${variantProps.fills.length} fills, ${variantProps.effects.length} effects, ${variantProps.strokes.length} strokes`);
+        } else {
+          // Fallback to variant data we have
+          const variantName = variant.name?.toLowerCase() || 'default';
+          const variantProps = extractAllProperties(variant);
+          variantPropertiesMap.set(variantName, variantProps);
+          console.log(`   ✅ Extracted ${variantName}: ${variantProps.fills.length} fills, ${variantProps.effects.length} effects`);
+        }
+      } catch (err) {
+        console.warn(`   ⚠️  Could not fetch full data for variant ${variant.name}:`, err);
+        // Fallback to variant data we have
+        const variantName = variant.name?.toLowerCase() || 'default';
+        const variantProps = extractAllProperties(variant);
+        variantPropertiesMap.set(variantName, variantProps);
+      }
+    }
+  }
+  
+  console.log('✅ Extracted properties:');
+  console.log(`   Fills: ${allProperties.fills.length}`);
+  console.log(`   Strokes: ${allProperties.strokes.length}`);
+  console.log(`   Effects: ${allProperties.effects.length}`);
+  console.log(`   Layout: ${allProperties.layout.layoutMode || 'none'}`);
+  console.log(`   Dimensions: ${allProperties.dimensions.width}x${allProperties.dimensions.height}`);
+  console.log(`   Typography: ${allProperties.typography ? 'yes' : 'no'}`);
+  console.log(`   Opacity: ${allProperties.opacity}`);
+  if (variantPropertiesMap.size > 0) {
+    console.log(`   Variants: ${variantPropertiesMap.size} variants extracted`);
+  }
+  
+  // Also extract colors for backward compatibility and token mapping
   const colors = extractColorsFromNode(colorSource);
   
   console.log('🎨 Extracted colors from Figma:');
@@ -87,46 +137,75 @@ async function main() {
   // But we use CSS variables from the token system for consistency across brands/themes
   // The token system should be synced with Figma via mcp:pull:tokens
 
-  // Check if node has variant properties (Component Set)
-  const variantProperties = node.variantProperties || {};
+  // Extract ALL component property definitions (100% extraction)
   const variants: string[] = [];
+  const sizes: string[] = [];
+  const componentProps: Record<string, { type: string; options: string[]; defaultValue: string }> = {};
   
-  // Try to get all variants from component set if this is a variant instance
-  if (node.type === 'COMPONENT' || node.type === 'INSTANCE') {
-    // For UI3 Figma kit, buttons typically have: primary, secondary, tertiary, danger
-    // We'll include all common variants
-    variants.push('primary', 'secondary', 'tertiary', 'danger');
-  } else if (variantProperties.variant) {
-    // Extract variant options from component set
-    const variantValue = variantProperties.variant;
-    if (typeof variantValue === 'string') {
-      variants.push(variantValue);
+  if (node.type === 'COMPONENT_SET' && node.componentPropertyDefinitions) {
+    console.log('📋 Extracting ALL component property definitions...');
+    
+    // Extract ALL properties, not just Variant and Size
+    for (const [propName, propDef] of Object.entries(node.componentPropertyDefinitions)) {
+      const prop = propDef as any;
+      
+      // Normalize property name (remove emojis, normalize to camelCase)
+      const normalizedName = propName
+        .replace(/[👥🐣🎛️]/g, '')
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '-');
+      
+      if (prop.type === 'VARIANT' && prop.variantOptions) {
+        const options = prop.variantOptions.map((opt: string) => 
+          opt.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+        );
+        
+        componentProps[normalizedName] = {
+          type: 'VARIANT',
+          options,
+          defaultValue: (prop.defaultValue || options[0] || '').toLowerCase().replace(/\s+/g, '-')
+        };
+        
+        // Special handling for known properties
+        if (propName.includes('Variant') || propName === '👥 Variant') {
+          variants.push(...options);
+        } else if (propName.includes('Size') || propName === '👥 Size') {
+          sizes.push(...options);
+        }
+        
+        console.log(`   ✅ ${propName}: ${options.length} options (${options.join(', ')})`);
+      } else if (prop.type === 'BOOLEAN') {
+        componentProps[normalizedName] = {
+          type: 'BOOLEAN',
+          options: ['true', 'false'],
+          defaultValue: prop.defaultValue === 'TRUE' ? 'true' : 'false'
+        };
+        console.log(`   ✅ ${propName}: Boolean (default: ${componentProps[normalizedName].defaultValue})`);
+      } else if (prop.type === 'TEXT') {
+        componentProps[normalizedName] = {
+          type: 'TEXT',
+          options: [],
+          defaultValue: prop.defaultValue || ''
+        };
+        console.log(`   ✅ ${propName}: Text (default: "${componentProps[normalizedName].defaultValue}")`);
+      }
     }
-  } else {
-    // Default variants based on common patterns - UI3 kit has these
-    variants.push('primary', 'secondary', 'tertiary', 'danger');
-  }
-
-  // Infer variants from name (additional check)
-  const nameLower = name.toLowerCase();
-  if (nameLower.includes('primary') || nameLower.includes('default')) {
-    if (!variants.includes('primary')) variants.unshift('primary');
-  }
-  if (nameLower.includes('secondary')) {
-    if (!variants.includes('secondary')) variants.push('secondary');
-  }
-  if (nameLower.includes('tertiary')) {
-    if (!variants.includes('tertiary')) variants.push('tertiary');
-  }
-  if (nameLower.includes('danger') || nameLower.includes('delete')) {
-    if (!variants.includes('danger')) variants.push('danger');
   }
   
-  // Remove duplicates and ensure we have at least primary
-  const uniqueVariants = Array.from(new Set(variants));
-  if (uniqueVariants.length === 0) {
-    uniqueVariants.push('primary');
+  // Fallback to common variants if not found
+  if (variants.length === 0) {
+    variants.push('primary', 'secondary', 'figjam', 'destructive', 'secondary-destruct', 'inverse', 'success', 'link', 'link-danger', 'ghost');
   }
+  
+  // Fallback to common sizes if not found
+  if (sizes.length === 0) {
+    sizes.push('default', 'large', 'wide');
+  }
+  
+  // Remove duplicates
+  const uniqueVariants = Array.from(new Set(variants));
+  const uniqueSizes = Array.from(new Set(sizes));
 
   // Use semantic token paths
   bgSemantic = mapFigmaKeyToSemantic('✦.bg.brand.default') || getTokenFallback('bg', 'primary');
@@ -146,12 +225,15 @@ async function main() {
     outDir,
     cssClasses: '', // Not used in current implementation
     variants: uniqueVariants,
-    sizes: ['sm', 'md', 'lg'],
+    sizes: uniqueSizes.length > 0 ? uniqueSizes : ['default', 'large', 'wide'],
+    componentProperties: componentProps, // Pass ALL component property definitions
     extractedColors: {
       fill: resolvedFill || colors.fill,
       stroke: colors.stroke,
       text: colors.text,
     },
+    allProperties: allProperties, // Pass all extracted properties for 100% match
+    variantPropertiesMap: variantPropertiesMap, // Pass variant-specific properties
   });
 
   console.log(`✅ Generated ${compName} in ${dir}`);

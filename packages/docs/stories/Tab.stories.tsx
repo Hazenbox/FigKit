@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Tab } from '@figkit/ui';
 
 const meta = {
-  title: 'UI/Tab',
+  title: 'Components/Tab',
   component: Tab,
   parameters: {
     layout: 'centered',

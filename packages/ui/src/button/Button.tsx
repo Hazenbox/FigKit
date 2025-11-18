@@ -8,12 +8,12 @@ function clsx(...args: (string | boolean | undefined | null)[]): string {
 
 export type ButtonVariant =
   | 'primary'
-  | 'secondary'
-  | 'figjam'
   | 'destructive'
-  | 'secondary-destruct'
   | 'inverse'
   | 'success'
+  | 'figjam'
+  | 'secondary'
+  | 'secondary-destruct'
   | 'link'
   | 'link-danger'
   | 'ghost';
@@ -30,8 +30,8 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 
 export const Button = ({
   children,
-  variant = 'primary',
-  size = 'default',
+  variant = "primary",
+  size = "large",
   icon,
   iconPosition = 'left',
   className,

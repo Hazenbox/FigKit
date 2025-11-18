@@ -1,0 +1,286 @@
+/* 100% Figma-to-Code match - All properties extracted from Figma */
+/* Base styles extracted directly from Figma node */
+.badge-mall {
+  mix-blend-mode: pass_through;
+    overflow: hidden;
+    border: 1px dashed #9747ff;
+    box-sizing: border-box;
+    border-style: dashed;
+    border-image: repeating-linear-gradient(90deg, #9747ff 0, #9747ff 10px, transparent 10px, transparent 15px) 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 16px 16px;
+    gap: 16px;
+    width: 104px;
+    height: 720px;
+    border-radius: 5px;
+}
+
+.badge-mall-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.badge-mall-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.badge-mall-icon--left {
+  margin-right: var(--space-1, 4px);
+}
+
+.badge-mall-icon--center {
+  margin: 0 var(--space-1, 4px);
+}
+
+
+
+/* Variant-specific styles extracted from Figma with all states */
+.badge-mall--default {
+  mix-blend-mode: pass_through;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 46px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--brand {
+  mix-blend-mode: pass_through;
+    border: 1px solid #bde3ff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 40px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--component {
+  mix-blend-mode: pass_through;
+    border: 1px solid #e4ccff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 70px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--danger {
+  mix-blend-mode: pass_through;
+    border: 1px solid #ffc7c2;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 47px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--feedback {
+  mix-blend-mode: pass_through;
+    border: 1px solid #bde3ff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 0px 0px 4px;
+    align-items: center;
+    width: 72px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--figjam {
+  mix-blend-mode: pass_through;
+    border: 1px solid #e4ccff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 47px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--invert {
+  mix-blend-mode: pass_through;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 52px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--selected {
+  mix-blend-mode: pass_through;
+    border: 1px solid #bde3ff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 55px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--success {
+  mix-blend-mode: pass_through;
+    border: 1px solid #aff4c6;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 53px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--variable {
+  mix-blend-mode: pass_through;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 0px;
+    align-items: center;
+    width: 58px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--variable-selected {
+  mix-blend-mode: pass_through;
+    border: 1px solid #bde3ff;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 0px;
+    align-items: center;
+    width: 67px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--warn {
+  mix-blend-mode: pass_through;
+    border: 1px solid #ffe8a3;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 36px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--merged {
+  mix-blend-mode: pass_through;
+    background-color: #ffffff;
+    border: 1px solid #aff4c6;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 64px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--archived {
+  mix-blend-mode: pass_through;
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 70px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+.badge-mall--menu {
+  mix-blend-mode: pass_through;
+    background-color: #2c2c2c;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 4px 0px 4px;
+    gap: 4px;
+    align-items: center;
+    width: 38px;
+    height: 16px;
+    border-radius: 5px;
+}
+
+
+
+/* Size: Default (24px height) */
+.badge-mall--default {
+  height: 24px;
+  padding: 0 var(--space-3, 12px);
+  border-radius: var(--radius-sm, 2px);
+}
+
+/* Size: Large (32px height) */
+.badge-mall--large {
+  height: 32px;
+  padding: 0 var(--space-4, 16px);
+  border-radius: var(--radius-sm, 2px);
+}
+
+/* Size: Wide (full width, 24px height) */
+.badge-mall--wide {
+  width: 100%;
+  height: 24px;
+  padding: 0 var(--space-3, 12px);
+  border-radius: var(--radius-sm, 2px);
+}
+
+/* Disabled state */
+.badge-mall:disabled,
+.badge-mall--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Icon alignment */
+.badge-mall--icon-left {
+  flex-direction: row;
+}
+
+.badge-mall--icon-center {
+  flex-direction: row;
+}
