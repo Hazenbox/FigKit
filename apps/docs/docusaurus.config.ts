@@ -73,7 +73,7 @@ const config: Config = {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'FigKit',
+      title: '',
       logo: {
         alt: 'FigKit Logo',
         src: 'img/logo.svg',
