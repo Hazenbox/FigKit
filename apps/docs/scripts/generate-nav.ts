@@ -20,39 +20,73 @@ function getFiles(dir: string, basePath = ''): NavItem[] {
 
   const items: NavItem[] = [];
   const entries = readdirSync(dir, { withFileTypes: true });
-
+  const pathMap = new Map<string, NavItem>(); // Track paths to avoid duplicates
+  
+  // First pass: collect all file entries
+  const fileEntries: { entry: typeof entries[0]; fullPath: string; relativePath: string }[] = [];
+  const dirEntries: { entry: typeof entries[0]; fullPath: string; relativePath: string }[] = [];
+  
   for (const entry of entries) {
     const fullPath = join(dir, entry.name);
     const relativePath = join(basePath, entry.name);
-
+    
     if (entry.isDirectory()) {
-      const indexPath = join(fullPath, 'index.mdx');
+      dirEntries.push({ entry, fullPath, relativePath });
+    } else if (entry.name.endsWith('.mdx') && entry.name !== 'index.mdx') {
+      fileEntries.push({ entry, fullPath, relativePath });
+    }
+  }
+  
+  // Process files first (they take priority)
+  for (const { entry, fullPath, relativePath } of fileEntries) {
+    const content = readFileSync(fullPath, 'utf-8');
+    const { data } = matter(content);
+    const slug = entry.name.replace('.mdx', '');
+    const path = `/docs/${basePath ? basePath + '/' : ''}${slug}`;
+    
+    const item: NavItem = {
+      title: (data.title as string) || slug,
+      path,
+      order: (data.order as number) || 999,
+    };
+    items.push(item);
+    pathMap.set(path, item);
+  }
+  
+  // Then process directories (skip if file with same path exists)
+  for (const { entry, fullPath, relativePath } of dirEntries) {
+    const indexPath = join(fullPath, 'index.mdx');
+    const path = `/docs/${relativePath}`;
+    
+    // Skip if we already have a file with this path
+    if (pathMap.has(path)) {
+      continue;
+    }
+    
+    // Only create directory entry if it has children or an index file
+    const children = getFiles(fullPath, relativePath);
+    if (existsSync(indexPath) || children.length > 0) {
       if (existsSync(indexPath)) {
         const content = readFileSync(indexPath, 'utf-8');
         const { data } = matter(content);
-        items.push({
+        const item: NavItem = {
           title: (data.title as string) || entry.name,
-          path: `/docs/${relativePath}`,
+          path,
           order: (data.order as number) || 999,
-          children: getFiles(fullPath, relativePath),
-        });
+          children,
+        };
+        items.push(item);
+        pathMap.set(path, item);
       } else {
-        items.push({
+        const item: NavItem = {
           title: entry.name,
-          path: `/docs/${relativePath}`,
+          path,
           order: 999,
-          children: getFiles(fullPath, relativePath),
-        });
+          children,
+        };
+        items.push(item);
+        pathMap.set(path, item);
       }
-    } else if (entry.name.endsWith('.mdx') && entry.name !== 'index.mdx') {
-      const content = readFileSync(fullPath, 'utf-8');
-      const { data } = matter(content);
-      const slug = entry.name.replace('.mdx', '');
-      items.push({
-        title: (data.title as string) || slug,
-        path: `/docs/${basePath ? basePath + '/' : ''}${slug}`,
-        order: (data.order as number) || 999,
-      });
     }
   }
 

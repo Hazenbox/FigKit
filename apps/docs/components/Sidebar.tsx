@@ -29,7 +29,7 @@ export default function Sidebar() {
     const hasChildren = item.children && item.children.length > 0;
 
     return (
-      <div key={item.path} style={{ marginBottom: level === 0 ? '8px' : '4px' }}>
+      <div key={`${item.path}-${level}-${item.title}`} style={{ marginBottom: level === 0 ? '8px' : '4px' }}>
         <Link
           href={item.path}
           style={{
