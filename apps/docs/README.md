@@ -16,6 +16,16 @@ cd apps/docs && pnpm dev
 
 The docs will be available at http://localhost:3001 (for local development)
 
+## Environment Variables
+
+For production deployment, set these in Vercel:
+
+- `STORYBOOK_URL` - Storybook deployment URL (default: https://storybook.figkit.dev)
+- `SANDBOX_URL` - Sandbox deployment URL (default: https://figkit.dev)
+- `PERFORMANCE_URL` - Performance page URL (default: https://figkit.dev/performance)
+
+See `.env.example` for local development setup and `VERCEL_SETUP.md` for detailed deployment instructions.
+
 ## Adding Content
 
 1. Create MDX files in the `docs/` directory
