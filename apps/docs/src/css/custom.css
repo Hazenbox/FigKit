@@ -333,8 +333,20 @@ button[class*="secondary"] {
 
 /* Sidebar inner container - ensure it respects parent */
 .theme-doc-sidebar-container > nav,
-.theme-doc-sidebar-container > div {
+.theme-doc-sidebar-container > div,
+.theme-doc-sidebar-container > * {
   width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Sidebar wrapper divs */
+.theme-doc-sidebar-container [class*="sidebar"],
+.theme-doc-sidebar-container nav {
+  width: 100% !important;
+  max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
@@ -343,14 +355,17 @@ button[class*="secondary"] {
 /* Menu container */
 .theme-doc-sidebar-container .menu {
   width: 100% !important;
+  max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
 }
 
 /* Menu list */
-.theme-doc-sidebar-container .menu__list {
+.theme-doc-sidebar-container .menu__list,
+.theme-doc-sidebar-container .theme-doc-sidebar-menu {
   width: 100% !important;
+  max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
