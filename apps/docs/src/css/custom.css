@@ -619,6 +619,21 @@ button[class*="secondary"] {
   color: #ffffff;
 }
 
+/* Main Content Container - Max Width 650px */
+.docItemContainer_Ogt7,
+.docItemCol_vjVD > div,
+.theme-doc-markdown {
+  max-width: 650px !important;
+}
+
+/* Table of Contents - Remove Left Border */
+.table-of-contents,
+.table-of-contents__left-border {
+  border-left: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
 /* Main Content Area Typography */
 .markdown h1 {
   font-size: var(--heading-h1-fontSize) !important;
