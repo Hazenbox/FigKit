@@ -271,6 +271,8 @@ button,
 .button,
 a.button {
   font-family: var(--font-sans) !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .button--primary,
@@ -278,6 +280,8 @@ button[class*="primary"] {
   font-size: var(--button-primary-fontSize) !important;
   font-weight: var(--button-primary-fontWeight) !important;
   line-height: var(--button-primary-lineHeight) !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .button--secondary,
@@ -285,6 +289,8 @@ button[class*="secondary"] {
   font-size: var(--button-secondary-fontSize) !important;
   font-weight: var(--button-secondary-fontWeight) !important;
   line-height: var(--button-secondary-lineHeight) !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 /* Navigation Typography */
@@ -321,6 +327,33 @@ button[class*="secondary"] {
   border-right: 1px solid var(--sidebar-border) !important;
   font-family: var(--font-sans) !important;
   flex-shrink: 0 !important;
+  box-sizing: border-box !important;
+  margin: 0 !important;
+}
+
+/* Sidebar inner container - ensure it respects parent */
+.theme-doc-sidebar-container > nav,
+.theme-doc-sidebar-container > div {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Menu container */
+.theme-doc-sidebar-container .menu {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Menu list */
+.theme-doc-sidebar-container .menu__list {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
 }
 
 /* Category Labels */
@@ -494,7 +527,8 @@ button[class*="secondary"] {
 /* Overview Page CTA Buttons */
 .overview-cta-primary {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 12px 24px 12px 24px;
+  margin: 0;
   background-color: #2563eb;
   color: #ffffff;
   border-radius: 8px;
@@ -504,6 +538,8 @@ button[class*="secondary"] {
   line-height: 20px;
   transition: background-color 0.2s ease;
   font-family: var(--font-sans);
+  border: none;
+  vertical-align: baseline;
 }
 
 .overview-cta-primary:hover {
@@ -513,7 +549,8 @@ button[class*="secondary"] {
 
 .overview-cta-secondary {
   display: inline-block;
-  padding: 12px 24px;
+  padding: 12px 24px 12px 24px;
+  margin: 0;
   background-color: #f3f4f6;
   color: #111111;
   border-radius: 8px;
@@ -523,6 +560,8 @@ button[class*="secondary"] {
   line-height: 20px;
   transition: background-color 0.2s ease;
   font-family: var(--font-sans);
+  border: none;
+  vertical-align: baseline;
 }
 
 .overview-cta-secondary:hover {
