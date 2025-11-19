@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "pnpm install && pnpm build:tokens && pnpm --filter @figkit/themes prepublishOnly && pnpm --filter @figkit/ui build && cd apps/sandbox && pnpm build",
+  "buildCommand": "pnpm install && pnpm --filter @figkit/tokens build && pnpm --filter @figkit/themes prepublishOnly && pnpm --filter @figkit/ui build && cd apps/sandbox && pnpm build",
   "outputDirectory": "apps/sandbox/dist",
   "devCommand": "cd apps/sandbox && pnpm dev",
   "installCommand": "pnpm install",
