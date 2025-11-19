@@ -40,15 +40,21 @@ FigKit is a production-ready design system that provides:
 ### External Resources
 
 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '24px', marginBottom: '32px' }}>
-  <a href={config.storybookUrl} target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
-    Storybook →
-  </a>
-  <a href={`${config.sandboxUrl}/test-npm`} target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
-    Test NPM Package →
-  </a>
-  <a href={config.performanceUrl} target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
-    Performance Benchmarks →
-  </a>
+  {config.storybookUrl !== '#' && (
+    <a href={config.storybookUrl} target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
+      Storybook →
+    </a>
+  )}
+  {config.testNpmUrl !== '#' && (
+    <a href={config.testNpmUrl} target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
+      Test NPM Package →
+    </a>
+  )}
+  {config.performanceUrl !== '#' && (
+    <a href={config.performanceUrl} target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
+      Performance Benchmarks →
+    </a>
+  )}
   <a href="https://www.npmjs.com/package/@figkit/ui" target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
     NPM Package →
   </a>
@@ -158,7 +164,11 @@ function App() {
 
 ## Resources
 
-- **Storybook**: Interactive component playground at <a href={config.storybookUrl} target="_blank" rel="noopener noreferrer">Storybook</a>
+{config.storybookUrl !== '#' && (
+  <>
+    - **Storybook**: Interactive component playground at <a href={config.storybookUrl} target="_blank" rel="noopener noreferrer">Storybook</a>
+  </>
+)}
 - **NPM Package**: [@figkit/ui](https://www.npmjs.com/package/@figkit/ui)
 - **GitHub**: [Hazenbox/FigKit](https://github.com/Hazenbox/FigKit)
 
