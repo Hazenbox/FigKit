@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "pnpm install && pnpm run build:vercel",
+  "buildCommand": "pnpm install && pnpm -w run build:vercel",
   "outputDirectory": "apps/sandbox/dist",
   "devCommand": "cd apps/sandbox && pnpm dev",
   "installCommand": "pnpm install",
