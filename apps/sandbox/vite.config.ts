@@ -54,17 +54,6 @@ export default defineConfig({
         target: 'http://localhost:6006',
         changeOrigin: true,
       },
-      // Proxy sandbox routes (must come before docs catch-all)
-      '/test-npm': {
-        target: 'http://localhost:5173',
-        changeOrigin: true,
-        bypass: () => null, // Let Vite handle this route
-      },
-      '/performance': {
-        target: 'http://localhost:5173',
-        changeOrigin: true,
-        bypass: () => null, // Let Vite handle this route
-      },
       // Proxy docs requests to Docusaurus dev server
       '/docs': {
         target: 'http://localhost:3001',
@@ -72,17 +61,31 @@ export default defineConfig({
         rewrite: (path) => path.replace(/^\/docs/, ''),
       },
       // Proxy root to docs app (overview page)
-      // This must come after specific routes but before catch-all
+      // Note: /test-npm and /performance are handled by React Router in sandbox app
       '/': {
         target: 'http://localhost:3001',
         changeOrigin: true,
         rewrite: () => '/overview',
+        // Don't proxy if it's a sandbox route (let React Router handle it)
+        bypass: (req) => {
+          if (req.url === '/test-npm' || req.url === '/performance') {
+            return req.url;
+          }
+          return null;
+        },
       },
       // Proxy other docs paths (but exclude Storybook, sandbox routes)
       // This catches paths like /getting-started, /components, etc.
       '^/(?!storybook|test-npm|performance|sandbox|sb-|iframe\\.html|index\\.json|favicon\\.svg|packages|node_modules|docs).*': {
         target: 'http://localhost:3001',
         changeOrigin: true,
+        // Don't proxy sandbox routes
+        bypass: (req) => {
+          if (req.url === '/test-npm' || req.url === '/performance') {
+            return req.url;
+          }
+          return null;
+        },
       },
     },
   },
