@@ -545,7 +545,9 @@ button[class*="secondary"] {
 
 /* Overview Page CTA Buttons */
 .overview-cta-primary {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   height: 36px;
   padding: 0 14px;
   margin: 0;
@@ -560,9 +562,6 @@ button[class*="secondary"] {
   font-family: var(--font-sans);
   border: none;
   vertical-align: baseline;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .overview-cta-primary:hover {
