@@ -32,23 +32,16 @@ execSync('pnpm --filter @figkit/tokens build', { cwd: rootDir, stdio: 'inherit' 
 execSync('pnpm --filter @figkit/themes prepublishOnly', { cwd: rootDir, stdio: 'inherit' });
 execSync('pnpm --filter @figkit/ui build', { cwd: rootDir, stdio: 'inherit' });
 
-// Step 2: Build Storybook
+// Step 2: Build Storybook to specific directory
 console.log('\n📚 Step 2: Building Storybook...');
 const storybookOutput = join(rootDir, 'packages/docs/storybook-static');
 if (existsSync(storybookOutput)) {
   rmSync(storybookOutput, { recursive: true, force: true });
 }
-execSync('pnpm --filter @figkit/docs build-storybook', { cwd: rootDir, stdio: 'inherit' });
-// Storybook builds to packages/docs/storybook-static by default, but we need to check
+execSync(`pnpm --filter @figkit/docs build-storybook -o ${storybookOutput}`, { cwd: rootDir, stdio: 'inherit' });
 const storybookBuildDir = join(rootDir, 'packages/docs/storybook-static');
 if (!existsSync(storybookBuildDir)) {
-  // Try alternative location
-  const altDir = join(rootDir, 'packages/docs/dist-storybook');
-  if (existsSync(altDir)) {
-    cpSync(altDir, storybookBuildDir, { recursive: true });
-  } else {
-    console.warn('⚠️  Storybook build directory not found. Expected:', storybookBuildDir);
-  }
+  console.warn('⚠️  Storybook build directory not found. Expected:', storybookBuildDir);
 }
 
 // Step 3: Build sandbox
@@ -66,11 +59,21 @@ if (existsSync(outputDir)) {
 }
 mkdirSync(outputDir, { recursive: true });
 
-// Copy docs build (main site)
+// Copy docs build (main site) - copy contents to root, not to docs subdirectory
 const docsBuild = join(rootDir, 'apps/docs/build');
 if (existsSync(docsBuild)) {
-  cpSync(docsBuild, join(outputDir, 'docs'), { recursive: true });
-  console.log('✅ Copied docs build');
+  // Copy all files from docs build to output root
+  const files = require('fs').readdirSync(docsBuild);
+  files.forEach(file => {
+    const srcPath = join(docsBuild, file);
+    const destPath = join(outputDir, file);
+    if (require('fs').statSync(srcPath).isDirectory()) {
+      cpSync(srcPath, destPath, { recursive: true });
+    } else {
+      require('fs').copyFileSync(srcPath, destPath);
+    }
+  });
+  console.log('✅ Copied docs build to root');
 } else {
   console.error('❌ Docs build not found at:', docsBuild);
   process.exit(1);
@@ -91,6 +94,18 @@ if (existsSync(sandboxBuild)) {
   mkdirSync(join(outputDir, 'sandbox'), { recursive: true });
   cpSync(sandboxBuild, join(outputDir, 'sandbox'), { recursive: true });
   console.log('✅ Copied sandbox build');
+  
+  // Fix asset paths in sandbox index.html to work from /sandbox/ subdirectory
+  const fs = require('fs');
+  const sandboxIndexHtml = join(outputDir, 'sandbox', 'index.html');
+  if (existsSync(sandboxIndexHtml)) {
+    let html = fs.readFileSync(sandboxIndexHtml, 'utf8');
+    // Update asset paths to include /sandbox/ prefix
+    html = html.replace(/href="\//g, 'href="/sandbox/');
+    html = html.replace(/src="\//g, 'src="/sandbox/');
+    fs.writeFileSync(sandboxIndexHtml, html, 'utf8');
+    console.log('✅ Updated asset paths in sandbox index.html');
+  }
 } else {
   console.error('❌ Sandbox build not found at:', sandboxBuild);
   process.exit(1);
@@ -99,7 +114,7 @@ if (existsSync(sandboxBuild)) {
 console.log('\n✨ Unified build complete!');
 console.log('📂 Output directory:', outputDir);
 console.log('\nDirectory structure:');
-console.log('  /docs/          -> Docs app (served at /)');
-console.log('  /storybook-static/ -> Storybook (served at /storybook/*)');
-console.log('  /sandbox/       -> Sandbox app (served at /test-npm, /performance)');
+console.log('  /                    -> Docs app (from apps/docs/build)');
+console.log('  /storybook-static/   -> Storybook (served at /storybook/*)');
+console.log('  /sandbox/            -> Sandbox app (served at /test-npm, /performance)');
 

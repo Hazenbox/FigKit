@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Unified Build Script for Vercel
 # This script builds all apps and organizes them for unified deployment

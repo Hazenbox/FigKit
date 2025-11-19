@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "pnpm install && bash scripts/build-unified.sh",
+  "buildCommand": "pnpm install && node scripts/build-unified.js",
   "outputDirectory": ".vercel-output",
   "installCommand": "pnpm install",
   "framework": null,
