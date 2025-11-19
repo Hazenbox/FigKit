@@ -61,7 +61,7 @@ const config: Config = {
         },
         blog: false, // Disable blog
         theme: {
-          customCss: './src/css/custom.css',
+          customCss: ['./src/css/global.css', './src/css/custom.css'],
         },
       } satisfies Preset.Options,
     ],
