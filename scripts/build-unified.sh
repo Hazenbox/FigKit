@@ -63,6 +63,8 @@ else
 fi
 
 # Copy sandbox build to sandbox subdirectory
+# Note: Sandbox is a SPA, so we copy it to a subdirectory
+# and serve index.html for /test-npm and /performance routes
 if [ -d "apps/sandbox/dist" ]; then
   mkdir -p "$OUTPUT_DIR/sandbox"
   cp -r apps/sandbox/dist/* "$OUTPUT_DIR/sandbox/"
@@ -70,6 +72,14 @@ if [ -d "apps/sandbox/dist" ]; then
 else
   echo "❌ Sandbox build not found!"
   exit 1
+fi
+
+# Also copy sandbox assets to root for proper asset loading
+# This ensures CSS, JS, and other assets load correctly
+if [ -d "apps/sandbox/dist/assets" ]; then
+  mkdir -p "$OUTPUT_DIR/assets"
+  cp -r apps/sandbox/dist/assets/* "$OUTPUT_DIR/assets/" 2>/dev/null || true
+  echo "✅ Copied sandbox assets"
 fi
 
 echo ""

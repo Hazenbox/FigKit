@@ -10,20 +10,20 @@
       "destination": "/storybook-static/:path*"
     },
     {
-      "source": "/test-npm/:path*",
-      "destination": "/sandbox/test-npm/:path*"
-    },
-    {
-      "source": "/performance/:path*",
-      "destination": "/sandbox/performance/:path*"
+      "source": "/storybook",
+      "destination": "/storybook-static/index.html"
     },
     {
       "source": "/test-npm",
-      "destination": "/sandbox/test-npm"
+      "destination": "/sandbox/index.html"
     },
     {
       "source": "/performance",
-      "destination": "/sandbox/performance"
+      "destination": "/sandbox/index.html"
+    },
+    {
+      "source": "/sandbox/:path*",
+      "destination": "/sandbox/:path*"
     }
   ],
   "headers": [
