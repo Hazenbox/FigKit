@@ -266,14 +266,26 @@ nav[aria-label="breadcrumbs"] {
   font-family: var(--font-sans) !important;
 }
 
-/* Button Typography */
+/* Button Typography - Remove extra bottom padding */
 button,
 .button,
-a.button {
+a.button,
+button[type="button"],
+button[type="submit"],
+input[type="button"],
+input[type="submit"] {
   font-family: var(--font-sans) !important;
   padding-bottom: 0 !important;
   margin-bottom: 0 !important;
   vertical-align: top !important;
+  line-height: normal !important;
+}
+
+/* Remove any default button spacing */
+button::after,
+.button::after {
+  display: none !important;
+  content: none !important;
 }
 
 .button--primary,
