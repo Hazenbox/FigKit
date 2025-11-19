@@ -15,8 +15,10 @@ You MUST update Vercel project settings:
 ### Step 2: Change Root Directory
 1. Go to **Settings** → **General**
 2. Scroll to **Root Directory**
-3. **CHANGE IT** from `apps/docs` to **`.`** (dot) or leave it **EMPTY**
+3. **CHANGE IT** from `apps/docs` to **EMPTY/BLANK** (clear the field completely)
 4. Click **Save**
+
+**Important**: Vercel doesn't accept `.` as a value. Leave the field empty to use the repo root.
 
 ### Step 3: Verify Build Settings
 Make sure these are set correctly:
@@ -24,7 +26,7 @@ Make sure these are set correctly:
 - **Build Command**: `pnpm install && node scripts/build-unified.js`
 - **Output Directory**: `.vercel-output`
 - **Install Command**: `pnpm install`
-- **Root Directory**: `.` (or empty)
+- **Root Directory**: **EMPTY/BLANK** (leave field empty)
 
 ### Step 4: Redeploy
 1. Go to **Deployments** tab

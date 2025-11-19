@@ -20,8 +20,10 @@ Deploy all apps (Docs, Storybook, Test NPM, Performance) on a single domain: `ht
 ### Step 3: Fix Root Directory
 1. Scroll down to **Root Directory** section
 2. **Current value**: Probably says `apps/docs` ❌
-3. **Change to**: `.` (just a dot) or leave it **EMPTY** ✅
+3. **Change to**: Leave it **EMPTY/BLANK** ✅ (clear the field, don't enter anything)
 4. Click **Save**
+
+**Note**: Vercel doesn't accept `.` as a value. Leave it empty to use the repo root.
 
 ### Step 4: Verify Build Settings
 While you're in Settings → General, verify these settings:
@@ -31,7 +33,7 @@ While you're in Settings → General, verify these settings:
 - **Build Command**: `pnpm install && node scripts/build-unified.js`
 - **Output Directory**: `.vercel-output`
 - **Install Command**: `pnpm install`
-- **Root Directory**: `.` (or empty) ✅
+- **Root Directory**: **EMPTY/BLANK** ✅ (leave field empty)
 
 #### Node.js Version
 - Should be **20.x** or higher
@@ -95,7 +97,7 @@ Once deployment succeeds, test these URLs:
 
 Before deploying, make sure:
 
-- [ ] Root Directory is set to `.` (not `apps/docs`)
+- [ ] Root Directory is **EMPTY/BLANK** (not `apps/docs`)
 - [ ] Build Command is: `pnpm install && node scripts/build-unified.js`
 - [ ] Output Directory is: `.vercel-output`
 - [ ] Node.js version is 20.x or higher

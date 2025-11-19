@@ -8,7 +8,7 @@
 ### Step 2: Change Root Directory
 Find **"Root Directory"** setting:
 - **Current**: `apps/docs` ❌
-- **Change to**: `.` (just a dot) ✅
+- **Change to**: Leave it **EMPTY/BLANK** ✅ (don't enter anything)
 - Click **Save**
 
 ### Step 3: Redeploy
@@ -26,7 +26,7 @@ When Root Directory = `apps/docs`:
 - Can't find `scripts/build-unified.js`
 - Build fails ❌
 
-When Root Directory = `.`:
+When Root Directory = **EMPTY** (blank):
 - Vercel uses repo root
 - Finds all files correctly
 - Build succeeds ✅
