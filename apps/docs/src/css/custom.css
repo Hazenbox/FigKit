@@ -4,27 +4,200 @@
  * work well for content-centric websites.
  */
 
-/* You can override the default Infima variables here. */
+/* OpenAI Platform Docs Style Sidebar */
+
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
-  --ifm-code-font-size: 95%;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* Light mode variables */
+  --sidebar-bg: #FFFFFF;
+  --sidebar-border: rgba(0, 0, 0, 0.08);
+  --sidebar-category: #666666;
+  --sidebar-link: #111111;
+  --sidebar-link-hover: #000000;
+  --sidebar-hover: rgba(0, 0, 0, 0.03);
+  --sidebar-active-bg: #F4F4F5;
+  --sidebar-active-text: #000000;
+  --sidebar-indicator: #3D52FF;
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
-  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+  /* Dark mode variables */
+  --sidebar-bg: #0C0C0C;
+  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --sidebar-category: #A0A0A0;
+  --sidebar-link: #F5F5F5;
+  --sidebar-link-hover: #FFFFFF;
+  --sidebar-hover: rgba(255, 255, 255, 0.05);
+  --sidebar-active-bg: #1A1A1A;
+  --sidebar-active-text: #FFFFFF;
+  --sidebar-indicator: #3D52FF;
+}
+
+/* Sidebar Container */
+.theme-doc-sidebar-container {
+  width: 260px !important;
+  position: sticky !important;
+  top: 0 !important;
+  height: 100vh !important;
+  overflow-y: auto !important;
+  padding: 24px 20px 40px 20px !important;
+  background: var(--sidebar-bg) !important;
+  border-right: 1px solid var(--sidebar-border) !important;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Category Labels */
+.theme-doc-sidebar-item-category > .menu__list-item-collapsible > .menu__link {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: var(--sidebar-category) !important;
+  letter-spacing: 0.2px !important;
+  margin-top: 24px !important;
+  margin-bottom: 8px !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+.theme-doc-sidebar-item-category > .menu__list-item-collapsible > .menu__link:hover {
+  background: transparent !important;
+  color: var(--sidebar-category) !important;
+}
+
+/* Sidebar Links */
+.theme-doc-sidebar-item-link > .menu__link {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--sidebar-link) !important;
+  line-height: 22px !important;
+  padding: 6px 8px !important;
+  border-radius: 6px !important;
+  margin: 2px 0 !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
+  position: relative !important;
+}
+
+/* Hover State */
+.theme-doc-sidebar-item-link > .menu__link:hover {
+  background: var(--sidebar-hover) !important;
+  color: var(--sidebar-link-hover) !important;
+}
+
+/* Active State */
+.theme-doc-sidebar-item-link > .menu__link.menu__link--active {
+  font-weight: 600 !important;
+  background: var(--sidebar-active-bg) !important;
+  color: var(--sidebar-active-text) !important;
+}
+
+/* Active State Left Indicator Bar */
+.theme-doc-sidebar-item-link > .menu__link.menu__link--active::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -20px !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background: var(--sidebar-indicator) !important;
+  border-radius: 2px !important;
+}
+
+/* Nested Items */
+.theme-doc-sidebar-item-link-level-2 > .menu__link,
+.theme-doc-sidebar-item-link-level-3 > .menu__link {
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  color: var(--sidebar-link) !important;
+  line-height: 22px !important;
+  padding: 6px 8px !important;
+  border-radius: 6px !important;
+  margin: 2px 0 !important;
+  transition: background 0.2s ease, color 0.2s ease !important;
+  position: relative !important;
+}
+
+.theme-doc-sidebar-item-link-level-2 > .menu__link:hover,
+.theme-doc-sidebar-item-link-level-3 > .menu__link:hover {
+  background: var(--sidebar-hover) !important;
+  color: var(--sidebar-link-hover) !important;
+}
+
+.theme-doc-sidebar-item-link-level-2 > .menu__link.menu__link--active,
+.theme-doc-sidebar-item-link-level-3 > .menu__link.menu__link--active {
+  font-weight: 600 !important;
+  background: var(--sidebar-active-bg) !important;
+  color: var(--sidebar-active-text) !important;
+}
+
+.theme-doc-sidebar-item-link-level-2 > .menu__link.menu__link--active::before,
+.theme-doc-sidebar-item-link-level-3 > .menu__link.menu__link--active::before {
+  content: "" !important;
+  position: absolute !important;
+  left: -20px !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: 3px !important;
+  background: var(--sidebar-indicator) !important;
+  border-radius: 2px !important;
+}
+
+/* Category Items Container */
+.menu__list {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.menu__list-item {
+  margin: 0 !important;
+}
+
+/* Remove default Docusaurus sidebar styles */
+.theme-doc-sidebar-container .menu {
+  padding: 0 !important;
+}
+
+.theme-doc-sidebar-container .menu__list-item {
+  margin-bottom: 0 !important;
+}
+
+/* Ensure proper spacing between items */
+.theme-doc-sidebar-item-link {
+  margin-bottom: 4px !important;
+}
+
+/* Category collapsible button */
+.theme-doc-sidebar-item-category .menu__list-item-collapsible {
+  margin-bottom: 8px !important;
+}
+
+/* Nested menu items */
+.menu__list-item .menu__list {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Remove default bullet points and indentation */
+.menu__list-item .menu__list-item {
+  margin-left: 0 !important;
+}
+
+/* Ensure Inter font is applied globally to sidebar */
+.theme-doc-sidebar-container * {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+}
+
+/* Scrollbar styling for sidebar */
+.theme-doc-sidebar-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.theme-doc-sidebar-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.theme-doc-sidebar-container::-webkit-scrollbar-thumb {
+  background: var(--sidebar-border);
+  border-radius: 3px;
+}
+
+.theme-doc-sidebar-container::-webkit-scrollbar-thumb:hover {
+  background: var(--sidebar-category);
 }
