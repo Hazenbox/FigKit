@@ -54,11 +54,23 @@ export default defineConfig({
         target: 'http://localhost:6006',
         changeOrigin: true,
       },
+      // Proxy root to docs app (overview page) - must come before other routes
+      '/': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        rewrite: () => '/overview',
+      },
       // Proxy docs requests to Docusaurus dev server
       '/docs': {
         target: 'http://localhost:3001',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/docs/, ''),
+      },
+      // Proxy other docs paths (but exclude Storybook, sandbox routes)
+      // This catches paths like /getting-started, /components, etc.
+      '^/(?!storybook|test-npm|performance|sandbox|sb-|iframe\\.html|index\\.json|favicon\\.svg|packages|node_modules|docs).*': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
       },
     },
   },

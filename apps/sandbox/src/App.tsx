@@ -8,7 +8,9 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Landing />} />
+        {/* Root is proxied to docs app, so this won't be hit */}
+        {/* Keep Landing page route as fallback */}
+        <Route path="/landing" element={<Landing />} />
         <Route path="/test-npm" element={<TestNpm />} />
         <Route path="/performance" element={<Performance />} />
         {/* Storybook is proxied through Vite, so React Router routes won't be hit */}
