@@ -111,12 +111,12 @@ const config: Config = {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-    algolia: {
-      // Optional: Add Algolia search later
-      // appId: 'YOUR_APP_ID',
-      // apiKey: 'YOUR_SEARCH_API_KEY',
-      // indexName: 'YOUR_INDEX_NAME',
-    },
+    // Algolia search can be added later when needed
+    // algolia: {
+    //   appId: 'YOUR_APP_ID',
+    //   apiKey: 'YOUR_SEARCH_API_KEY',
+    //   indexName: 'YOUR_INDEX_NAME',
+    // },
   } satisfies Preset.ThemeConfig,
 };
 
