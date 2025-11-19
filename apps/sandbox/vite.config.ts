@@ -49,6 +49,11 @@ export default defineConfig({
         target: 'http://localhost:6006',
         changeOrigin: true,
       },
+      // Proxy token JSON files (used by Storybook stories)
+      '/packages/tokens/dist': {
+        target: 'http://localhost:6006',
+        changeOrigin: true,
+      },
       // Proxy docs requests to Docusaurus dev server
       '/docs': {
         target: 'http://localhost:3001',

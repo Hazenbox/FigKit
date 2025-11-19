@@ -57,11 +57,29 @@ const config: StorybookConfig = {
         {
           name: 'serve-tokens-json',
           configureServer(server) {
+            // Serve tokens from /packages/tokens/dist path
             server.middlewares.use('/packages/tokens/dist', (req, res, next) => {
-              if (req.url?.endsWith('.json')) {
-                const filePath = path.join(tokensDir, path.basename(req.url));
+              if (req.url && req.url.endsWith('.json')) {
+                const fileName = path.basename(req.url);
+                const filePath = path.join(tokensDir, fileName);
                 if (existsSync(filePath)) {
                   res.setHeader('Content-Type', 'application/json');
+                  res.setHeader('Cache-Control', 'no-cache');
+                  res.end(readFileSync(filePath, 'utf-8'));
+                  return;
+                }
+              }
+              next();
+            });
+            
+            // Also serve from /node_modules/@figkit/tokens/dist for compatibility
+            server.middlewares.use('/node_modules/@figkit/tokens/dist', (req, res, next) => {
+              if (req.url && req.url.endsWith('.json')) {
+                const fileName = path.basename(req.url);
+                const filePath = path.join(tokensDir, fileName);
+                if (existsSync(filePath)) {
+                  res.setHeader('Content-Type', 'application/json');
+                  res.setHeader('Cache-Control', 'no-cache');
                   res.end(readFileSync(filePath, 'utf-8'));
                   return;
                 }

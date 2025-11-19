@@ -12,17 +12,25 @@ export function useTokens() {
     const loadTokens = async (b: string, t: string) => {
       try {
         setLoading(true);
-        // Use fetch with absolute path to tokens directory
-        const tokensPath = `/node_modules/@figkit/tokens/dist/${b}.${t}.json`;
+        // Try /packages/tokens/dist first (works in both dev and production)
+        const tokensPath = `/packages/tokens/dist/${b}.${t}.json`;
         const response = await fetch(tokensPath);
+        
         if (!response.ok) {
           // Try alternative path
-          const altPath = `/packages/tokens/dist/${b}.${t}.json`;
+          const altPath = `/node_modules/@figkit/tokens/dist/${b}.${t}.json`;
           const altResponse = await fetch(altPath);
-          if (!altResponse.ok) throw new Error(`HTTP ${altResponse.status}`);
+          if (!altResponse.ok) {
+            throw new Error(`HTTP ${altResponse.status}: Failed to load tokens`);
+          }
           const data = await altResponse.json();
           setTokens(data);
         } else {
+          // Check if response is actually JSON (not HTML error page)
+          const contentType = response.headers.get('content-type');
+          if (!contentType || !contentType.includes('application/json')) {
+            throw new Error('Response is not JSON');
+          }
           const data = await response.json();
           setTokens(data);
         }
@@ -32,12 +40,19 @@ export function useTokens() {
         try {
           const response = await fetch(`/packages/tokens/dist/default.light.json`);
           if (response.ok) {
-            const data = await response.json();
-            setTokens(data);
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+              const data = await response.json();
+              setTokens(data);
+            } else {
+              console.warn('Fallback response is not JSON');
+              setTokens({});
+            }
           } else {
             setTokens({});
           }
-        } catch {
+        } catch (fallbackError) {
+          console.warn('Fallback token load failed:', fallbackError);
           setTokens({});
         }
       } finally {
