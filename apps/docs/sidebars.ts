@@ -8,14 +8,24 @@ const sidebars: SidebarsConfig = {
       label: 'Overview',
     },
     {
-      type: 'category',
+      type: 'doc',
+      id: 'getting-started',
       label: 'Getting Started',
-      items: [
-        'getting-started',
-        'guides/installation',
-        'guides/theming',
-        'guides/contributing',
-      ],
+    },
+    {
+      type: 'doc',
+      id: 'guides/installation',
+      label: 'Installation',
+    },
+    {
+      type: 'doc',
+      id: 'guides/theming',
+      label: 'Theming',
+    },
+    {
+      type: 'doc',
+      id: 'guides/contributing',
+      label: 'Contributing',
     },
     {
       type: 'category',
