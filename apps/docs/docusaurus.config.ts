@@ -6,6 +6,31 @@ const config: Config = {
   title: 'FigKit Design System',
   tagline: 'A comprehensive design system with React components, design tokens, and Figma integration',
   favicon: 'img/favicon.ico',
+  
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.googleapis.com',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+        crossOrigin: 'anonymous',
+      },
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+      },
+    },
+  ],
 
   future: {
     v4: true,

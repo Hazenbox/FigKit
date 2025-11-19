@@ -89,6 +89,10 @@
 }
 
 /* Active State Left Indicator Bar */
+.theme-doc-sidebar-item-link > .menu__link.menu__link--active {
+  position: relative !important;
+}
+
 .theme-doc-sidebar-item-link > .menu__link.menu__link--active::before {
   content: "" !important;
   position: absolute !important;
@@ -98,6 +102,7 @@
   width: 3px !important;
   background: var(--sidebar-indicator) !important;
   border-radius: 2px !important;
+  z-index: 1 !important;
 }
 
 /* Nested Items */
