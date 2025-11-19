@@ -14,9 +14,17 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Guides',
+      items: [
+        'guides/installation',
+        'guides/theming',
+        'guides/contributing',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Components',
       items: [
-        'components',
         'components/button',
         'components/badge',
         'components/avatar',
@@ -29,15 +37,6 @@ const sidebars: SidebarsConfig = {
       type: 'doc',
       id: 'tokens',
       label: 'Design Tokens',
-    },
-    {
-      type: 'category',
-      label: 'Guides',
-      items: [
-        'guides/installation',
-        'guides/theming',
-        'guides/contributing',
-      ],
     },
   ],
 };
