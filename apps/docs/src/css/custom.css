@@ -619,11 +619,18 @@ button[class*="secondary"] {
   color: #ffffff;
 }
 
-/* Main Content Container - Max Width 650px */
+/* Main Content Container - Max Width 650px and Center Aligned */
 .docItemContainer_Ogt7,
-.docItemCol_vjVD > div,
+.docItemCol_vjVD > div {
+  max-width: 650px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
 .theme-doc-markdown {
   max-width: 650px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
 }
 
 /* Table of Contents - Remove Left Border */
