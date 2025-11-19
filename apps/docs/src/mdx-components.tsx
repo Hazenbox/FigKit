@@ -22,9 +22,10 @@ import {
 } from 'lucide-react';
 import { Button, Badge, Avatar } from '@figkit/ui';
 
+// This function is automatically called by Docusaurus to provide components to MDX files
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
-    // Lucide icons
+    // Lucide icons - pass directly
     BookOpen,
     Rocket,
     Package,
@@ -43,10 +44,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     ColorSwatch,
     Type,
     Spacing,
-    // UI Components
+    // UI Components from @figkit/ui
     Button,
     Badge,
     Avatar,
+    // Spread existing components to allow overrides
     ...components,
   };
 }
