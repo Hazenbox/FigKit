@@ -360,12 +360,28 @@ button[class*="secondary"] {
 }
 
 /* Sidebar wrapper divs */
-.theme-doc-sidebar-container [class*="sidebar"] {
+.theme-doc-sidebar-container [class*="sidebar"],
+.theme-doc-sidebar-container .sidebar_xJv4 {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
+}
+
+/* All direct and nested children of sidebar container */
+.theme-doc-sidebar-container * {
+  box-sizing: border-box !important;
+}
+
+/* Ensure nav and ul elements respect parent */
+.theme-doc-sidebar-container nav,
+.theme-doc-sidebar-container ul,
+.theme-doc-sidebar-container .menu__list {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Category Labels */
