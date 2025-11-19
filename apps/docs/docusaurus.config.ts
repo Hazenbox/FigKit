@@ -1,6 +1,7 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import { config as appConfig } from './src/config';
 
 const config: Config = {
   title: 'FigKit Design System',
@@ -117,7 +118,7 @@ const config: Config = {
           items: [
             {
               label: 'Storybook',
-              href: 'http://localhost:6006',
+              href: appConfig.storybookUrl,
             },
             {
               label: 'NPM Package',

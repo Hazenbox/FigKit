@@ -3,6 +3,8 @@ title: Overview
 description: Welcome to FigKit Design System - A comprehensive design system with React components, design tokens, and Figma integration
 ---
 
+import { config } from '../src/config';
+
 # FigKit Design System
 
 A comprehensive design system with React components, design tokens, and Figma integration.
@@ -38,13 +40,13 @@ FigKit is a production-ready design system that provides:
 ### External Resources
 
 <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '24px', marginBottom: '32px' }}>
-  <a href="http://localhost:6006" target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
+  <a href={config.storybookUrl} target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
     Storybook →
   </a>
-  <a href="http://localhost:5173/test-npm" target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
+  <a href={`${config.sandboxUrl}/test-npm`} target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
     Test NPM Package →
   </a>
-  <a href="http://localhost:5173/performance" target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
+  <a href={config.performanceUrl} target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
     Performance Benchmarks →
   </a>
   <a href="https://www.npmjs.com/package/@figkit/ui" target="_blank" rel="noopener noreferrer" className="overview-cta-secondary">
