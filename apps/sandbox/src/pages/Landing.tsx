@@ -28,6 +28,11 @@ export default function Landing() {
                 Performance Benchmarks
               </Button>
             </Link>
+            <a href="http://localhost:3001" target="_blank" rel="noopener noreferrer" className="landing-cta-link">
+              <Button variant="secondary" size="large" className="landing-cta">
+                Documentation
+              </Button>
+            </a>
           </div>
         </div>
       </div>

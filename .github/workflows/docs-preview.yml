@@ -1,0 +1,41 @@
+name: Docs Preview
+
+on:
+  pull_request:
+    paths:
+      - 'apps/docs/**'
+      - 'content/**'
+      - '.github/workflows/docs-preview.yml'
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+      - run: pnpm install
+      - name: Generate navigation
+        run: pnpm --filter @figkit/docs-app generate-nav
+      - name: Build search index
+        run: pnpm --filter @figkit/docs-app build-search
+      - name: Build docs
+        run: pnpm --filter @figkit/docs-app build
+      - name: Comment PR
+        uses: actions/github-script@v7
+        if: github.event_name == 'pull_request'
+        with:
+          script: |
+            const { owner, repo, number } = context.issue;
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number: number,
+              body: '✅ Docs build successful! Preview will be available after merge.'
+            });
+

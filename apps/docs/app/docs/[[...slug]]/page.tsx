@@ -2,13 +2,13 @@ import { notFound } from 'next/navigation';
 import { readFileSync, existsSync } from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
-import { MDXRemote } from 'next-mdx-remote/rsc';
-import { serialize } from 'next-mdx-remote/serialize';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
-import 'highlight.js/styles/github-dark.css';
 import Sidebar from '@/components/Sidebar';
 import Search from '@/components/Search';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Button, Badge } from '@figkit/ui';
 
 async function getDocContent(slug: string[]) {
   const filePath = join(process.cwd(), 'content', ...slug) + '.mdx';
@@ -29,17 +29,11 @@ async function getDocContent(slug: string[]) {
     return null;
   }
   
-  const { data, content: mdxContent } = matter(content);
-  const mdxSource = await serialize(mdxContent, {
-    mdxOptions: {
-      remarkPlugins: [remarkGfm],
-      rehypePlugins: [rehypeHighlight],
-    },
-  });
+  const { data, content: markdownContent } = matter(content);
   
   return {
     frontmatter: data,
-    content: mdxSource,
+    content: markdownContent,
   };
 }
 
@@ -83,11 +77,33 @@ export default async function DocPage({ params }: { params: { slug?: string[] } 
             lineHeight: 1.7,
             color: 'var(--color-text-default, rgba(0, 0, 0, 0.9))',
           }}>
-            <MDXRemote {...doc.content} />
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                code({ node, inline, className, children, ...props }: any) {
+                  const match = /language-(\w+)/.exec(className || '');
+                  return !inline && match ? (
+                    <SyntaxHighlighter
+                      style={vscDarkPlus}
+                      language={match[1]}
+                      PreTag="div"
+                      {...props}
+                    >
+                      {String(children).replace(/\n$/, '')}
+                    </SyntaxHighlighter>
+                  ) : (
+                    <code className={className} {...props}>
+                      {children}
+                    </code>
+                  );
+                },
+              }}
+            >
+              {doc.content}
+            </ReactMarkdown>
           </div>
         </article>
       </main>
     </div>
   );
 }
-

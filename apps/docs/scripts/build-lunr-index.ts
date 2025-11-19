@@ -1,8 +1,7 @@
-import { readdirSync, readFileSync, statSync, existsSync } from 'fs';
-import { join } from 'path';
+import { readdirSync, readFileSync, statSync, existsSync, writeFileSync, mkdirSync } from 'fs';
+import { join, dirname } from 'path';
 import matter from 'gray-matter';
 import lunr from 'lunr';
-import { writeFileSync, mkdirSync } from 'fs';
 
 interface Doc {
   title: string;
