@@ -1,0 +1,55 @@
+---
+title: Design Tokens
+description: Learn about design tokens and how to use them in your projects
+order: 3
+---
+
+# Design Tokens
+
+Design tokens are the foundation of the FigKit Design System. They provide consistent values for colors, spacing, typography, and more.
+
+## Using Tokens
+
+Tokens are available as CSS variables:
+
+```css
+.my-component {
+  color: var(--color-text-default);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+}
+```
+
+## Token Categories
+
+### Colors
+
+Color tokens follow a semantic naming convention:
+
+- `--color-text-*`: Text colors
+- `--color-bg-*`: Background colors
+- `--color-border-*`: Border colors
+- `--color-icon-*`: Icon colors
+
+### Spacing
+
+Spacing tokens use a consistent scale:
+
+- `--space-1`: 4px
+- `--space-2`: 8px
+- `--space-3`: 12px
+- `--space-4`: 16px
+- `--space-6`: 24px
+
+### Typography
+
+Typography tokens include font families, sizes, weights, and line heights:
+
+- `--font-family-default`: Inter
+- `--body-medium-fontSize`: 11px
+- `--body-medium-fontWeight`: 450
+
+## Multi-Brand Support
+
+Tokens automatically adapt based on the `data-brand` and `data-theme` attributes, ensuring consistent theming across all brands.
+

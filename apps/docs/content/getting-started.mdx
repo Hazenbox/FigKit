@@ -1,0 +1,61 @@
+---
+title: Getting Started
+description: Learn how to get started with the FigKit Design System
+order: 1
+---
+
+# Getting Started
+
+Welcome to the FigKit Design System! This guide will help you get up and running quickly.
+
+## Installation
+
+Install the FigKit UI package from npm:
+
+```bash
+npm install @figkit/ui @figkit/themes
+```
+
+Or with pnpm:
+
+```bash
+pnpm add @figkit/ui @figkit/themes
+```
+
+## Basic Setup
+
+Import the theme CSS and start using components:
+
+```tsx
+import '@figkit/themes/dist/tokens.css';
+import '@figkit/ui/dist/index.css';
+import { Button } from '@figkit/ui';
+
+function App() {
+  return (
+    <div data-brand="default" data-theme="light">
+      <Button variant="primary">Hello FigKit</Button>
+    </div>
+  );
+}
+```
+
+## Theming
+
+FigKit supports multiple brands and themes. Set the brand and theme using data attributes:
+
+```tsx
+<div data-brand="default" data-theme="light">
+  {/* Your app */}
+</div>
+```
+
+Available brands: `default`, `figjam`, `devmode`, `slides`
+Available themes: `light`, `dark`
+
+## Next Steps
+
+- Explore our [Components](/docs/components)
+- Learn about [Design Tokens](/docs/tokens)
+- Check out the [Storybook](http://localhost:6006) for interactive examples
+

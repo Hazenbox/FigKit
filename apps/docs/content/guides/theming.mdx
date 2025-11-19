@@ -1,0 +1,54 @@
+---
+title: Theming Guide
+description: Learn how to customize themes and brands
+order: 2
+---
+
+# Theming Guide
+
+FigKit supports multiple brands and themes out of the box.
+
+## Setting Brand and Theme
+
+Use data attributes on your root element:
+
+```tsx
+<div data-brand="default" data-theme="light">
+  <App />
+</div>
+```
+
+## Available Brands
+
+- **default**: Standard FigKit brand
+- **figjam**: FigJam-specific styling
+- **devmode**: Developer-focused theme
+- **slides**: Presentation theme
+
+## Available Themes
+
+- **light**: Light mode (default)
+- **dark**: Dark mode
+
+## Dynamic Theme Switching
+
+You can switch themes dynamically:
+
+```tsx
+function App() {
+  const [theme, setTheme] = useState('light');
+  
+  return (
+    <div data-brand="default" data-theme={theme}>
+      <button onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}>
+        Toggle Theme
+      </button>
+    </div>
+  );
+}
+```
+
+## Custom Themes
+
+While FigKit provides multiple themes, you can extend them with custom CSS variables for project-specific needs.
+

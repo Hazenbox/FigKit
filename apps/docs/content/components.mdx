@@ -1,0 +1,53 @@
+---
+title: Components
+description: Browse all available UI components in the FigKit Design System
+order: 2
+---
+
+# Components
+
+FigKit provides a comprehensive set of React components built with design tokens.
+
+## Available Components
+
+### Button
+
+The Button component supports multiple variants and sizes.
+
+<Button variant="primary">Primary Button</Button>
+<Button variant="secondary">Secondary Button</Button>
+
+```tsx
+import { Button } from '@figkit/ui';
+
+<Button variant="primary" size="default">
+  Click me
+</Button>
+```
+
+### Badge
+
+Use badges to display status, labels, or categories.
+
+<Badge variant="brand">Brand</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="danger">Danger</Badge>
+
+```tsx
+import { Badge } from '@figkit/ui';
+
+<Badge variant="brand">New</Badge>
+```
+
+## Component Props
+
+All components follow consistent prop patterns:
+
+- **Variants**: Control the visual style (primary, secondary, etc.)
+- **Sizes**: Control the size (default, large, wide)
+- **States**: Handle disabled, loading, etc.
+
+## Accessibility
+
+All components are built with accessibility in mind, following WCAG 2.1 guidelines.
+

@@ -1,0 +1,51 @@
+---
+title: Contributing
+description: Guidelines for contributing to the FigKit Design System
+order: 3
+---
+
+# Contributing
+
+We welcome contributions to the FigKit Design System! This guide will help you get started.
+
+## Development Setup
+
+1. Clone the repository:
+```bash
+git clone https://github.com/Hazenbox/FigKit.git
+cd FigKit
+```
+
+2. Install dependencies:
+```bash
+pnpm install
+```
+
+3. Start Storybook:
+```bash
+pnpm --filter @figkit/docs storybook
+```
+
+## Adding Components
+
+1. Create component files in `packages/ui/src/`
+2. Add Storybook stories
+3. Export from `packages/ui/src/components.ts`
+4. Write tests
+
+## Code Style
+
+- Use TypeScript
+- Follow existing component patterns
+- Use design tokens (no hardcoded values)
+- Write Storybook stories for all variants
+
+## Pull Requests
+
+1. Create a feature branch
+2. Make your changes
+3. Ensure tests pass
+4. Submit a PR with a clear description
+
+Thank you for contributing! 🎉
+

@@ -1,0 +1,50 @@
+---
+title: Installation Guide
+description: Detailed installation instructions for FigKit
+order: 1
+---
+
+# Installation Guide
+
+This guide covers detailed installation steps for different use cases.
+
+## React Applications
+
+### Create React App
+
+```bash
+npx create-react-app my-app
+cd my-app
+npm install @figkit/ui @figkit/themes
+```
+
+### Next.js
+
+```bash
+npx create-next-app@latest my-app
+cd my-app
+npm install @figkit/ui @figkit/themes
+```
+
+### Vite
+
+```bash
+npm create vite@latest my-app -- --template react
+cd my-app
+npm install @figkit/ui @figkit/themes
+```
+
+## Import Styles
+
+Add the theme CSS to your application entry point:
+
+```tsx
+// main.tsx or index.tsx
+import '@figkit/themes/dist/tokens.css';
+import '@figkit/ui/dist/index.css';
+```
+
+## TypeScript Support
+
+FigKit is built with TypeScript and includes type definitions. No additional setup required!
+
