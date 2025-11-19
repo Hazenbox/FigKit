@@ -73,10 +73,12 @@ function MyComponent() {
 
 ## 📚 Documentation
 
+- **[Documentation Site](./apps/docs/)** - Full documentation with guides, API reference, and examples
 - **[UI Components](./packages/ui/README.md)** - Component API and usage
 - **[Themes](./packages/themes/README.md)** - Theming and CSS variables
 - **[Tokens](./packages/tokens/README.md)** - Design token structure
 - **[Publishing Guide](./PUBLISHING.md)** - How to publish packages to npm
+- **[Contributing to Docs](./apps/docs/CONTRIBUTING.md)** - How to add or edit documentation
 
 ## 🎨 Features
 
@@ -123,6 +125,7 @@ pnpm build:tokens       # Build theme CSS from tokens
 
 # Development
 pnpm -F @figkit/docs storybook  # Run Storybook
+pnpm -F @figkit/docs-app dev    # Run Documentation site (port 3001)
 pnpm -F @figkit/ui dev     # Watch mode for UI package
 
 # Testing
