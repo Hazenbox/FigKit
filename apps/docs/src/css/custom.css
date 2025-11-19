@@ -491,6 +491,55 @@ button[class*="secondary"] {
   background: var(--sidebar-category-color);
 }
 
+/* Overview Page CTA Buttons */
+.overview-cta-primary {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #2563eb;
+  color: #ffffff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  transition: background-color 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.overview-cta-primary:hover {
+  background-color: #1d4ed8;
+  color: #ffffff;
+}
+
+.overview-cta-secondary {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #f3f4f6;
+  color: #111111;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  transition: background-color 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.overview-cta-secondary:hover {
+  background-color: #e5e7eb;
+  color: #111111;
+}
+
+[data-theme='dark'] .overview-cta-secondary {
+  background-color: #1f1f1f;
+  color: #f5f5f5;
+}
+
+[data-theme='dark'] .overview-cta-secondary:hover {
+  background-color: #2a2a2a;
+  color: #ffffff;
+}
+
 /* Main Content Area Typography */
 .markdown h1 {
   font-size: var(--heading-h1-fontSize) !important;
