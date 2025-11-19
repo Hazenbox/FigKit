@@ -640,3 +640,183 @@ button[class*="secondary"] {
   font-size: var(--code-block-fontSize) !important;
   line-height: var(--code-block-lineHeight) !important;
 }
+
+/* Table of Contents (TOC) Styling */
+
+:root {
+  /* TOC Container */
+  --toc-width: 240px;
+  --toc-paddingTop: 12px;
+  --toc-paddingBottom: 32px;
+  --toc-paddingX: 0px;
+  --toc-marginLeft: 40px;
+  --toc-top: 88px;
+  --toc-maxHeight: calc(100vh - 88px);
+
+  /* TOC Typography */
+  --toc-fontSize: 14px;
+  --toc-fontWeight: 400;
+  --toc-lineHeight: 20px;
+  --toc-letterSpacing: 0px;
+  --toc-active-fontWeight: 500;
+  --toc-level3-fontSize: 13px;
+  --toc-level3-lineHeight: 18px;
+  --toc-level3-paddingLeft: 12px;
+  --toc-level4-fontSize: 12px;
+  --toc-level4-lineHeight: 16px;
+  --toc-level4-paddingLeft: 20px;
+
+  /* TOC Spacing */
+  --toc-itemPadding: 4px 8px;
+  --toc-itemMarginY: 6px;
+  --toc-dividerMarginY: 12px;
+  --toc-radius: 6px;
+
+  /* TOC Indicator */
+  --toc-indicator-width: 2px;
+  --toc-indicator-radius: 2px;
+  --toc-indicator-offsetLeft: -8px;
+
+  /* TOC Light Mode Colors */
+  --toc-itemDefault: #6B6B6B;
+  --toc-itemHoverBg: rgba(0, 0, 0, 0.03);
+  --toc-itemHoverText: #111111;
+  --toc-itemActiveBg: rgba(0, 0, 0, 0.04);
+  --toc-itemActiveText: #111111;
+  --toc-indicator: #3D52FF;
+  --toc-divider: rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='dark'] {
+  /* TOC Dark Mode Colors */
+  --toc-itemDefault: #A0A0A0;
+  --toc-itemHoverBg: rgba(255, 255, 255, 0.05);
+  --toc-itemHoverText: #FFFFFF;
+  --toc-itemActiveBg: rgba(255, 255, 255, 0.06);
+  --toc-itemActiveText: #FFFFFF;
+  --toc-indicator: #3D52FF;
+  --toc-divider: rgba(255, 255, 255, 0.08);
+}
+
+/* TOC Container */
+.table-of-contents,
+[class*="table-of-contents"],
+.theme-doc-toc-desktop {
+  width: var(--toc-width) !important;
+  padding-top: var(--toc-paddingTop) !important;
+  padding-bottom: var(--toc-paddingBottom) !important;
+  padding-left: var(--toc-paddingX) !important;
+  padding-right: var(--toc-paddingX) !important;
+  margin-left: var(--toc-marginLeft) !important;
+  position: var(--toc-position, sticky) !important;
+  top: var(--toc-top) !important;
+  max-height: var(--toc-maxHeight) !important;
+  overflow-y: var(--toc-overflowY, auto) !important;
+  box-sizing: border-box !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* TOC Links - Default */
+.table-of-contents a,
+[class*="table-of-contents"] a,
+.theme-doc-toc-desktop a,
+.theme-doc-toc-desktop li > a {
+  font-size: var(--toc-fontSize) !important;
+  font-weight: var(--toc-fontWeight) !important;
+  line-height: var(--toc-lineHeight) !important;
+  letter-spacing: var(--toc-letterSpacing) !important;
+  color: var(--toc-itemDefault) !important;
+  padding: var(--toc-itemPadding) !important;
+  margin: var(--toc-itemMarginY) 0 !important;
+  border-radius: var(--toc-radius) !important;
+  text-decoration: none !important;
+  display: block !important;
+  transition: background-color 0.2s ease, color 0.2s ease !important;
+  position: relative !important;
+}
+
+/* TOC Links - Hover */
+.table-of-contents a:hover,
+[class*="table-of-contents"] a:hover,
+.theme-doc-toc-desktop a:hover,
+.theme-doc-toc-desktop li > a:hover {
+  background-color: var(--toc-itemHoverBg) !important;
+  color: var(--toc-itemHoverText) !important;
+}
+
+/* TOC Links - Active */
+.table-of-contents a[class*="active"],
+[class*="table-of-contents"] a[class*="active"],
+.theme-doc-toc-desktop a[class*="active"],
+.theme-doc-toc-desktop li > a[class*="active"],
+.table-of-contents a[aria-current],
+.theme-doc-toc-desktop a[aria-current] {
+  font-weight: var(--toc-active-fontWeight) !important;
+  background-color: var(--toc-itemActiveBg) !important;
+  color: var(--toc-itemActiveText) !important;
+}
+
+/* TOC Active Indicator */
+.table-of-contents a[class*="active"]::before,
+[class*="table-of-contents"] a[class*="active"]::before,
+.theme-doc-toc-desktop a[class*="active"]::before,
+.theme-doc-toc-desktop li > a[class*="active"]::before,
+.table-of-contents a[aria-current]::before,
+.theme-doc-toc-desktop a[aria-current]::before {
+  content: "" !important;
+  position: absolute !important;
+  left: var(--toc-indicator-offsetLeft) !important;
+  top: 0 !important;
+  bottom: 0 !important;
+  width: var(--toc-indicator-width) !important;
+  background: var(--toc-indicator) !important;
+  border-radius: var(--toc-indicator-radius) !important;
+}
+
+/* TOC Level 3 (nested) */
+.table-of-contents ul ul a,
+[class*="table-of-contents"] ul ul a,
+.theme-doc-toc-desktop ul ul a,
+.theme-doc-toc-desktop li ul li > a {
+  font-size: var(--toc-level3-fontSize) !important;
+  line-height: var(--toc-level3-lineHeight) !important;
+  padding-left: var(--toc-level3-paddingLeft) !important;
+}
+
+/* TOC Level 4 (nested deeper) */
+.table-of-contents ul ul ul a,
+[class*="table-of-contents"] ul ul ul a,
+.theme-doc-toc-desktop ul ul ul a,
+.theme-doc-toc-desktop li ul ul li > a {
+  font-size: var(--toc-level4-fontSize) !important;
+  line-height: var(--toc-level4-lineHeight) !important;
+  padding-left: var(--toc-level4-paddingLeft) !important;
+}
+
+/* TOC List Items */
+.table-of-contents li,
+[class*="table-of-contents"] li,
+.theme-doc-toc-desktop li {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
+
+/* TOC Dividers */
+.table-of-contents hr,
+[class*="table-of-contents"] hr,
+.theme-doc-toc-desktop hr {
+  margin: var(--toc-dividerMarginY) 0 !important;
+  border: none !important;
+  border-top: 1px solid var(--toc-divider) !important;
+  background: none !important;
+}
+
+/* TOC List Container */
+.table-of-contents ul,
+[class*="table-of-contents"] ul,
+.theme-doc-toc-desktop ul {
+  margin: 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+}
