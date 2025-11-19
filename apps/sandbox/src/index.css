@@ -1,11 +1,11 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family-default, system-ui, Avenir, Helvetica, Arial, sans-serif);
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+  background-color: var(--color-bg-default, #ffffff);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,10 +24,10 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: var(--color-bg-default, #ffffff);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
 }
 
 h1 {
@@ -36,33 +36,31 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid var(--color-border-default, transparent);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: var(--color-bg-default, #ffffff);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: border-color 0.25s, background-color 0.25s, color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: var(--color-border-strong, #646cff);
+  background-color: var(--color-bg-hover, var(--color-bg-secondary, #f5f5f5));
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Use CSS variables for theming - no need for media queries */
+a {
+  color: var(--color-text-brand, #007be5);
+}
+a:hover {
+  color: var(--color-text-brand, #007be5);
+  opacity: 0.8;
 }

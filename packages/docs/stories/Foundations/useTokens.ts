@@ -12,14 +12,31 @@ export function useTokens() {
     const loadTokens = async (b: string, t: string) => {
       try {
         setLoading(true);
-        const module = await import(`@figkit/tokens/${b}.${t}.json`);
-        setTokens(module.default || module);
+        // Use fetch with absolute path to tokens directory
+        const tokensPath = `/node_modules/@figkit/tokens/dist/${b}.${t}.json`;
+        const response = await fetch(tokensPath);
+        if (!response.ok) {
+          // Try alternative path
+          const altPath = `/packages/tokens/dist/${b}.${t}.json`;
+          const altResponse = await fetch(altPath);
+          if (!altResponse.ok) throw new Error(`HTTP ${altResponse.status}`);
+          const data = await altResponse.json();
+          setTokens(data);
+        } else {
+          const data = await response.json();
+          setTokens(data);
+        }
       } catch (error) {
         console.warn(`Failed to load tokens for ${b}.${t}:`, error);
         // Fallback to default
         try {
-          const module = await import(`@figkit/tokens/default.light.json`);
-          setTokens(module.default || module);
+          const response = await fetch(`/packages/tokens/dist/default.light.json`);
+          if (response.ok) {
+            const data = await response.json();
+            setTokens(data);
+          } else {
+            setTokens({});
+          }
         } catch {
           setTokens({});
         }

@@ -1,54 +1,46 @@
-import { useState } from 'react'
-import { Button } from '@figkit/ui'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Landing from './pages/Landing'
+import TestNpm from './pages/TestNpm'
+import Performance from './pages/Performance'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div style={{ 
-      padding: 'var(--space-4)', 
-      maxWidth: '800px', 
-      margin: '0 auto',
-      background: 'var(--color-bg-surface)',
-      borderRadius: 'var(--radius-md)',
-      marginTop: 'var(--space-4)'
-    }}>
-      <h1 style={{ 
-        color: 'var(--color-fg-text)',
-        marginBottom: 'var(--space-4)'
-      }}>
-        Sandbox App
-      </h1>
-      
-      <div style={{ 
-        display: 'flex', 
-        gap: 'var(--space-4)', 
-        marginBottom: 'var(--space-4)',
-        flexWrap: 'wrap'
-      }}>
-        <Button onClick={() => setCount((count) => count + 1)}>
-          Count: {count}
-        </Button>
-        <Button onClick={() => alert('Button clicked!')}>
-          Click me
-        </Button>
-        <Button onClick={() => console.log('Action triggered')}>
-          Action
-        </Button>
-      </div>
-
-      <div style={{ 
-        padding: 'var(--space-4)',
-        background: 'var(--color-bg-brand-primary)',
-        borderRadius: 'var(--radius-md)',
-        color: 'var(--color-fg-text)'
-      }}>
-        <p>This demonstrates the UI components using design tokens.</p>
-        <p>Brand: <code>acme</code> | Theme: <code>light</code></p>
-        <p>All styling uses CSS variables from the design tokens.</p>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+        <Route path="/test-npm" element={<TestNpm />} />
+        <Route path="/performance" element={<Performance />} />
+        <Route path="/storybook" element={
+          <div style={{ 
+            minHeight: '100vh', 
+            display: 'flex', 
+            alignItems: 'center', 
+            justifyContent: 'center',
+            flexDirection: 'column',
+            gap: 'var(--space-4, 16px)',
+            padding: 'var(--space-4, 16px)'
+          }}>
+            <h1>Storybook</h1>
+            <p>Storybook is available at <a href="http://localhost:6006" target="_blank" rel="noopener noreferrer">http://localhost:6006</a></p>
+            <a href="http://localhost:6006" target="_blank" rel="noopener noreferrer">
+              <button style={{
+                padding: 'var(--space-3, 12px) var(--space-4, 16px)',
+                backgroundColor: 'var(--color-bg-brand, #0D99FF)',
+                color: 'var(--color-text-onbrand, #FFFFFF)',
+                border: 'none',
+                borderRadius: 'var(--radius-md, 8px)',
+                cursor: 'pointer',
+                fontSize: '16px',
+                fontWeight: 500,
+              }}>
+                Open Storybook
+              </button>
+            </a>
+          </div>
+        } />
+      </Routes>
+    </BrowserRouter>
   )
 }
 

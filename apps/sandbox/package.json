@@ -1,7 +1,7 @@
 {
   "name": "sandbox",
   "private": true,
-  "version": "0.0.1",
+  "version": "0.0.3",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,10 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@figkit/themes": "^0.1.0",
+    "@figkit/ui": "^0.1.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "@figkit/ui": "workspace:*",
-    "@figkit/themes": "workspace:*"
+    "react-router-dom": "^7.9.6"
   },
   "devDependencies": {
     "@eslint/js": "^9.36.0",

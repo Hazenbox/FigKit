@@ -306,7 +306,7 @@ pnpm mcp:pull:component "https://www.figma.com/design/...?node-id=2012-48557"
 └────────┬────────┘
          │
          ▼
-┌─────────────────┐      ┌─────────────────┐
+┌─────────────────┐      ┌─────────────────┐    
 │  @figkit/ui     │      │ @figkit/patterns│
 │  (Components)   │◄─────┤ (Composed)      │
 └─────────────────┘      └─────────────────┘

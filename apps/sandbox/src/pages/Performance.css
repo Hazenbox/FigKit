@@ -1,0 +1,203 @@
+.performance {
+  min-height: 100vh;
+  background-color: var(--color-bg-default, #ffffff);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+  padding: var(--space-6, 24px);
+  font-family: var(--font-family-default, Inter, sans-serif);
+}
+
+.performance-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.performance-header {
+  text-align: center;
+  margin-bottom: var(--space-6, 24px);
+}
+
+.performance-title {
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 600;
+  margin: 0 0 var(--space-2, 8px) 0;
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.performance-subtitle {
+  font-size: clamp(14px, 2vw, 16px);
+  color: var(--color-text-secondary, rgba(0, 0, 0, 0.5));
+  margin: 0;
+}
+
+.performance-controls {
+  display: flex;
+  gap: var(--space-4, 16px);
+  align-items: center;
+  margin-bottom: var(--space-6, 24px);
+  flex-wrap: wrap;
+}
+
+.performance-component-selector {
+  display: flex;
+  gap: var(--space-2, 8px);
+  align-items: center;
+}
+
+.performance-section {
+  margin-bottom: var(--space-6, 24px);
+}
+
+.performance-section-title {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 var(--space-4, 16px) 0;
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.performance-scores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4, 16px);
+  margin-bottom: var(--space-6, 24px);
+}
+
+.performance-score-card {
+  padding: var(--space-4, 16px);
+  background-color: var(--color-bg-default, #ffffff);
+  border: 1px solid var(--color-border-default, #e6e6e6);
+  border-radius: var(--radius-md, 8px);
+  text-align: center;
+}
+
+.performance-score-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-2, 8px);
+}
+
+.performance-score-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.performance-score-value {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1;
+  margin: var(--space-2, 8px) 0;
+}
+
+.performance-score-label {
+  font-size: 12px;
+  color: var(--color-text-secondary, rgba(0, 0, 0, 0.5));
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.performance-table-container {
+  overflow-x: auto;
+  border: 1px solid var(--color-border-default, #e6e6e6);
+  border-radius: var(--radius-md, 8px);
+}
+
+.performance-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: var(--color-bg-default, #ffffff);
+}
+
+.performance-table thead {
+  background-color: var(--color-bg-secondary, #f5f5f5);
+}
+
+.performance-table th {
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  text-align: left;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+  border-bottom: 1px solid var(--color-border-default, #e6e6e6);
+}
+
+.performance-table td {
+  padding: var(--space-3, 12px) var(--space-4, 16px);
+  border-bottom: 1px solid var(--color-border-default, #e6e6e6);
+  font-size: 14px;
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.performance-table tbody tr:hover {
+  background-color: var(--color-bg-hover, #f5f5f5);
+}
+
+.performance-library-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.performance-library-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.performance-score-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2, 8px);
+}
+
+.performance-score-number {
+  font-weight: 600;
+  min-width: 40px;
+}
+
+.performance-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-4, 16px);
+}
+
+.performance-metric {
+  padding: var(--space-4, 16px);
+  background-color: var(--color-bg-default, #ffffff);
+  border: 1px solid var(--color-border-default, #e6e6e6);
+  border-radius: var(--radius-md, 8px);
+}
+
+.performance-metric h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 var(--space-2, 8px) 0;
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.performance-metric p {
+  font-size: 14px;
+  color: var(--color-text-secondary, rgba(0, 0, 0, 0.5));
+  margin: 0;
+  line-height: 1.5;
+}
+
+.performance-empty {
+  text-align: center;
+  padding: var(--space-8, 48px);
+  color: var(--color-text-secondary, rgba(0, 0, 0, 0.5));
+}
+
+@media (max-width: 768px) {
+  .performance-table-container {
+    font-size: 12px;
+  }
+  
+  .performance-table th,
+  .performance-table td {
+    padding: var(--space-2, 8px);
+  }
+}
+
