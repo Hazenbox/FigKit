@@ -20,7 +20,30 @@ import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const rootDir = join(__dirname, '..');
+
+// Detect the actual repo root
+// If we're in apps/docs/scripts/, go up 3 levels
+// If we're in scripts/, go up 1 level
+let rootDir = __dirname;
+if (__dirname.includes('apps/docs')) {
+  // We're in apps/docs/scripts/, go to repo root
+  rootDir = join(__dirname, '../../..');
+} else if (__dirname.endsWith('scripts')) {
+  // We're in scripts/, go to repo root
+  rootDir = join(__dirname, '..');
+} else {
+  // Default: assume we're in scripts/
+  rootDir = join(__dirname, '..');
+}
+
+// Verify we're at the repo root by checking for package.json
+const packageJsonPath = join(rootDir, 'package.json');
+if (!existsSync(packageJsonPath)) {
+  console.error('❌ Could not find repo root. Current dir:', __dirname);
+  console.error('   Tried root:', rootDir);
+  process.exit(1);
+}
+
 const outputDir = join(rootDir, '.vercel-output');
 
 console.log('🚀 Starting unified build...\n');
