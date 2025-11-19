@@ -79,11 +79,11 @@ export default function Search() {
         onChange={(e) => setQuery(e.target.value)}
         style={{
           width: '100%',
-          padding: 'var(--space-3, 12px)',
-          borderRadius: 'var(--radius-md, 8px)',
-          border: '1px solid var(--color-border-default, #e6e6e6)',
-          backgroundColor: 'var(--color-bg-default, #ffffff)',
-          color: 'var(--color-text-default, rgba(0, 0, 0, 0.9))',
+          padding: '12px',
+          borderRadius: '8px',
+          border: '1px solid #e5e7eb',
+          backgroundColor: '#ffffff',
+          color: 'rgb(var(--foreground-rgb))',
           fontSize: '14px',
         }}
       />
@@ -94,10 +94,10 @@ export default function Search() {
             top: '100%',
             left: 0,
             right: 0,
-            marginTop: 'var(--space-1, 4px)',
-            backgroundColor: 'var(--color-bg-default, #ffffff)',
-            border: '1px solid var(--color-border-default, #e6e6e6)',
-            borderRadius: 'var(--radius-md, 8px)',
+            marginTop: '4px',
+            backgroundColor: '#ffffff',
+            border: '1px solid #e5e7eb',
+            borderRadius: '8px',
             boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
             zIndex: 1000,
             maxHeight: '400px',
@@ -114,10 +114,10 @@ export default function Search() {
               }}
               style={{
                 display: 'block',
-                padding: 'var(--space-3, 12px)',
+                padding: '12px',
                 textDecoration: 'none',
-                color: 'var(--color-text-default, rgba(0, 0, 0, 0.9))',
-                borderBottom: '1px solid var(--color-border-default, #e6e6e6)',
+                color: 'rgb(var(--foreground-rgb))',
+                borderBottom: '1px solid #e5e7eb',
               }}
             >
               <div style={{ fontWeight: 600, marginBottom: 'var(--space-1, 4px)' }}>
@@ -125,10 +125,10 @@ export default function Search() {
               </div>
               {result.description && (
                 <div
-                  style={{
-                    fontSize: '12px',
-                    color: 'var(--color-text-secondary, rgba(0, 0, 0, 0.6))',
-                  }}
+                style={{
+                  fontSize: '12px',
+                  color: '#6b7280',
+                }}
                 >
                   {result.description}
                 </div>

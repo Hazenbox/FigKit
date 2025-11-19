@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import '@figkit/themes/dist/tokens.css';
-import '@figkit/ui/dist/index.css';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -14,7 +12,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-brand="default" data-theme="light">
+    <html lang="en">
       <body>{children}</body>
     </html>
   );

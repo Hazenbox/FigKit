@@ -50,7 +50,7 @@ export default async function DocPage({ params }: { params: { slug?: string[] } 
       <Sidebar />
       <main style={{
         flex: 1,
-        padding: 'var(--space-6, 24px)',
+        padding: '24px',
         maxWidth: '900px',
         margin: '0 auto',
       }}>
@@ -59,23 +59,23 @@ export default async function DocPage({ params }: { params: { slug?: string[] } 
           <h1 style={{
             fontSize: '36px',
             fontWeight: 700,
-            marginBottom: 'var(--space-4, 16px)',
-            color: 'var(--color-text-default, rgba(0, 0, 0, 0.9))',
+            marginBottom: '16px',
+            color: 'rgb(var(--foreground-rgb))',
           }}>
             {doc.frontmatter.title as string}
           </h1>
           {doc.frontmatter.description && (
             <p style={{
               fontSize: '18px',
-              marginBottom: 'var(--space-6, 24px)',
-              color: 'var(--color-text-secondary, rgba(0, 0, 0, 0.6))',
+              marginBottom: '24px',
+              color: '#6b7280',
             }}>
               {doc.frontmatter.description as string}
             </p>
           )}
           <div style={{
             lineHeight: 1.7,
-            color: 'var(--color-text-default, rgba(0, 0, 0, 0.9))',
+            color: 'rgb(var(--foreground-rgb))',
           }}>
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}

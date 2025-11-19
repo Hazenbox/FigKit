@@ -34,15 +34,11 @@ export default function Sidebar() {
           href={item.path}
           style={{
             display: 'block',
-            padding: 'var(--space-2, 8px) var(--space-3, 12px)',
-            borderRadius: 'var(--radius-sm, 4px)',
+            padding: '8px 12px',
+            borderRadius: '4px',
             textDecoration: 'none',
-            color: active
-              ? 'var(--color-text-brand, #0d99ff)'
-              : 'var(--color-text-default, rgba(0, 0, 0, 0.9))',
-            backgroundColor: active
-              ? 'var(--color-bg-brand-selected, rgba(13, 153, 255, 0.1))'
-              : 'transparent',
+            color: active ? '#2563eb' : 'rgb(var(--foreground-rgb))',
+            backgroundColor: active ? '#eff6ff' : 'transparent',
             fontWeight: active ? 600 : 400,
             fontSize: level === 0 ? '14px' : '13px',
             marginLeft: level > 0 ? `${level * 16}px` : '0',
@@ -64,9 +60,9 @@ export default function Sidebar() {
       style={{
         width: '280px',
         minHeight: '100vh',
-        padding: 'var(--space-4, 16px)',
-        borderRight: '1px solid var(--color-border-default, #e6e6e6)',
-        backgroundColor: 'var(--color-bg-secondary, #f5f5f5)',
+        padding: '16px',
+        borderRight: '1px solid #e5e7eb',
+        backgroundColor: '#f9fafb',
         overflowY: 'auto',
         position: 'sticky',
         top: 0,
@@ -77,8 +73,8 @@ export default function Sidebar() {
         style={{
           fontSize: '16px',
           fontWeight: 600,
-          marginBottom: 'var(--space-4, 16px)',
-          color: 'var(--color-text-default, rgba(0, 0, 0, 0.9))',
+          marginBottom: '16px',
+          color: 'rgb(var(--foreground-rgb))',
         }}
       >
         Documentation
