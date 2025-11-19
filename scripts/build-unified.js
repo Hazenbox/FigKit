@@ -14,7 +14,7 @@
  */
 
 import { execSync } from 'child_process';
-import { existsSync, mkdirSync, cpSync, rmSync } from 'fs';
+import { existsSync, mkdirSync, cpSync, rmSync, readdirSync, statSync, copyFileSync, readFileSync, writeFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
@@ -108,16 +108,17 @@ mkdirSync(outputDir, { recursive: true });
 const docsBuild = join(rootDir, 'apps/docs/build');
 if (existsSync(docsBuild)) {
   // Copy all files from docs build to output root
-  const files = require('fs').readdirSync(docsBuild);
-  files.forEach(file => {
+  const files = readdirSync(docsBuild);
+  for (const file of files) {
     const srcPath = join(docsBuild, file);
     const destPath = join(outputDir, file);
-    if (require('fs').statSync(srcPath).isDirectory()) {
+    const stat = statSync(srcPath);
+    if (stat.isDirectory()) {
       cpSync(srcPath, destPath, { recursive: true });
     } else {
-      require('fs').copyFileSync(srcPath, destPath);
+      copyFileSync(srcPath, destPath);
     }
-  });
+  }
   console.log('✅ Copied docs build to root');
 } else {
   console.error('❌ Docs build not found at:', docsBuild);
