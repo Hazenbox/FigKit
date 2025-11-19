@@ -14,6 +14,14 @@
       "destination": "/storybook-static/index.html"
     },
     {
+      "source": "/sb-manager/:path*",
+      "destination": "/storybook-static/sb-manager/:path*"
+    },
+    {
+      "source": "/sb-addons/:path*",
+      "destination": "/storybook-static/sb-addons/:path*"
+    },
+    {
       "source": "/test-npm",
       "destination": "/sandbox/index.html"
     },

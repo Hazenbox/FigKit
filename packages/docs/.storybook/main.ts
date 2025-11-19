@@ -70,6 +70,7 @@ const config: StorybookConfig = {
           include: [/node_modules/],
         },
       },
+      base: '/storybook/',
     });
   }
 };
