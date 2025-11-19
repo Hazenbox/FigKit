@@ -20,7 +20,7 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build": "tsup src/index.ts --format cjs,esm --dts && node -e \"const fs = require('fs'); if (!fs.existsSync('dist/index.css')) { fs.writeFileSync('dist/index.css', '/* Patterns package styles - currently empty */', 'utf8'); }\"",
     "dev": "tsc -w",
     "typecheck": "tsc --noEmit",
     "prepublishOnly": "pnpm build"

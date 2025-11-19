@@ -4,7 +4,9 @@ import React, { useEffect } from 'react';
 import '../../themes/dist/tokens.css';
 // Import UI package CSS
 import '../../ui/dist/index.css';
-// Import Patterns package CSS
+// Import Patterns package CSS (optional - only if it exists)
+// Note: Patterns package may not have CSS, so we make this optional
+// @ts-ignore - CSS import may not exist
 import '../../patterns/dist/index.css';
 
 const preview: Preview = {
