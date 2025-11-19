@@ -20,6 +20,9 @@ const config: StorybookConfig = {
     name: '@storybook/react-vite',
     options: {}
   },
+  // Set base path for production builds
+  // This ensures all Storybook assets use /storybook/ prefix
+  staticDirs: [],
   async viteFinal(config, { configType }) {
     // Use the vite instance that Storybook provides
     const { mergeConfig } = await import('vite');
