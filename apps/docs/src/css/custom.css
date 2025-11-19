@@ -701,7 +701,9 @@ button[class*="secondary"] {
 /* TOC Container */
 .table-of-contents,
 [class*="table-of-contents"],
-.theme-doc-toc-desktop {
+.theme-doc-toc-desktop,
+.theme-doc-toc-mobile,
+[class*="theme-doc-toc"] {
   width: var(--toc-width) !important;
   padding-top: var(--toc-paddingTop) !important;
   padding-bottom: var(--toc-paddingBottom) !important;
@@ -739,7 +741,10 @@ button[class*="secondary"] {
 .table-of-contents a:hover,
 [class*="table-of-contents"] a:hover,
 .theme-doc-toc-desktop a:hover,
-.theme-doc-toc-desktop li > a:hover {
+.theme-doc-toc-desktop li > a:hover,
+.theme-doc-toc-mobile a:hover,
+[class*="theme-doc-toc"] a:hover,
+[class*="theme-doc-toc"] li > a:hover {
   background-color: var(--toc-itemHoverBg) !important;
   color: var(--toc-itemHoverText) !important;
 }
@@ -749,8 +754,13 @@ button[class*="secondary"] {
 [class*="table-of-contents"] a[class*="active"],
 .theme-doc-toc-desktop a[class*="active"],
 .theme-doc-toc-desktop li > a[class*="active"],
+.theme-doc-toc-mobile a[class*="active"],
+[class*="theme-doc-toc"] a[class*="active"],
+[class*="theme-doc-toc"] li > a[class*="active"],
 .table-of-contents a[aria-current],
-.theme-doc-toc-desktop a[aria-current] {
+.theme-doc-toc-desktop a[aria-current],
+.theme-doc-toc-mobile a[aria-current],
+[class*="theme-doc-toc"] a[aria-current] {
   font-weight: var(--toc-active-fontWeight) !important;
   background-color: var(--toc-itemActiveBg) !important;
   color: var(--toc-itemActiveText) !important;
@@ -761,8 +771,13 @@ button[class*="secondary"] {
 [class*="table-of-contents"] a[class*="active"]::before,
 .theme-doc-toc-desktop a[class*="active"]::before,
 .theme-doc-toc-desktop li > a[class*="active"]::before,
+.theme-doc-toc-mobile a[class*="active"]::before,
+[class*="theme-doc-toc"] a[class*="active"]::before,
+[class*="theme-doc-toc"] li > a[class*="active"]::before,
 .table-of-contents a[aria-current]::before,
-.theme-doc-toc-desktop a[aria-current]::before {
+.theme-doc-toc-desktop a[aria-current]::before,
+.theme-doc-toc-mobile a[aria-current]::before,
+[class*="theme-doc-toc"] a[aria-current]::before {
   content: "" !important;
   position: absolute !important;
   left: var(--toc-indicator-offsetLeft) !important;
@@ -777,7 +792,10 @@ button[class*="secondary"] {
 .table-of-contents ul ul a,
 [class*="table-of-contents"] ul ul a,
 .theme-doc-toc-desktop ul ul a,
-.theme-doc-toc-desktop li ul li > a {
+.theme-doc-toc-desktop li ul li > a,
+.theme-doc-toc-mobile ul ul a,
+[class*="theme-doc-toc"] ul ul a,
+[class*="theme-doc-toc"] li ul li > a {
   font-size: var(--toc-level3-fontSize) !important;
   line-height: var(--toc-level3-lineHeight) !important;
   padding-left: var(--toc-level3-paddingLeft) !important;
@@ -787,7 +805,10 @@ button[class*="secondary"] {
 .table-of-contents ul ul ul a,
 [class*="table-of-contents"] ul ul ul a,
 .theme-doc-toc-desktop ul ul ul a,
-.theme-doc-toc-desktop li ul ul li > a {
+.theme-doc-toc-desktop li ul ul li > a,
+.theme-doc-toc-mobile ul ul ul a,
+[class*="theme-doc-toc"] ul ul ul a,
+[class*="theme-doc-toc"] li ul ul li > a {
   font-size: var(--toc-level4-fontSize) !important;
   line-height: var(--toc-level4-lineHeight) !important;
   padding-left: var(--toc-level4-paddingLeft) !important;
@@ -796,7 +817,9 @@ button[class*="secondary"] {
 /* TOC List Items */
 .table-of-contents li,
 [class*="table-of-contents"] li,
-.theme-doc-toc-desktop li {
+.theme-doc-toc-desktop li,
+.theme-doc-toc-mobile li,
+[class*="theme-doc-toc"] li {
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
@@ -805,7 +828,9 @@ button[class*="secondary"] {
 /* TOC Dividers */
 .table-of-contents hr,
 [class*="table-of-contents"] hr,
-.theme-doc-toc-desktop hr {
+.theme-doc-toc-desktop hr,
+.theme-doc-toc-mobile hr,
+[class*="theme-doc-toc"] hr {
   margin: var(--toc-dividerMarginY) 0 !important;
   border: none !important;
   border-top: 1px solid var(--toc-divider) !important;
@@ -815,7 +840,9 @@ button[class*="secondary"] {
 /* TOC List Container */
 .table-of-contents ul,
 [class*="table-of-contents"] ul,
-.theme-doc-toc-desktop ul {
+.theme-doc-toc-desktop ul,
+.theme-doc-toc-mobile ul,
+[class*="theme-doc-toc"] ul {
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
