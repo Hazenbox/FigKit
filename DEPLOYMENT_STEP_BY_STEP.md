@@ -25,6 +25,8 @@ git status
 
 **What to look for:**
 - Should say "nothing to commit, working tree clean"
+
+If there are uncommitted changes, we'll commit them first
 - If there are uncommitted changes, we'll commit them first
 
 ### 1.2 Push to GitHub (if needed)
