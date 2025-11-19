@@ -26,6 +26,7 @@ const config: StorybookConfig = {
     const tokensDir = path.resolve(__dirname, '../../tokens/dist');
     
     return mergeConfig(config, {
+      base: '/storybook/',
       resolve: {
         alias: {
           '@figkit/ui': path.resolve(__dirname, '../../ui/dist/index.js'),
@@ -70,7 +71,6 @@ const config: StorybookConfig = {
           include: [/node_modules/],
         },
       },
-      base: '/storybook/',
     });
   }
 };
