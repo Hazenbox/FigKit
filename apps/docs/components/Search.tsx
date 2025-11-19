@@ -71,7 +71,7 @@ export default function Search() {
   }, []);
 
   return (
-    <div ref={searchRef} style={{ position: 'relative', marginBottom: 'var(--space-4, 16px)' }}>
+    <div ref={searchRef} style={{ position: 'relative', marginBottom: '16px' }}>
       <input
         type="search"
         placeholder="Search documentation..."
