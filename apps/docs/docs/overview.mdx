@@ -1,0 +1,268 @@
+---
+title: Overview
+description: Welcome to FigKit Design System - A comprehensive design system with React components, design tokens, and Figma integration
+---
+
+# FigKit Design System
+
+A comprehensive design system with React components, design tokens, and Figma integration.
+
+## What is FigKit?
+
+FigKit is a production-ready design system that provides:
+
+- **React Components** - Reusable UI components built with TypeScript
+- **Design Tokens** - Centralized design decisions for colors, spacing, typography, and more
+- **Multi-Brand Support** - Default, FigJam, DevMode, and Slides themes
+- **Multi-Theme Support** - Light and Dark modes
+- **Figma Integration** - Automated token sync from Figma
+- **Storybook** - Interactive component documentation
+- **TypeScript** - Full type definitions included
+
+## Quick Links
+
+### Documentation
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '24px', marginBottom: '32px' }}>
+  <a
+    href="/getting-started"
+    style={{
+      display: 'inline-block',
+      padding: '12px 24px',
+      backgroundColor: '#2563eb',
+      color: '#ffffff',
+      borderRadius: '8px',
+      textDecoration: 'none',
+      fontWeight: 500,
+      fontSize: '14px',
+    }}
+  >
+    Get Started →
+  </a>
+  <a
+    href="/components"
+    style={{
+      display: 'inline-block',
+      padding: '12px 24px',
+      backgroundColor: '#f3f4f6',
+      color: '#111111',
+      borderRadius: '8px',
+      textDecoration: 'none',
+      fontWeight: 500,
+      fontSize: '14px',
+    }}
+  >
+    View Components →
+  </a>
+  <a
+    href="/tokens"
+    style={{
+      display: 'inline-block',
+      padding: '12px 24px',
+      backgroundColor: '#f3f4f6',
+      color: '#111111',
+      borderRadius: '8px',
+      textDecoration: 'none',
+      fontWeight: 500,
+      fontSize: '14px',
+    }}
+  >
+    Design Tokens →
+  </a>
+</div>
+
+### External Resources
+
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginTop: '24px', marginBottom: '32px' }}>
+  <a
+    href="http://localhost:6006"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: 'inline-block',
+      padding: '12px 24px',
+      backgroundColor: '#f3f4f6',
+      color: '#111111',
+      borderRadius: '8px',
+      textDecoration: 'none',
+      fontWeight: 500,
+      fontSize: '14px',
+    }}
+  >
+    📚 Storybook →
+  </a>
+  <a
+    href="http://localhost:5173/test-npm"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: 'inline-block',
+      padding: '12px 24px',
+      backgroundColor: '#f3f4f6',
+      color: '#111111',
+      borderRadius: '8px',
+      textDecoration: 'none',
+      fontWeight: 500,
+      fontSize: '14px',
+    }}
+  >
+    🧪 Test NPM Package →
+  </a>
+  <a
+    href="http://localhost:5173/performance"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: 'inline-block',
+      padding: '12px 24px',
+      backgroundColor: '#f3f4f6',
+      color: '#111111',
+      borderRadius: '8px',
+      textDecoration: 'none',
+      fontWeight: 500,
+      fontSize: '14px',
+    }}
+  >
+    ⚡ Performance Benchmarks →
+  </a>
+  <a
+    href="https://www.npmjs.com/package/@figkit/ui"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: 'inline-block',
+      padding: '12px 24px',
+      backgroundColor: '#f3f4f6',
+      color: '#111111',
+      borderRadius: '8px',
+      textDecoration: 'none',
+      fontWeight: 500,
+      fontSize: '14px',
+    }}
+  >
+    📦 NPM Package →
+  </a>
+  <a
+    href="https://github.com/Hazenbox/FigKit"
+    target="_blank"
+    rel="noopener noreferrer"
+    style={{
+      display: 'inline-block',
+      padding: '12px 24px',
+      backgroundColor: '#f3f4f6',
+      color: '#111111',
+      borderRadius: '8px',
+      textDecoration: 'none',
+      fontWeight: 500,
+      fontSize: '14px',
+    }}
+  >
+    🔗 GitHub →
+  </a>
+</div>
+
+## Features
+
+### 🎨 Multi-Brand & Multi-Theme
+
+Support for multiple brands (Default, FigJam, DevMode, Slides) and themes (Light, Dark) out of the box.
+
+### 🧩 React Components
+
+Production-ready React components with TypeScript support:
+
+- **Avatar** - User avatars with initials, photos, and overflow states
+- **Badge** - Status indicators and labels
+- **Button** - Multiple variants and sizes
+- **Checkbox** - Form controls with various states
+- **Tab / Tabs** - Navigation components
+- **TextInput** - Form input fields
+- **Icons** - 600+ icon components
+
+### 🎯 Design Tokens
+
+Centralized design decisions using CSS variables:
+
+- Colors (semantic naming)
+- Typography (font families, sizes, weights)
+- Spacing (consistent scale)
+- Border radius
+- Shadows
+- And more...
+
+### 🔗 Figma Integration
+
+Automated design token synchronization from Figma:
+
+- Pull tokens directly from Figma files
+- Component extraction from Figma designs
+- Automated code generation
+- Token diffing and comparison
+
+### 📚 Storybook
+
+Interactive component documentation with:
+
+- Live component examples
+- Multi-brand/theme switching
+- Accessibility testing
+- Visual regression testing
+
+## Installation
+
+```bash
+npm install @figkit/ui @figkit/themes
+```
+
+Or with pnpm:
+
+```bash
+pnpm add @figkit/ui @figkit/themes
+```
+
+## Quick Start
+
+1. **Import the theme CSS** in your app entry point:
+
+```tsx
+import '@figkit/themes/dist/tokens.css';
+import '@figkit/ui/dist/index.css';
+```
+
+2. **Set brand and theme** on your root element:
+
+```tsx
+<div data-brand="default" data-theme="light">
+  <App />
+</div>
+```
+
+3. **Use components**:
+
+```tsx
+import { Button, Badge, Avatar } from '@figkit/ui';
+
+function App() {
+  return (
+    <div>
+      <Button variant="primary">Click me</Button>
+      <Badge variant="brand">New</Badge>
+      <Avatar size="large" variant="blue" initials="JD" />
+    </div>
+  );
+}
+```
+
+## Next Steps
+
+- **[Getting Started](/getting-started)** - Learn how to set up FigKit in your project
+- **[Components](/components)** - Browse all available components
+- **[Design Tokens](/tokens)** - Understand the token system
+- **[Guides](/guides/installation)** - Detailed installation and theming guides
+
+## Resources
+
+- **Storybook**: Interactive component playground at [http://localhost:6006](http://localhost:6006)
+- **NPM Package**: [@figkit/ui](https://www.npmjs.com/package/@figkit/ui)
+- **GitHub**: [Hazenbox/FigKit](https://github.com/Hazenbox/FigKit)
+
