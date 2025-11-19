@@ -12,10 +12,15 @@ export default defineConfig({
     port: 5173,
     proxy: {
       // Proxy Storybook requests to Storybook dev server
+      // Storybook runs at root (/) in dev mode, so we strip /storybook prefix
       '/storybook': {
         target: 'http://localhost:6006',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/storybook/, ''),
+        rewrite: (path) => {
+          // Remove /storybook prefix, but keep trailing slash for root
+          const rewritten = path.replace(/^\/storybook/, '');
+          return rewritten || '/';
+        },
         ws: true, // Enable WebSocket for HMR
       },
       // Proxy Storybook assets (sb-manager, sb-addons)

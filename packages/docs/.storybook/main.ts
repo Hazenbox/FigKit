@@ -25,8 +25,13 @@ const config: StorybookConfig = {
     const { mergeConfig } = await import('vite');
     const tokensDir = path.resolve(__dirname, '../../tokens/dist');
     
+    // Only use base path for production builds, not for dev server
+    // In dev, Storybook runs on its own port and doesn't need base path
+    // In production, it's served from /storybook/ subdirectory
+    const basePath = configType === 'PRODUCTION' ? '/storybook/' : '/';
+    
     return mergeConfig(config, {
-      base: '/storybook/',
+      base: basePath,
       resolve: {
         alias: {
           '@figkit/ui': path.resolve(__dirname, '../../ui/dist/index.js'),
