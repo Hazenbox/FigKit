@@ -29,7 +29,7 @@ export default function Sidebar() {
     const hasChildren = item.children && item.children.length > 0;
 
     return (
-      <div key={item.path} style={{ marginBottom: level === 0 ? 'var(--space-2, 8px)' : 'var(--space-1, 4px)' }}>
+      <div key={item.path} style={{ marginBottom: level === 0 ? '8px' : '4px' }}>
         <Link
           href={item.path}
           style={{
@@ -47,7 +47,7 @@ export default function Sidebar() {
           {item.title}
         </Link>
         {hasChildren && (
-          <div style={{ marginTop: 'var(--space-1, 4px)' }}>
+          <div style={{ marginTop: '4px' }}>
             {item.children!.map((child) => renderNavItem(child, level + 1))}
           </div>
         )}

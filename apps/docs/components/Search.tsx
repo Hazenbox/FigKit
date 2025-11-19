@@ -120,7 +120,7 @@ export default function Search() {
                 borderBottom: '1px solid #e5e7eb',
               }}
             >
-              <div style={{ fontWeight: 600, marginBottom: 'var(--space-1, 4px)' }}>
+              <div style={{ fontWeight: 600, marginBottom: '4px' }}>
                 {result.title}
               </div>
               {result.description && (
