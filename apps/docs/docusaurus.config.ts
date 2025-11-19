@@ -37,7 +37,7 @@ const config: Config = {
     v4: true,
   },
 
-  url: 'https://figkit.dev',
+  url: 'https://fig-kit.vercel.app',
   baseUrl: '/',
 
   organizationName: 'Hazenbox',
@@ -71,7 +71,8 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
-      respectPrefersColorScheme: true,
+      defaultMode: 'light',
+      respectPrefersColorScheme: false,
     },
     navbar: {
       title: '',
