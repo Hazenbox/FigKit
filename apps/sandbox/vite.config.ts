@@ -23,12 +23,29 @@ export default defineConfig({
         },
         ws: true, // Enable WebSocket for HMR
       },
+      // Proxy Storybook iframe routes (internal Storybook routes)
+      '/iframe.html': {
+        target: 'http://localhost:6006',
+        changeOrigin: true,
+        ws: true,
+      },
       // Proxy Storybook assets (sb-manager, sb-addons)
       '/sb-manager': {
         target: 'http://localhost:6006',
         changeOrigin: true,
+        ws: true,
       },
       '/sb-addons': {
+        target: 'http://localhost:6006',
+        changeOrigin: true,
+        ws: true,
+      },
+      // Proxy Storybook static assets
+      '/sb-common-assets': {
+        target: 'http://localhost:6006',
+        changeOrigin: true,
+      },
+      '/node_modules': {
         target: 'http://localhost:6006',
         changeOrigin: true,
       },

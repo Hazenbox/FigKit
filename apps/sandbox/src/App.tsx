@@ -11,9 +11,10 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/test-npm" element={<TestNpm />} />
         <Route path="/performance" element={<Performance />} />
-        {/* Storybook is proxied through Vite, so this route won't be hit */}
+        {/* Storybook is proxied through Vite, so React Router routes won't be hit */}
         {/* But we keep it as fallback in case proxy isn't working */}
-        <Route path="/storybook" element={
+        {/* Note: Storybook uses /iframe.html internally, which is handled by proxy */}
+        <Route path="/storybook/*" element={
           <div style={{ 
             minHeight: '100vh', 
             display: 'flex', 
