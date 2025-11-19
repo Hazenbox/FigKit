@@ -11,6 +11,8 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/test-npm" element={<TestNpm />} />
         <Route path="/performance" element={<Performance />} />
+        {/* Storybook is proxied through Vite, so this route won't be hit */}
+        {/* But we keep it as fallback in case proxy isn't working */}
         <Route path="/storybook" element={
           <div style={{ 
             minHeight: '100vh', 
@@ -22,7 +24,7 @@ function App() {
             padding: 'var(--space-4, 16px)'
           }}>
             <h1>Storybook</h1>
-            <p>Storybook is available at <a href="http://localhost:6006" target="_blank" rel="noopener noreferrer">http://localhost:6006</a></p>
+            <p>Storybook should be proxied. If you see this, check that Storybook is running on port 6006.</p>
             <a href="http://localhost:6006" target="_blank" rel="noopener noreferrer">
               <button style={{
                 padding: 'var(--space-3, 12px) var(--space-4, 16px)',
@@ -34,7 +36,7 @@ function App() {
                 fontSize: '16px',
                 fontWeight: 500,
               }}>
-                Open Storybook
+                Open Storybook Directly
               </button>
             </a>
           </div>
