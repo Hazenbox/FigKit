@@ -266,35 +266,28 @@ nav[aria-label="breadcrumbs"] {
   font-family: var(--font-sans) !important;
 }
 
-/* Button Typography and Sizing */
+/* Button Typography */
 button,
 .button,
 a.button {
   font-family: var(--font-sans) !important;
-  height: 36px !important;
-  padding: 0 14px !important;
-  margin: 0 !important;
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  line-height: 20px !important;
-  border-radius: 6px !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  justify-content: center !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  vertical-align: top !important;
 }
 
 .button--primary,
 button[class*="primary"] {
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  line-height: 20px !important;
+  font-size: var(--button-primary-fontSize) !important;
+  font-weight: var(--button-primary-fontWeight) !important;
+  line-height: var(--button-primary-lineHeight) !important;
 }
 
 .button--secondary,
 button[class*="secondary"] {
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  line-height: 20px !important;
+  font-size: var(--button-secondary-fontSize) !important;
+  font-weight: var(--button-secondary-fontWeight) !important;
+  line-height: var(--button-secondary-lineHeight) !important;
 }
 
 /* Navigation Typography */
@@ -335,10 +328,30 @@ button[class*="secondary"] {
   margin: 0 !important;
 }
 
-/* Sidebar inner container - ensure it respects parent */
+/* Sidebar inner containers - respect parent dimensions */
+.theme-doc-sidebar-container > *,
 .theme-doc-sidebar-container > nav,
-.theme-doc-sidebar-container > div,
-.theme-doc-sidebar-container > * {
+.theme-doc-sidebar-container > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Sidebar menu container */
+.theme-doc-sidebar-container .menu,
+.theme-doc-sidebar-container nav[aria-label] {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* Sidebar menu list */
+.theme-doc-sidebar-container .menu__list,
+.theme-doc-sidebar-container .theme-doc-sidebar-menu {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
@@ -347,27 +360,7 @@ button[class*="secondary"] {
 }
 
 /* Sidebar wrapper divs */
-.theme-doc-sidebar-container [class*="sidebar"],
-.theme-doc-sidebar-container nav {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-}
-
-/* Menu container */
-.theme-doc-sidebar-container .menu {
-  width: 100% !important;
-  max-width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
-}
-
-/* Menu list */
-.theme-doc-sidebar-container .menu__list,
-.theme-doc-sidebar-container .theme-doc-sidebar-menu {
+.theme-doc-sidebar-container [class*="sidebar"] {
   width: 100% !important;
   max-width: 100% !important;
   margin: 0 !important;
@@ -545,23 +538,20 @@ button[class*="secondary"] {
 
 /* Overview Page CTA Buttons */
 .overview-cta-primary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 36px;
-  padding: 0 14px;
+  display: inline-block;
+  padding: 12px 24px 12px 24px;
   margin: 0;
   background-color: #2563eb;
   color: #ffffff;
-  border-radius: 6px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   transition: background-color 0.2s ease;
   font-family: var(--font-sans);
+  vertical-align: top;
   border: none;
-  vertical-align: baseline;
 }
 
 .overview-cta-primary:hover {
@@ -570,23 +560,20 @@ button[class*="secondary"] {
 }
 
 .overview-cta-secondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 36px;
-  padding: 0 14px;
+  display: inline-block;
+  padding: 12px 24px 12px 24px;
   margin: 0;
   background-color: #f3f4f6;
   color: #111111;
-  border-radius: 6px;
+  border-radius: 8px;
   text-decoration: none;
   font-weight: 500;
   font-size: 14px;
   line-height: 20px;
   transition: background-color 0.2s ease;
   font-family: var(--font-sans);
+  vertical-align: top;
   border: none;
-  vertical-align: baseline;
 }
 
 .overview-cta-secondary:hover {
@@ -649,17 +636,4 @@ button[class*="secondary"] {
 .markdown pre code {
   font-size: var(--code-block-fontSize) !important;
   line-height: var(--code-block-lineHeight) !important;
-}
-
-/* Table of Contents - Remove left border */
-.table-of-contents,
-.table-of-contents__left-border,
-[class*="table-of-contents"] {
-  border-left: none !important;
-  padding-left: 0 !important;
-  margin-left: 0 !important;
-}
-
-.table-of-contents__left-border {
-  border-left: none !important;
 }
