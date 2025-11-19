@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "buildCommand": "pnpm install && npx tsx packages/figma-mcp/scripts/pull-tokens-from-files.ts && pnpm --filter @figkit/tokens build && pnpm --filter @figkit/themes prepublishOnly && pnpm --filter @figkit/ui build && cd apps/sandbox && pnpm build",
+  "buildCommand": "pnpm install && pnpm run build:vercel",
   "outputDirectory": "apps/sandbox/dist",
   "devCommand": "cd apps/sandbox && pnpm dev",
   "installCommand": "pnpm install",
