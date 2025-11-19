@@ -131,6 +131,18 @@ if (existsSync(storybookBuildDir)) {
   cpSync(storybookBuildDir, join(outputDir, 'storybook-static'), { recursive: true });
   console.log('✅ Copied Storybook build');
   
+  // Verify critical Storybook files exist
+  const storybookIndex = join(outputDir, 'storybook-static', 'index.html');
+  const storybookIndexJson = join(outputDir, 'storybook-static', 'index.json');
+  if (!existsSync(storybookIndex)) {
+    console.warn('⚠️  Storybook index.html not found!');
+  }
+  if (!existsSync(storybookIndexJson)) {
+    console.warn('⚠️  Storybook index.json not found!');
+  } else {
+    console.log('✅ Storybook index.json found');
+  }
+  
   // Copy token JSON files into Storybook build so they're accessible
   const tokensDistDir = join(rootDir, 'packages/tokens/dist');
   if (existsSync(tokensDistDir)) {

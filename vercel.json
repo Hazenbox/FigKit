@@ -22,6 +22,18 @@
       "destination": "/storybook-static/sb-addons/:path*"
     },
     {
+      "source": "/sb-common-assets/:path*",
+      "destination": "/storybook-static/sb-common-assets/:path*"
+    },
+    {
+      "source": "/index.json",
+      "destination": "/storybook-static/index.json"
+    },
+    {
+      "source": "/favicon.svg",
+      "destination": "/storybook-static/favicon.svg"
+    },
+    {
       "source": "/packages/tokens/dist/:path*",
       "destination": "/storybook-static/packages/tokens/dist/:path*"
     },
