@@ -68,8 +68,17 @@ execSync('pnpm --filter @figkit/tokens build', { cwd: rootDir, stdio: 'inherit' 
 execSync('pnpm --filter @figkit/themes prepublishOnly', { cwd: rootDir, stdio: 'inherit' });
 execSync('pnpm --filter @figkit/ui build', { cwd: rootDir, stdio: 'inherit' });
 
-// Step 2: Build Storybook to specific directory
-console.log('\n📚 Step 2: Building Storybook...');
+// Step 2: Build patterns package (needed by Storybook)
+console.log('\n📦 Step 2: Building patterns package...');
+try {
+  execSync('pnpm --filter @figkit/patterns build', { cwd: rootDir, stdio: 'inherit' });
+  console.log('✅ Patterns package built');
+} catch (error) {
+  console.warn('⚠️  Patterns package build failed or not found, continuing...');
+}
+
+// Step 3: Build Storybook to specific directory
+console.log('\n📚 Step 3: Building Storybook...');
 const storybookOutput = join(rootDir, 'packages/docs/storybook-static');
 if (existsSync(storybookOutput)) {
   rmSync(storybookOutput, { recursive: true, force: true });
@@ -80,16 +89,16 @@ if (!existsSync(storybookBuildDir)) {
   console.warn('⚠️  Storybook build directory not found. Expected:', storybookBuildDir);
 }
 
-// Step 3: Build sandbox
-console.log('\n🎨 Step 3: Building sandbox app...');
+// Step 4: Build sandbox
+console.log('\n🎨 Step 4: Building sandbox app...');
 execSync('pnpm --filter sandbox build', { cwd: rootDir, stdio: 'inherit' });
 
-// Step 4: Build docs
-console.log('\n📖 Step 4: Building docs app...');
+// Step 5: Build docs
+console.log('\n📖 Step 5: Building docs app...');
 execSync('cd apps/docs && pnpm build', { cwd: rootDir, stdio: 'inherit' });
 
-// Step 5: Organize output directory
-console.log('\n📁 Step 5: Organizing output directory...');
+// Step 6: Organize output directory
+console.log('\n📁 Step 6: Organizing output directory...');
 if (existsSync(outputDir)) {
   rmSync(outputDir, { recursive: true, force: true });
 }
