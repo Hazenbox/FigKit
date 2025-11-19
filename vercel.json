@@ -22,6 +22,14 @@
       "destination": "/storybook-static/sb-addons/:path*"
     },
     {
+      "source": "/packages/tokens/dist/:path*",
+      "destination": "/storybook-static/packages/tokens/dist/:path*"
+    },
+    {
+      "source": "/node_modules/@figkit/tokens/dist/:path*",
+      "destination": "/storybook-static/packages/tokens/dist/:path*"
+    },
+    {
       "source": "/test-npm",
       "destination": "/sandbox/index.html"
     },

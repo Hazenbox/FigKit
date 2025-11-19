@@ -12,13 +12,17 @@ export function useTokens() {
     const loadTokens = async (b: string, t: string) => {
       try {
         setLoading(true);
+        // Determine base path - in production Storybook is at /storybook/, in dev it's at /
+        const isProduction = window.location.pathname.startsWith('/storybook');
+        const basePath = isProduction ? '/storybook' : '';
+        
         // Try /packages/tokens/dist first (works in both dev and production)
-        const tokensPath = `/packages/tokens/dist/${b}.${t}.json`;
+        const tokensPath = `${basePath}/packages/tokens/dist/${b}.${t}.json`;
         const response = await fetch(tokensPath);
         
         if (!response.ok) {
           // Try alternative path
-          const altPath = `/node_modules/@figkit/tokens/dist/${b}.${t}.json`;
+          const altPath = `${basePath}/node_modules/@figkit/tokens/dist/${b}.${t}.json`;
           const altResponse = await fetch(altPath);
           if (!altResponse.ok) {
             throw new Error(`HTTP ${altResponse.status}: Failed to load tokens`);
@@ -38,7 +42,9 @@ export function useTokens() {
         console.warn(`Failed to load tokens for ${b}.${t}:`, error);
         // Fallback to default
         try {
-          const response = await fetch(`/packages/tokens/dist/default.light.json`);
+          const isProduction = window.location.pathname.startsWith('/storybook');
+          const basePath = isProduction ? '/storybook' : '';
+          const response = await fetch(`${basePath}/packages/tokens/dist/default.light.json`);
           if (response.ok) {
             const contentType = response.headers.get('content-type');
             if (contentType && contentType.includes('application/json')) {

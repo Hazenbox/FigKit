@@ -130,6 +130,22 @@ if (existsSync(storybookBuildDir)) {
   mkdirSync(join(outputDir, 'storybook-static'), { recursive: true });
   cpSync(storybookBuildDir, join(outputDir, 'storybook-static'), { recursive: true });
   console.log('✅ Copied Storybook build');
+  
+  // Copy token JSON files into Storybook build so they're accessible
+  const tokensDistDir = join(rootDir, 'packages/tokens/dist');
+  if (existsSync(tokensDistDir)) {
+    const storybookTokensDir = join(outputDir, 'storybook-static', 'packages', 'tokens', 'dist');
+    mkdirSync(storybookTokensDir, { recursive: true });
+    
+    // Copy all JSON files from tokens/dist to Storybook build
+    const tokenFiles = readdirSync(tokensDistDir).filter(file => file.endsWith('.json'));
+    for (const file of tokenFiles) {
+      const srcPath = join(tokensDistDir, file);
+      const destPath = join(storybookTokensDir, file);
+      copyFileSync(srcPath, destPath);
+    }
+    console.log(`✅ Copied ${tokenFiles.length} token JSON files to Storybook build`);
+  }
 } else {
   console.warn('⚠️  Storybook build not found');
 }
