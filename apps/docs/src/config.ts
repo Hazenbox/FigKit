@@ -1,31 +1,32 @@
 // Environment configuration for docs
 // This file provides environment-aware URLs for external resources
 
-// Note: These URLs should point to the sandbox app deployment, not the docs app
-// The sandbox app contains the /test-npm, /performance, and /storybook routes
-// If sandbox and docs are on the same domain, use relative paths
-// If they're separate deployments, use full URLs
+// All apps are now served from the same domain with different paths:
+// - / -> Docs app
+// - /storybook -> Storybook
+// - /test-npm -> Sandbox test page
+// - /performance -> Sandbox performance page
 
-const getEnvUrl = (envVar: string, defaultPath: string): string => {
+const getBaseUrl = (): string => {
   if (typeof window !== 'undefined') {
-    return (window as any)[`__${envVar}__`] || process.env[envVar] || defaultPath;
+    // Use current origin (same domain)
+    return window.location.origin;
   }
-  return process.env[envVar] || defaultPath;
+  // Fallback for SSR
+  return process.env.VERCEL_URL 
+    ? `https://${process.env.VERCEL_URL}`
+    : process.env.STORYBOOK_URL?.replace('/storybook', '') || 'https://fig-kit.vercel.app';
 };
 
+const baseUrl = getBaseUrl();
+
 export const config = {
-  // Storybook URL - should point to Storybook deployment or sandbox /storybook route
-  storybookUrl: getEnvUrl('STORYBOOK_URL', '#'),
-  
-  // Sandbox base URL - where the sandbox app is deployed
-  sandboxUrl: getEnvUrl('SANDBOX_URL', '#'),
-  
-  // Performance benchmarks URL
-  performanceUrl: getEnvUrl('PERFORMANCE_URL', '#'),
-  
-  // Test NPM package URL (derived from sandboxUrl)
+  // All URLs are on the same domain, just different paths
+  storybookUrl: `${baseUrl}/storybook`,
+  sandboxUrl: baseUrl,
+  performanceUrl: `${baseUrl}/performance`,
   get testNpmUrl() {
-    return this.sandboxUrl === '#' ? '#' : `${this.sandboxUrl}/test-npm`;
+    return `${this.sandboxUrl}/test-npm`;
   },
 };
 

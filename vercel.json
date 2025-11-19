@@ -1,14 +1,29 @@
 {
   "version": 2,
-  "buildCommand": "pnpm install && pnpm -w run build:vercel",
-  "outputDirectory": "apps/sandbox/dist",
-  "devCommand": "cd apps/sandbox && pnpm dev",
+  "buildCommand": "pnpm install && bash scripts/build-unified.sh",
+  "outputDirectory": ".vercel-output",
   "installCommand": "pnpm install",
-  "framework": "vite",
+  "framework": null,
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/index.html"
+      "source": "/storybook/:path*",
+      "destination": "/storybook-static/:path*"
+    },
+    {
+      "source": "/test-npm/:path*",
+      "destination": "/sandbox/test-npm/:path*"
+    },
+    {
+      "source": "/performance/:path*",
+      "destination": "/sandbox/performance/:path*"
+    },
+    {
+      "source": "/test-npm",
+      "destination": "/sandbox/test-npm"
+    },
+    {
+      "source": "/performance",
+      "destination": "/sandbox/performance"
     }
   ],
   "headers": [
@@ -31,4 +46,3 @@
     }
   ]
 }
-
