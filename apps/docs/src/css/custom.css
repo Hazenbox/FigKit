@@ -4,14 +4,121 @@
  * work well for content-centric websites.
  */
 
-/* OpenAI Platform Docs Style Sidebar */
+/* Typography System - Based on Design Tokens */
 
 :root {
-  /* Light mode variables */
+  /* Font Families */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: "Menlo", "Consolas", "Monaco", monospace;
+
+  /* Body Typography */
+  --body-base-fontSize: 16px;
+  --body-base-fontWeight: 400;
+  --body-base-lineHeight: 24px;
+  --body-base-letterSpacing: 0px;
+
+  --body-small-fontSize: 14px;
+  --body-small-fontWeight: 400;
+  --body-small-lineHeight: 20px;
+  --body-small-color: #555555;
+
+  --body-xsmall-fontSize: 12px;
+  --body-xsmall-fontWeight: 500;
+  --body-xsmall-lineHeight: 16px;
+  --body-xsmall-letterSpacing: 0.2px;
+  --body-xsmall-textTransform: uppercase;
+
+  /* Heading Typography */
+  --heading-h1-fontSize: 28px;
+  --heading-h1-fontWeight: 600;
+  --heading-h1-lineHeight: 36px;
+  --heading-h1-letterSpacing: -0.01em;
+
+  --heading-h2-fontSize: 20px;
+  --heading-h2-fontWeight: 600;
+  --heading-h2-lineHeight: 28px;
+  --heading-h2-letterSpacing: -0.01em;
+
+  --heading-h3-fontSize: 16px;
+  --heading-h3-fontWeight: 600;
+  --heading-h3-lineHeight: 24px;
+  --heading-h3-letterSpacing: -0.01em;
+
+  --heading-h4-fontSize: 14px;
+  --heading-h4-fontWeight: 600;
+  --heading-h4-lineHeight: 20px;
+  --heading-h4-letterSpacing: -0.01em;
+
+  /* Sidebar Typography */
+  --sidebar-category-fontSize: 12px;
+  --sidebar-category-fontWeight: 600;
+  --sidebar-category-lineHeight: 20px;
+  --sidebar-category-letterSpacing: 0.5px;
+  --sidebar-category-textTransform: uppercase;
+  --sidebar-category-color: #6B6B6B;
+
+  --sidebar-item-fontSize: 14px;
+  --sidebar-item-fontWeight: 500;
+  --sidebar-item-lineHeight: 22px;
+  --sidebar-item-letterSpacing: 0px;
+  --sidebar-item-color: #111111;
+
+  --sidebar-itemActive-fontSize: 14px;
+  --sidebar-itemActive-fontWeight: 600;
+  --sidebar-itemActive-lineHeight: 22px;
+  --sidebar-itemActive-color: #000000;
+
+  /* Navigation Typography */
+  --nav-link-fontSize: 14px;
+  --nav-link-fontWeight: 500;
+  --nav-link-lineHeight: 20px;
+  --nav-link-letterSpacing: 0px;
+
+  --nav-linkActive-fontSize: 14px;
+  --nav-linkActive-fontWeight: 600;
+  --nav-linkActive-lineHeight: 20px;
+
+  /* Code Typography */
+  --code-inline-fontSize: 14px;
+  --code-inline-fontWeight: 500;
+  --code-inline-lineHeight: 20px;
+
+  --code-block-fontSize: 14px;
+  --code-block-lineHeight: 20px;
+
+  /* Table Typography */
+  --table-header-fontSize: 14px;
+  --table-header-fontWeight: 600;
+  --table-header-lineHeight: 20px;
+
+  --table-cell-fontSize: 14px;
+  --table-cell-fontWeight: 400;
+  --table-cell-lineHeight: 20px;
+
+  /* Breadcrumb Typography */
+  --breadcrumb-fontSize: 14px;
+  --breadcrumb-fontWeight: 400;
+  --breadcrumb-lineHeight: 20px;
+  --breadcrumb-color: #6B6B6B;
+
+  /* Footnote Typography */
+  --footnote-fontSize: 13px;
+  --footnote-fontWeight: 400;
+  --footnote-lineHeight: 18px;
+  --footnote-color: #777777;
+
+  /* Button Typography */
+  --button-primary-fontSize: 14px;
+  --button-primary-fontWeight: 500;
+  --button-primary-lineHeight: 20px;
+
+  --button-secondary-fontSize: 14px;
+  --button-secondary-fontWeight: 400;
+  --button-secondary-lineHeight: 20px;
+
+  /* Sidebar Colors (Light Mode) */
   --sidebar-bg: #FFFFFF;
   --sidebar-border: rgba(0, 0, 0, 0.08);
-  --sidebar-category: #666666;
-  --sidebar-link: #111111;
   --sidebar-link-hover: #000000;
   --sidebar-hover: rgba(0, 0, 0, 0.03);
   --sidebar-active-bg: #F4F4F5;
@@ -20,17 +127,184 @@
 }
 
 [data-theme='dark'] {
-  /* Dark mode variables */
+  /* Dark mode sidebar colors */
   --sidebar-bg: #0C0C0C;
   --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-category: #A0A0A0;
-  --sidebar-link: #F5F5F5;
+  --sidebar-category-color: #A0A0A0;
+  --sidebar-item-color: #F5F5F5;
+  --sidebar-itemActive-color: #FFFFFF;
   --sidebar-link-hover: #FFFFFF;
   --sidebar-hover: rgba(255, 255, 255, 0.05);
   --sidebar-active-bg: #1A1A1A;
   --sidebar-active-text: #FFFFFF;
   --sidebar-indicator: #3D52FF;
+  --body-small-color: #999999;
+  --breadcrumb-color: #A0A0A0;
+  --footnote-color: #999999;
 }
+
+/* Global Typography */
+html {
+  font-family: var(--font-sans) !important;
+}
+
+body {
+  font-size: var(--body-base-fontSize) !important;
+  font-weight: var(--body-base-fontWeight) !important;
+  line-height: var(--body-base-lineHeight) !important;
+  letter-spacing: var(--body-base-letterSpacing) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Headings */
+h1 {
+  font-size: var(--heading-h1-fontSize) !important;
+  font-weight: var(--heading-h1-fontWeight) !important;
+  line-height: var(--heading-h1-lineHeight) !important;
+  letter-spacing: var(--heading-h1-letterSpacing) !important;
+  font-family: var(--font-sans) !important;
+}
+
+h2 {
+  font-size: var(--heading-h2-fontSize) !important;
+  font-weight: var(--heading-h2-fontWeight) !important;
+  line-height: var(--heading-h2-lineHeight) !important;
+  letter-spacing: var(--heading-h2-letterSpacing) !important;
+  font-family: var(--font-sans) !important;
+}
+
+h3 {
+  font-size: var(--heading-h3-fontSize) !important;
+  font-weight: var(--heading-h3-fontWeight) !important;
+  line-height: var(--heading-h3-lineHeight) !important;
+  letter-spacing: var(--heading-h3-letterSpacing) !important;
+  font-family: var(--font-sans) !important;
+}
+
+h4 {
+  font-size: var(--heading-h4-fontSize) !important;
+  font-weight: var(--heading-h4-fontWeight) !important;
+  line-height: var(--heading-h4-lineHeight) !important;
+  letter-spacing: var(--heading-h4-letterSpacing) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Body Text Variants */
+p {
+  font-size: var(--body-base-fontSize) !important;
+  font-weight: var(--body-base-fontWeight) !important;
+  line-height: var(--body-base-lineHeight) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Small Text */
+small,
+.text-small {
+  font-size: var(--body-small-fontSize) !important;
+  font-weight: var(--body-small-fontWeight) !important;
+  line-height: var(--body-small-lineHeight) !important;
+  color: var(--body-small-color) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Extra Small Text */
+.text-xsmall {
+  font-size: var(--body-xsmall-fontSize) !important;
+  font-weight: var(--body-xsmall-fontWeight) !important;
+  line-height: var(--body-xsmall-lineHeight) !important;
+  letter-spacing: var(--body-xsmall-letterSpacing) !important;
+  text-transform: var(--body-xsmall-textTransform) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Code Typography */
+code {
+  font-family: var(--font-mono) !important;
+  font-size: var(--code-inline-fontSize) !important;
+  font-weight: var(--code-inline-fontWeight) !important;
+  line-height: var(--code-inline-lineHeight) !important;
+}
+
+pre code {
+  font-size: var(--code-block-fontSize) !important;
+  line-height: var(--code-block-lineHeight) !important;
+  font-weight: 400 !important;
+}
+
+/* Table Typography */
+table th {
+  font-size: var(--table-header-fontSize) !important;
+  font-weight: var(--table-header-fontWeight) !important;
+  line-height: var(--table-header-lineHeight) !important;
+  font-family: var(--font-sans) !important;
+}
+
+table td {
+  font-size: var(--table-cell-fontSize) !important;
+  font-weight: var(--table-cell-fontWeight) !important;
+  line-height: var(--table-cell-lineHeight) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Breadcrumb Typography */
+.breadcrumbs,
+nav[aria-label="breadcrumbs"] {
+  font-size: var(--breadcrumb-fontSize) !important;
+  font-weight: var(--breadcrumb-fontWeight) !important;
+  line-height: var(--breadcrumb-lineHeight) !important;
+  color: var(--breadcrumb-color) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Footnote Typography */
+.footnote,
+[class*="footnote"] {
+  font-size: var(--footnote-fontSize) !important;
+  font-weight: var(--footnote-fontWeight) !important;
+  line-height: var(--footnote-lineHeight) !important;
+  color: var(--footnote-color) !important;
+  font-family: var(--font-sans) !important;
+}
+
+/* Button Typography */
+button,
+.button,
+a.button {
+  font-family: var(--font-sans) !important;
+}
+
+.button--primary,
+button[class*="primary"] {
+  font-size: var(--button-primary-fontSize) !important;
+  font-weight: var(--button-primary-fontWeight) !important;
+  line-height: var(--button-primary-lineHeight) !important;
+}
+
+.button--secondary,
+button[class*="secondary"] {
+  font-size: var(--button-secondary-fontSize) !important;
+  font-weight: var(--button-secondary-fontWeight) !important;
+  line-height: var(--button-secondary-lineHeight) !important;
+}
+
+/* Navigation Typography */
+.navbar__item,
+.navbar__link {
+  font-size: var(--nav-link-fontSize) !important;
+  font-weight: var(--nav-link-fontWeight) !important;
+  line-height: var(--nav-link-lineHeight) !important;
+  letter-spacing: var(--nav-link-letterSpacing) !important;
+  font-family: var(--font-sans) !important;
+}
+
+.navbar__item--active,
+.navbar__link--active {
+  font-size: var(--nav-linkActive-fontSize) !important;
+  font-weight: var(--nav-linkActive-fontWeight) !important;
+  line-height: var(--nav-linkActive-lineHeight) !important;
+}
+
+/* OpenAI Platform Docs Style Sidebar */
 
 /* Sidebar Container */
 .theme-doc-sidebar-container {
@@ -45,16 +319,18 @@
   padding: 24px 20px 40px 20px !important;
   background: var(--sidebar-bg) !important;
   border-right: 1px solid var(--sidebar-border) !important;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-family: var(--font-sans) !important;
   flex-shrink: 0 !important;
 }
 
 /* Category Labels */
 .theme-doc-sidebar-item-category > .menu__list-item-collapsible > .menu__link {
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  color: var(--sidebar-category) !important;
-  letter-spacing: 0.2px !important;
+  font-size: var(--sidebar-category-fontSize) !important;
+  font-weight: var(--sidebar-category-fontWeight) !important;
+  line-height: var(--sidebar-category-lineHeight) !important;
+  letter-spacing: var(--sidebar-category-letterSpacing) !important;
+  text-transform: var(--sidebar-category-textTransform) !important;
+  color: var(--sidebar-category-color) !important;
   margin-top: 24px !important;
   margin-bottom: 8px !important;
   padding: 0 !important;
@@ -63,15 +339,16 @@
 
 .theme-doc-sidebar-item-category > .menu__list-item-collapsible > .menu__link:hover {
   background: transparent !important;
-  color: var(--sidebar-category) !important;
+  color: var(--sidebar-category-color) !important;
 }
 
 /* Sidebar Links */
 .theme-doc-sidebar-item-link > .menu__link {
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: var(--sidebar-link) !important;
-  line-height: 22px !important;
+  font-size: var(--sidebar-item-fontSize) !important;
+  font-weight: var(--sidebar-item-fontWeight) !important;
+  color: var(--sidebar-item-color) !important;
+  line-height: var(--sidebar-item-lineHeight) !important;
+  letter-spacing: var(--sidebar-item-letterSpacing) !important;
   padding: 6px 8px !important;
   border-radius: 6px !important;
   margin: 2px 0 !important;
@@ -87,16 +364,15 @@
 
 /* Active State */
 .theme-doc-sidebar-item-link > .menu__link.menu__link--active {
-  font-weight: 600 !important;
+  font-size: var(--sidebar-itemActive-fontSize) !important;
+  font-weight: var(--sidebar-itemActive-fontWeight) !important;
+  line-height: var(--sidebar-itemActive-lineHeight) !important;
   background: var(--sidebar-active-bg) !important;
-  color: var(--sidebar-active-text) !important;
-}
-
-/* Active State Left Indicator Bar */
-.theme-doc-sidebar-item-link > .menu__link.menu__link--active {
+  color: var(--sidebar-itemActive-color) !important;
   position: relative !important;
 }
 
+/* Active State Left Indicator Bar */
 .theme-doc-sidebar-item-link > .menu__link.menu__link--active::before {
   content: "" !important;
   position: absolute !important;
@@ -112,10 +388,11 @@
 /* Nested Items */
 .theme-doc-sidebar-item-link-level-2 > .menu__link,
 .theme-doc-sidebar-item-link-level-3 > .menu__link {
-  font-size: 14px !important;
-  font-weight: 500 !important;
-  color: var(--sidebar-link) !important;
-  line-height: 22px !important;
+  font-size: var(--sidebar-item-fontSize) !important;
+  font-weight: var(--sidebar-item-fontWeight) !important;
+  color: var(--sidebar-item-color) !important;
+  line-height: var(--sidebar-item-lineHeight) !important;
+  letter-spacing: var(--sidebar-item-letterSpacing) !important;
   padding: 6px 8px !important;
   border-radius: 6px !important;
   margin: 2px 0 !important;
@@ -131,9 +408,11 @@
 
 .theme-doc-sidebar-item-link-level-2 > .menu__link.menu__link--active,
 .theme-doc-sidebar-item-link-level-3 > .menu__link.menu__link--active {
-  font-weight: 600 !important;
+  font-size: var(--sidebar-itemActive-fontSize) !important;
+  font-weight: var(--sidebar-itemActive-fontWeight) !important;
+  line-height: var(--sidebar-itemActive-lineHeight) !important;
   background: var(--sidebar-active-bg) !important;
-  color: var(--sidebar-active-text) !important;
+  color: var(--sidebar-itemActive-color) !important;
 }
 
 .theme-doc-sidebar-item-link-level-2 > .menu__link.menu__link--active::before,
@@ -146,6 +425,7 @@
   width: 3px !important;
   background: var(--sidebar-indicator) !important;
   border-radius: 2px !important;
+  z-index: 1 !important;
 }
 
 /* Category Items Container */
@@ -190,7 +470,7 @@
 
 /* Ensure Inter font is applied globally to sidebar */
 .theme-doc-sidebar-container * {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  font-family: var(--font-sans) !important;
 }
 
 /* Scrollbar styling for sidebar */
@@ -208,5 +488,52 @@
 }
 
 .theme-doc-sidebar-container::-webkit-scrollbar-thumb:hover {
-  background: var(--sidebar-category);
+  background: var(--sidebar-category-color);
+}
+
+/* Main Content Area Typography */
+.markdown h1 {
+  font-size: var(--heading-h1-fontSize) !important;
+  font-weight: var(--heading-h1-fontWeight) !important;
+  line-height: var(--heading-h1-lineHeight) !important;
+  letter-spacing: var(--heading-h1-letterSpacing) !important;
+}
+
+.markdown h2 {
+  font-size: var(--heading-h2-fontSize) !important;
+  font-weight: var(--heading-h2-fontWeight) !important;
+  line-height: var(--heading-h2-lineHeight) !important;
+  letter-spacing: var(--heading-h2-letterSpacing) !important;
+}
+
+.markdown h3 {
+  font-size: var(--heading-h3-fontSize) !important;
+  font-weight: var(--heading-h3-fontWeight) !important;
+  line-height: var(--heading-h3-lineHeight) !important;
+  letter-spacing: var(--heading-h3-letterSpacing) !important;
+}
+
+.markdown h4 {
+  font-size: var(--heading-h4-fontSize) !important;
+  font-weight: var(--heading-h4-fontWeight) !important;
+  line-height: var(--heading-h4-lineHeight) !important;
+  letter-spacing: var(--heading-h4-letterSpacing) !important;
+}
+
+.markdown p {
+  font-size: var(--body-base-fontSize) !important;
+  font-weight: var(--body-base-fontWeight) !important;
+  line-height: var(--body-base-lineHeight) !important;
+}
+
+.markdown code {
+  font-family: var(--font-mono) !important;
+  font-size: var(--code-inline-fontSize) !important;
+  font-weight: var(--code-inline-fontWeight) !important;
+  line-height: var(--code-inline-lineHeight) !important;
+}
+
+.markdown pre code {
+  font-size: var(--code-block-fontSize) !important;
+  line-height: var(--code-block-lineHeight) !important;
 }
