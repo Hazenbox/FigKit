@@ -1,0 +1,7 @@
+node_modules
+.docusaurus
+.cache
+*.log
+*.tsbuildinfo
+.DS_Store
+

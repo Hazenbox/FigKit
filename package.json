@@ -32,6 +32,8 @@
 		"build:tokens": "node packages/themes/build.js",
 		"build": "pnpm -r build",
 		"build:vercel": "pnpm mcp:pull:tokens && pnpm --filter @figkit/tokens build && pnpm --filter @figkit/themes prepublishOnly && pnpm --filter @figkit/ui build && pnpm --filter sandbox build",
+		"build:all": "pnpm mcp:pull:tokens && pnpm --filter @figkit/tokens build && pnpm --filter @figkit/themes prepublishOnly && pnpm --filter @figkit/ui build",
+		"build:docs": "pnpm build:all && cd apps/docs && pnpm build",
 		"typecheck": "pnpm -r typecheck",
 		"lint": "pnpm -r lint",
 		"test": "pnpm -r test -- --runInBand",

@@ -14,7 +14,7 @@ pnpm --filter @figkit/docs-app dev
 cd apps/docs && pnpm dev
 ```
 
-The docs will be available at http://localhost:3001
+The docs will be available at http://localhost:3001 (for local development)
 
 ## Adding Content
 
