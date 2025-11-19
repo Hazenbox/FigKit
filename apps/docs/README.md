@@ -1,6 +1,6 @@
 # FigKit Documentation
 
-Documentation site for the FigKit Design System, built with Next.js and MDX.
+Documentation site for the FigKit Design System, built with [Docusaurus](https://docusaurus.io/).
 
 ## Development
 
@@ -18,20 +18,17 @@ The docs will be available at http://localhost:3001
 
 ## Adding Content
 
-1. Create MDX files in `content/` directory
-2. Add frontmatter with `title`, `description`, and `order` fields
-3. Run `pnpm generate-nav` to regenerate the sidebar
-4. Run `pnpm build-search` to rebuild the search index
+1. Create MDX files in the `docs/` directory
+2. Update `sidebars.ts` to add new pages to the sidebar
+3. Docusaurus will automatically generate navigation
 
-## Frontmatter Schema
+## Features
 
-```mdx
----
-title: Page Title
-description: Page description for SEO and search
-order: 1
----
-```
+- ✅ **MDX Support**: Write docs with MDX and embed React components
+- ✅ **Built-in Search**: Algolia search integration ready
+- ✅ **Dark Mode**: Automatic dark mode support
+- ✅ **Responsive**: Mobile-friendly design
+- ✅ **Fast**: Optimized static site generation
 
 ## Build
 
@@ -39,11 +36,12 @@ order: 1
 pnpm build
 ```
 
-## Search
+## Deployment
 
-Search uses Lunr.js for static search. Rebuild the index after adding content:
+Docusaurus builds static HTML files that can be deployed to:
+- Vercel
+- Netlify
+- GitHub Pages
+- Any static hosting service
 
-```bash
-pnpm build-search
-```
-
+See [Docusaurus Deployment Guide](https://docusaurus.io/docs/deployment) for more details.
