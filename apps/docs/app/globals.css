@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: var(--font-family-default, 'Inter', system-ui, sans-serif);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg-default, #ffffff);
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
