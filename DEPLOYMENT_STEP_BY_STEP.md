@@ -25,8 +25,6 @@ git status
 
 **What to look for:**
 - Should say "nothing to commit, working tree clean"
-
-If there are uncommitted changes, we'll commit them first
 - If there are uncommitted changes, we'll commit them first
 
 ### 1.2 Push to GitHub (if needed)
@@ -330,4 +328,3 @@ If you get stuck:
 ---
 
 **You're ready to deploy! Let's start with Step 1.**
-
