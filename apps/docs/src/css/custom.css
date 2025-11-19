@@ -35,14 +35,18 @@
 /* Sidebar Container */
 .theme-doc-sidebar-container {
   width: 260px !important;
+  min-width: 260px !important;
+  max-width: 260px !important;
   position: sticky !important;
   top: 0 !important;
   height: 100vh !important;
   overflow-y: auto !important;
+  overflow-x: hidden !important;
   padding: 24px 20px 40px 20px !important;
   background: var(--sidebar-bg) !important;
   border-right: 1px solid var(--sidebar-border) !important;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+  flex-shrink: 0 !important;
 }
 
 /* Category Labels */
