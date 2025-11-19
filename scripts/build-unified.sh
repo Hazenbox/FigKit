@@ -63,23 +63,33 @@ else
 fi
 
 # Copy sandbox build to sandbox subdirectory
-# Note: Sandbox is a SPA, so we copy it to a subdirectory
-# and serve index.html for /test-npm and /performance routes
+# Note: Sandbox is a SPA with React Router
+# We serve its index.html for /test-npm and /performance routes
+# Assets stay in /sandbox/assets/ and are accessible via the /sandbox/:path* rewrite
 if [ -d "apps/sandbox/dist" ]; then
   mkdir -p "$OUTPUT_DIR/sandbox"
   cp -r apps/sandbox/dist/* "$OUTPUT_DIR/sandbox/"
-  echo "✅ Copied sandbox build"
+  echo "✅ Copied sandbox build to /sandbox/"
+  
+  # Fix asset paths in index.html to work from /sandbox/ subdirectory
+  # Vite builds with absolute paths, but we need them relative or with /sandbox/ prefix
+  if [ -f "$OUTPUT_DIR/sandbox/index.html" ]; then
+    # Update asset paths to include /sandbox/ prefix
+    # Use a temporary file to handle both macOS and Linux sed
+    if sed --version >/dev/null 2>&1; then
+      # Linux sed
+      sed -i 's|href="/|href="/sandbox/|g' "$OUTPUT_DIR/sandbox/index.html"
+      sed -i 's|src="/|src="/sandbox/|g' "$OUTPUT_DIR/sandbox/index.html"
+    else
+      # macOS sed
+      sed -i '' 's|href="/|href="/sandbox/|g' "$OUTPUT_DIR/sandbox/index.html"
+      sed -i '' 's|src="/|src="/sandbox/|g' "$OUTPUT_DIR/sandbox/index.html"
+    fi
+    echo "✅ Updated asset paths in sandbox index.html"
+  fi
 else
   echo "❌ Sandbox build not found!"
   exit 1
-fi
-
-# Also copy sandbox assets to root for proper asset loading
-# This ensures CSS, JS, and other assets load correctly
-if [ -d "apps/sandbox/dist/assets" ]; then
-  mkdir -p "$OUTPUT_DIR/assets"
-  cp -r apps/sandbox/dist/assets/* "$OUTPUT_DIR/assets/" 2>/dev/null || true
-  echo "✅ Copied sandbox assets"
 fi
 
 echo ""
