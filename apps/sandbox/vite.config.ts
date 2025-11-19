@@ -11,7 +11,7 @@ export default defineConfig({
   server: {
     port: 5173,
     proxy: {
-      // Proxy Storybook requests to Storybook dev server
+      // Proxy Storybook requests to Storybook dev server (must come first)
       // Storybook runs at root (/) in dev mode, so we strip /storybook prefix
       '/storybook': {
         target: 'http://localhost:6006',
@@ -54,17 +54,29 @@ export default defineConfig({
         target: 'http://localhost:6006',
         changeOrigin: true,
       },
-      // Proxy root to docs app (overview page) - must come before other routes
-      '/': {
-        target: 'http://localhost:3001',
+      // Proxy sandbox routes (must come before docs catch-all)
+      '/test-npm': {
+        target: 'http://localhost:5173',
         changeOrigin: true,
-        rewrite: () => '/overview',
+        bypass: () => null, // Let Vite handle this route
+      },
+      '/performance': {
+        target: 'http://localhost:5173',
+        changeOrigin: true,
+        bypass: () => null, // Let Vite handle this route
       },
       // Proxy docs requests to Docusaurus dev server
       '/docs': {
         target: 'http://localhost:3001',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/docs/, ''),
+      },
+      // Proxy root to docs app (overview page)
+      // This must come after specific routes but before catch-all
+      '/': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        rewrite: () => '/overview',
       },
       // Proxy other docs paths (but exclude Storybook, sandbox routes)
       // This catches paths like /getting-started, /components, etc.
