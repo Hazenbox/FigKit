@@ -142,14 +142,13 @@ if (existsSync(sandboxBuild)) {
   console.log('✅ Copied sandbox build');
   
   // Fix asset paths in sandbox index.html to work from /sandbox/ subdirectory
-  const fs = require('fs');
   const sandboxIndexHtml = join(outputDir, 'sandbox', 'index.html');
   if (existsSync(sandboxIndexHtml)) {
-    let html = fs.readFileSync(sandboxIndexHtml, 'utf8');
+    let html = readFileSync(sandboxIndexHtml, 'utf8');
     // Update asset paths to include /sandbox/ prefix
     html = html.replace(/href="\//g, 'href="/sandbox/');
     html = html.replace(/src="\//g, 'src="/sandbox/');
-    fs.writeFileSync(sandboxIndexHtml, html, 'utf8');
+    writeFileSync(sandboxIndexHtml, html, 'utf8');
     console.log('✅ Updated asset paths in sandbox index.html');
   }
 } else {
