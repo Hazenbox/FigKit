@@ -20,7 +20,8 @@ jobs:
       - run: pnpm i
       - run: pnpm -r build
       - name: Version snapshot & publish canary
-        env: { NPM_TOKEN: ${{ secrets.NPM_TOKEN }} }
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

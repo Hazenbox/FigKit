@@ -21,7 +21,8 @@ jobs:
           registry-url: https://registry.npmjs.org
       - run: pnpm i
       - name: Version & Publish
-        env: { NPM_TOKEN: ${{ secrets.NPM_TOKEN }} }
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
