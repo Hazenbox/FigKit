@@ -1,0 +1,113 @@
+---
+title: Badge
+description: Badge component for status indicators and labels
+---
+
+# Badge
+
+The Badge component is used to display status indicators, labels, or categories.
+
+## Import
+
+```tsx
+import { Badge } from '@figkit/ui';
+```
+
+## Basic Usage
+
+```tsx
+<Badge variant="brand">New</Badge>
+```
+
+## Variants
+
+The Badge component supports the following variants:
+
+- `default` - Default badge
+- `brand` - Brand badge
+- `component` - Component badge
+- `danger` - Danger badge
+- `feedback` - Feedback badge
+- `figjam` - FigJam badge
+- `invert` - Inverted badge
+- `selected` - Selected badge
+- `success` - Success badge
+- `variable` - Variable badge
+- `variable-selected` - Variable selected badge
+- `warn` - Warning badge
+- `merged` - Merged badge
+- `archived` - Archived badge
+- `menu` - Menu badge
+
+## Sizes
+
+- `default` - Default size (16px height)
+- `large` - Large size
+- `wide` - Wide size
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `BadgeVariant` | `'default'` | Badge variant |
+| `size` | `'default' \| 'large' \| 'wide'` | `'default'` | Badge size |
+| `icon` | `ReactNode` | - | Icon element |
+| `iconLead` | `boolean` | `false` | Show icon when provided |
+| `strong` | `boolean` | `false` | Strong/bold style |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `children` | `ReactNode` | - | Badge content |
+
+## Examples
+
+### Basic Badge
+
+```tsx
+<Badge variant="brand">Brand</Badge>
+```
+
+### With Icon
+
+```tsx
+import { Badge } from '@figkit/ui';
+import { CheckIcon } from '@figkit/ui';
+
+<Badge variant="success" icon={<CheckIcon />} iconLead>
+  Success
+</Badge>
+```
+
+### Strong Badge
+
+```tsx
+<Badge variant="brand" strong>
+  Strong Badge
+</Badge>
+```
+
+### Different Variants
+
+```tsx
+<Badge variant="default">Default</Badge>
+<Badge variant="brand">Brand</Badge>
+<Badge variant="success">Success</Badge>
+<Badge variant="danger">Danger</Badge>
+<Badge variant="warn">Warning</Badge>
+```
+
+### Sizes
+
+```tsx
+<Badge variant="brand" size="default">Default</Badge>
+<Badge variant="brand" size="large">Large</Badge>
+<Badge variant="brand" size="wide">Wide</Badge>
+```
+
+## Accessibility
+
+The Badge component follows WCAG 2.1 guidelines:
+
+- Semantic HTML (button element)
+- Keyboard accessible
+- Proper ARIA attributes
+- Disabled state handling
+

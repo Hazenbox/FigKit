@@ -10,12 +10,9 @@ FigKit provides a comprehensive set of React components built with design tokens
 
 ## Available Components
 
-### Button
+### [Button](/components/button)
 
 The Button component supports multiple variants and sizes.
-
-<Button variant="primary">Primary Button</Button>
-<Button variant="secondary">Secondary Button</Button>
 
 ```tsx
 import { Button } from '@figkit/ui';
@@ -25,18 +22,54 @@ import { Button } from '@figkit/ui';
 </Button>
 ```
 
-### Badge
+### [Badge](/components/badge)
 
 Use badges to display status, labels, or categories.
-
-<Badge variant="brand">Brand</Badge>
-<Badge variant="success">Success</Badge>
-<Badge variant="danger">Danger</Badge>
 
 ```tsx
 import { Badge } from '@figkit/ui';
 
 <Badge variant="brand">New</Badge>
+```
+
+### [Avatar](/components/avatar)
+
+User avatars with initials, photos, and overflow states.
+
+```tsx
+import { Avatar } from '@figkit/ui';
+
+<Avatar size="large" variant="blue" initials="JD" />
+```
+
+### [Checkbox](/components/checkbox)
+
+Form controls with various states.
+
+```tsx
+import { Checkbox } from '@figkit/ui';
+
+<Checkbox checked label="Checkbox" />
+```
+
+### [Tab / Tabs](/components/tabs)
+
+Navigation components for organizing content.
+
+```tsx
+import { Tabs, Tab } from '@figkit/ui';
+
+<Tabs items={tabsItems} defaultSelectedId="1" />
+```
+
+### [TextInput](/components/text-input)
+
+Form input fields with validation and helper text.
+
+```tsx
+import { TextInput } from '@figkit/ui';
+
+<TextInput placeholder="Enter text" label="Label" />
 ```
 
 ## Component Props

@@ -1,0 +1,112 @@
+---
+title: TextInput
+description: TextInput component for form input fields
+---
+
+# TextInput
+
+The TextInput component provides a text input field with support for labels, icons, validation, and helper text.
+
+## Import
+
+```tsx
+import { TextInput } from '@figkit/ui';
+```
+
+## Basic Usage
+
+```tsx
+<TextInput placeholder="Enter text" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `placeholder` | `string` | - | Placeholder text |
+| `label` | `string` | - | Input label |
+| `value` | `string` | - | Input value |
+| `defaultValue` | `string` | - | Default value |
+| `size` | `'default' \| 'large'` | `'default'` | Input size |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `error` | `boolean` | `false` | Error state |
+| `helperText` | `string` | - | Helper text |
+| `icon` | `ReactNode` | - | Icon element |
+| `iconPosition` | `'left' \| 'right'` | `'left'` | Icon position |
+| `variant` | `'default' \| 'quick-action'` | `'default'` | Input variant |
+| `onChange` | `(e: ChangeEvent<HTMLInputElement>) => void` | - | Change handler |
+
+## Examples
+
+### Basic Input
+
+```tsx
+<TextInput placeholder="Enter text" />
+```
+
+### With Label
+
+```tsx
+<TextInput placeholder="Enter email" label="Email" />
+```
+
+### With Icon
+
+```tsx
+import { TextInput } from '@figkit/ui';
+import { CheckIcon } from '@figkit/ui';
+
+<TextInput 
+  placeholder="Search" 
+  icon={<CheckIcon />} 
+  iconPosition="left" 
+/>
+```
+
+### Error State
+
+```tsx
+<TextInput 
+  placeholder="Enter email" 
+  error 
+  helperText="Invalid email address" 
+/>
+```
+
+### With Helper Text
+
+```tsx
+<TextInput 
+  placeholder="Enter password" 
+  helperText="Must be at least 8 characters" 
+/>
+```
+
+### Large Size
+
+```tsx
+<TextInput placeholder="Large input" size="large" />
+```
+
+### Disabled State
+
+```tsx
+<TextInput placeholder="Disabled" disabled />
+```
+
+### Quick Action Variant
+
+```tsx
+<TextInput placeholder="Quick action" variant="quick-action" />
+```
+
+## Accessibility
+
+The TextInput component follows WCAG 2.1 guidelines:
+
+- Proper label association
+- Error message association
+- Keyboard accessible
+- Focus indicators
+- ARIA attributes for validation states
+

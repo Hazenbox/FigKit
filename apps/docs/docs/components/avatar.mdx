@@ -1,0 +1,126 @@
+---
+title: Avatar
+description: Avatar component for user avatars with initials, photos, and overflow states
+---
+
+# Avatar
+
+The Avatar component displays user avatars with support for initials, photos, and overflow states.
+
+## Import
+
+```tsx
+import { Avatar } from '@figkit/ui';
+```
+
+## Basic Usage
+
+```tsx
+<Avatar size="default" variant="blue" initials="JD" />
+```
+
+## Variants
+
+The Avatar component supports the following color variants:
+
+- `purple` - Purple avatar
+- `blue` - Blue avatar
+- `pink` - Pink avatar
+- `red` - Red avatar
+- `yellow` - Yellow avatar
+- `green` - Green avatar
+- `grey` - Grey avatar
+- `org` - Organization avatar
+- `photo` - Photo avatar (requires `src` prop)
+- `overflow-unread` - Overflow with unread count
+- `overflow-read` - Overflow with read count
+
+## Sizes
+
+- `small` - Small size
+- `default` - Default size
+- `large` - Large size
+
+## Shapes
+
+- `circle` - Circular avatar (default)
+- `square` - Square avatar
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `size` | `'small' \| 'default' \| 'large'` | `'default'` | Avatar size |
+| `variant` | `AvatarVariant` | `'blue'` | Avatar color variant |
+| `shape` | `'circle' \| 'square'` | `'circle'` | Avatar shape |
+| `initials` | `string` | - | User initials |
+| `src` | `string` | - | Image source URL |
+| `count` | `number` | - | Overflow count |
+| `disabled` | `boolean` | `false` | Disabled state |
+
+## Examples
+
+### With Initials
+
+```tsx
+<Avatar size="default" variant="blue" initials="JD" />
+```
+
+### With Photo
+
+```tsx
+<Avatar 
+  size="default" 
+  variant="photo" 
+  src="https://example.com/photo.jpg" 
+/>
+```
+
+### Square Avatar
+
+```tsx
+<Avatar 
+  size="default" 
+  variant="blue" 
+  initials="JD" 
+  shape="square" 
+/>
+```
+
+### Overflow States
+
+```tsx
+<Avatar 
+  size="default" 
+  variant="overflow-unread" 
+  count={5} 
+/>
+```
+
+### Different Sizes
+
+```tsx
+<Avatar size="small" variant="blue" initials="S" />
+<Avatar size="default" variant="blue" initials="M" />
+<Avatar size="large" variant="blue" initials="L" />
+```
+
+### Color Variants
+
+```tsx
+<Avatar variant="purple" initials="P" />
+<Avatar variant="blue" initials="B" />
+<Avatar variant="pink" initials="P" />
+<Avatar variant="red" initials="R" />
+<Avatar variant="yellow" initials="Y" />
+<Avatar variant="green" initials="G" />
+```
+
+## Accessibility
+
+The Avatar component follows WCAG 2.1 guidelines:
+
+- Proper alt text for images
+- ARIA labels for overflow states
+- Keyboard accessible when interactive
+

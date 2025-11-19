@@ -1,0 +1,114 @@
+---
+title: Tabs
+description: Tab and Tabs components for navigation
+---
+
+# Tabs
+
+The Tabs component provides a navigation interface for organizing content into multiple panels.
+
+## Import
+
+```tsx
+import { Tabs, Tab } from '@figkit/ui';
+```
+
+## Basic Usage
+
+```tsx
+import type { TabsItem } from '@figkit/ui';
+
+const items: TabsItem[] = [
+  { id: '1', label: 'Tab 1' },
+  { id: '2', label: 'Tab 2' },
+  { id: '3', label: 'Tab 3' },
+];
+
+<Tabs items={items} defaultSelectedId="1" />
+```
+
+## Tabs Component
+
+The `Tabs` component manages multiple tab items.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `items` | `TabsItem[]` | - | Array of tab items |
+| `defaultSelectedId` | `string` | - | Default selected tab ID |
+| `onChange` | `(id: string) => void` | - | Change handler |
+
+### TabsItem Type
+
+```tsx
+interface TabsItem {
+  id: string;
+  label: string;
+  badge?: number;
+}
+```
+
+## Tab Component
+
+The `Tab` component represents a single tab item.
+
+### Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `selected` | `boolean` | `false` | Selected state |
+| `badge` | `number` | - | Badge count |
+| `state` | `'Hover' \| 'Focused'` | - | Visual state |
+| `children` | `ReactNode` | - | Tab content |
+
+## Examples
+
+### Basic Tabs
+
+```tsx
+const items: TabsItem[] = [
+  { id: '1', label: 'Overview' },
+  { id: '2', label: 'Details' },
+  { id: '3', label: 'Settings' },
+];
+
+<Tabs items={items} defaultSelectedId="1" />
+```
+
+### Tabs with Badges
+
+```tsx
+const items: TabsItem[] = [
+  { id: '1', label: 'Inbox', badge: 5 },
+  { id: '2', label: 'Sent', badge: 2 },
+  { id: '3', label: 'Drafts' },
+];
+
+<Tabs items={items} defaultSelectedId="1" />
+```
+
+### Individual Tab
+
+```tsx
+<Tab selected>Selected Tab</Tab>
+<Tab>Unselected Tab</Tab>
+<Tab badge={5}>Tab with Badge</Tab>
+```
+
+### Tab States
+
+```tsx
+<Tab state="Hover">Hover State</Tab>
+<Tab state="Focused">Focused State</Tab>
+```
+
+## Accessibility
+
+The Tabs component follows WCAG 2.1 guidelines:
+
+- Keyboard navigation (Arrow keys)
+- Proper ARIA attributes
+- Focus management
+- Screen reader support
+

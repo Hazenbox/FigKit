@@ -12,7 +12,7 @@ import {
   Settings,
   Layers
 } from 'lucide-react';
-import { Button, Badge } from '@figkit/ui';
+import { Button, Badge, Avatar, Checkbox, Tab, Tabs, TextInput } from '@figkit/ui';
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -29,6 +29,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     Layers,
     Button,
     Badge,
+    Avatar,
+    Checkbox,
+    Tab,
+    Tabs,
+    TextInput,
     ...components,
   };
 }

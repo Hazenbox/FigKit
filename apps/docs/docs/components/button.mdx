@@ -1,0 +1,103 @@
+---
+title: Button
+description: Button component with multiple variants and sizes
+---
+
+# Button
+
+The Button component is a versatile UI element that supports multiple variants, sizes, and states.
+
+## Import
+
+```tsx
+import { Button } from '@figkit/ui';
+```
+
+## Basic Usage
+
+```tsx
+<Button variant="primary">Click me</Button>
+```
+
+## Variants
+
+The Button component supports the following variants:
+
+- `primary` - Primary action button
+- `secondary` - Secondary action button
+- `destructive` - Destructive action button
+- `success` - Success action button
+- `inverse` - Inverse style button
+- `figjam` - FigJam brand button
+- `secondary-destruct` - Secondary destructive button
+- `link` - Link style button
+- `link-danger` - Link style danger button
+- `ghost` - Ghost style button
+
+## Sizes
+
+- `default` - Default size
+- `large` - Large size
+- `wide` - Wide size
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'primary' \| 'secondary' \| 'destructive' \| 'success' \| 'inverse' \| 'figjam' \| 'secondary-destruct' \| 'link' \| 'link-danger' \| 'ghost'` | `'primary'` | Button variant |
+| `size` | `'default' \| 'large' \| 'wide'` | `'default'` | Button size |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `icon` | `ReactNode` | - | Icon element |
+| `iconPosition` | `'left' \| 'right'` | `'left'` | Icon position |
+| `children` | `ReactNode` | - | Button content |
+
+## Examples
+
+### Primary Button
+
+```tsx
+<Button variant="primary">Primary</Button>
+```
+
+### Secondary Button
+
+```tsx
+<Button variant="secondary">Secondary</Button>
+```
+
+### With Icon
+
+```tsx
+import { Button } from '@figkit/ui';
+import { PlusIcon } from '@figkit/ui';
+
+<Button variant="primary" icon={<PlusIcon />} iconPosition="left">
+  Add Item
+</Button>
+```
+
+### Disabled State
+
+```tsx
+<Button variant="primary" disabled>
+  Disabled Button
+</Button>
+```
+
+### Large Size
+
+```tsx
+<Button variant="primary" size="large">
+  Large Button
+</Button>
+```
+
+## Accessibility
+
+The Button component follows WCAG 2.1 guidelines:
+
+- Keyboard accessible (Enter and Space keys)
+- Proper ARIA attributes
+- Focus indicators
+- Disabled state handling
+

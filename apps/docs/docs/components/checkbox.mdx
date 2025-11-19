@@ -1,0 +1,89 @@
+---
+title: Checkbox
+description: Checkbox component for form controls with various states
+---
+
+# Checkbox
+
+The Checkbox component is a form control that supports various states including checked, unchecked, indeterminate, and disabled.
+
+## Import
+
+```tsx
+import { Checkbox } from '@figkit/ui';
+```
+
+## Basic Usage
+
+```tsx
+<Checkbox checked label="Checkbox" />
+```
+
+## Props
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `checked` | `boolean` | `false` | Checked state |
+| `indeterminate` | `boolean` | `false` | Indeterminate state |
+| `disabled` | `boolean` | `false` | Disabled state |
+| `muted` | `boolean` | `false` | Muted style |
+| `ghost` | `boolean` | `false` | Ghost style |
+| `focused` | `boolean` | `false` | Focused state |
+| `label` | `string` | - | Checkbox label |
+| `description` | `string` | - | Description text |
+
+## Examples
+
+### Basic Checkbox
+
+```tsx
+<Checkbox label="Accept terms" />
+```
+
+### Checked State
+
+```tsx
+<Checkbox checked label="Checked" />
+```
+
+### Indeterminate State
+
+```tsx
+<Checkbox indeterminate label="Indeterminate" />
+```
+
+### With Description
+
+```tsx
+<Checkbox 
+  checked 
+  label="Enable notifications" 
+  description="Receive email notifications" 
+/>
+```
+
+### Disabled States
+
+```tsx
+<Checkbox checked disabled label="Checked Disabled" />
+<Checkbox disabled label="Unchecked Disabled" />
+```
+
+### Style Variants
+
+```tsx
+<Checkbox checked muted label="Muted" />
+<Checkbox checked ghost label="Ghost" />
+<Checkbox checked focused label="Focused" />
+```
+
+## Accessibility
+
+The Checkbox component follows WCAG 2.1 guidelines:
+
+- Keyboard accessible (Space key)
+- Proper ARIA attributes
+- Focus indicators
+- Label association
+- Disabled state handling
+

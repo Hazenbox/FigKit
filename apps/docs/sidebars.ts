@@ -13,9 +13,17 @@ const sidebars: SidebarsConfig = {
       label: 'Getting Started',
     },
     {
-      type: 'doc',
-      id: 'components',
+      type: 'category',
       label: 'Components',
+      items: [
+        'components',
+        'components/button',
+        'components/badge',
+        'components/avatar',
+        'components/checkbox',
+        'components/tabs',
+        'components/text-input',
+      ],
     },
     {
       type: 'doc',
