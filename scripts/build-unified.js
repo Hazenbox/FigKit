@@ -101,7 +101,8 @@ const storybookOutput = join(rootDir, 'packages/docs/storybook-static');
 if (existsSync(storybookOutput)) {
   rmSync(storybookOutput, { recursive: true, force: true });
 }
-execSync(`pnpm --filter @figkit/docs build-storybook -o ${storybookOutput}`, { cwd: rootDir, stdio: 'inherit' });
+// Build Storybook - run directly in the docs directory to avoid pnpm argument issues
+execSync(`cd packages/docs && npx storybook build -o storybook-static`, { cwd: rootDir, stdio: 'inherit' });
 const storybookBuildDir = join(rootDir, 'packages/docs/storybook-static');
 if (!existsSync(storybookBuildDir)) {
   console.warn('⚠️  Storybook build directory not found. Expected:', storybookBuildDir);

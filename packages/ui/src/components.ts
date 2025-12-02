@@ -10,6 +10,8 @@ export { Checkbox } from './checkbox/Checkbox';
 export type { CheckboxProps } from './checkbox/Checkbox';
 export { Tab } from './tab/Tab';
 export type { TabProps } from './tab/Tab';
+export { Tabs } from './tab/Tabs';
+export type { TabsProps, TabsItem } from './tab/Tabs';
 export { RadioButton } from './radio-button/RadioButton';
 export type { RadioButtonProps, RadioButtonVariant, RadioButtonState } from './radio-button/RadioButton';
 export { SegmentedControl } from './segmented-control/SegmentedControl';
