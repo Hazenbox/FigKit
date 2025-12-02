@@ -1,6 +1,13 @@
 /* ==========================================================================
    Button Component - Figma UI3 Design System
    Based on: https://www.figma.com/design/zp6BWumXLgpNF4suKk9xTS/UI3--Figma-s-UI-Kit--Community-?node-id=2012-48557
+   
+   Key measurements from Figma:
+   - Border radius: 5px (--radius-medium)
+   - Default height: 24px
+   - Large height: 32px
+   - Font: Inter Medium, 11px, line-height 16px, weight 450
+   - Spacer-1: 4px, Spacer-2: 8px
    ========================================================================== */
 
 /* Base Button Styles */
@@ -15,7 +22,6 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-1, 4px);
   box-sizing: border-box;
   
   /* Typography - Figma body/medium */
@@ -32,29 +38,32 @@
 }
 
 /* ==========================================================================
-   Size Variants
+   Size Variants - Exact Figma measurements
    ========================================================================== */
 
 /* Default Size (24px height) */
 .figkit-button--default {
   height: 24px;
-  padding: 0 var(--space-3, 12px);
-  border-radius: var(--radius-sm, 2px);
+  padding: 0 8px;
+  border-radius: 5px;
+  gap: 0;
 }
 
 /* Large Size (32px height) */
 .figkit-button--large {
   height: 32px;
-  padding: 0 var(--space-4, 16px);
-  border-radius: var(--radius-sm, 2px);
+  padding: 0 12px;
+  border-radius: 5px;
+  gap: 0;
 }
 
 /* Wide Size (full width, 24px height) */
 .figkit-button--wide {
   width: 100%;
   height: 24px;
-  padding: 0 var(--space-3, 12px);
-  border-radius: var(--radius-sm, 2px);
+  padding: 0 8px;
+  border-radius: 5px;
+  gap: 0;
 }
 
 /* ==========================================================================
@@ -81,11 +90,11 @@
 
 /* ==========================================================================
    Variant: Secondary
-   Border-only button with translucent border
+   Border-only button with translucent border - exact Figma values
    ========================================================================== */
 .figkit-button--secondary {
   background-color: transparent;
-  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+  border: 1px solid var(--color-border-translucent, rgba(0, 0, 0, 0.1));
   color: var(--color-text, rgba(0, 0, 0, 0.9));
 }
 
@@ -94,7 +103,7 @@
 }
 
 .figkit-button--secondary:active:not(:disabled) {
-  background-color: var(--color-bg-pressed, rgba(0, 0, 0, 0.06));
+  background-color: var(--color-bg-pressed, #f5f5f5);
 }
 
 .figkit-button--secondary:focus-visible {
@@ -238,7 +247,7 @@
 .figkit-button--link:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--color-border-selected, #0d99ff);
-  border-radius: var(--radius-xs, 2px);
+  border-radius: 2px;
 }
 
 /* ==========================================================================
@@ -264,7 +273,7 @@
 .figkit-button--link-danger:focus-visible {
   outline: none;
   box-shadow: 0 0 0 2px var(--color-border-danger, #f24822);
-  border-radius: var(--radius-xs, 2px);
+  border-radius: 2px;
 }
 
 /* ==========================================================================
@@ -281,7 +290,7 @@
 }
 
 .figkit-button--ghost:active:not(:disabled) {
-  background-color: var(--color-bg-pressed, rgba(0, 0, 0, 0.06));
+  background-color: var(--color-bg-pressed, #f5f5f5);
 }
 
 .figkit-button--ghost:focus-visible {
@@ -301,37 +310,52 @@
 }
 
 /* ==========================================================================
-   Icon Styles
+   Icon Styles - Icons inherit text color via currentColor
+   Figma shows icon as 24x24 container with ~16x16 actual icon
    ========================================================================== */
 .figkit-button__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 12px;
-  height: 12px;
+  /* Icon inherits color from button text */
+  color: currentColor;
 }
 
+/* Default size: 24x24 icon container */
+.figkit-button--default .figkit-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Large size: 24x24 icon container */
+.figkit-button--large .figkit-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Wide size: 24x24 icon container */
+.figkit-button--wide .figkit-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* SVG icons should fill the container and inherit color */
 .figkit-button__icon svg {
-  width: 100%;
-  height: 100%;
+  width: 16px;
+  height: 16px;
+  /* Inherit color from parent */
+  fill: currentColor;
+  color: currentColor;
 }
 
+/* Icon positioning - no gap, icons are part of content flow */
 .figkit-button__icon--left {
-  margin-right: var(--space-1, 4px);
+  margin-right: 0;
 }
 
 .figkit-button__icon--center {
-  /* Center icon is placed before text with standard gap */
-}
-
-/* Icon position variants */
-.figkit-button--icon-left {
-  /* Default - icon on left with text */
-}
-
-.figkit-button--icon-center {
-  /* Icon centered - typically icon-only or icon+text centered */
+  margin-right: 0;
 }
 
 /* ==========================================================================
@@ -340,14 +364,4 @@
 .figkit-button__text {
   display: inline-flex;
   align-items: center;
-}
-
-/* Large size adjustments */
-.figkit-button--large .figkit-button__icon {
-  width: 16px;
-  height: 16px;
-}
-
-.figkit-button--large .figkit-button__icon--left {
-  margin-right: var(--space-2, 8px);
 }
