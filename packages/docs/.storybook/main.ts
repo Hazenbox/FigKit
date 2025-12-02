@@ -41,12 +41,14 @@ const config: StorybookConfig = {
           '@figkit/themes': path.resolve(__dirname, '../../themes/dist'),
           '@figkit/tokens': tokensDir,
           '@figkit/patterns': path.resolve(__dirname, '../../patterns/dist/index.js'),
-        }
+        },
+        dedupe: ['react', 'react-dom'],
       },
       // Ensure JSON imports work - treat as assets and allow large files
       assetsInclude: ['**/*.json'],
       optimizeDeps: {
-        exclude: ['**/*.json'],
+        include: ['react', 'react-dom'],
+        exclude: ['@figkit/ui'], // Exclude from pre-bundling to ensure fresh imports
       },
       server: {
         fs: {

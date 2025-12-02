@@ -50,10 +50,10 @@ export const BadgeMall = ({
     <button
       className={clsx(
         'badge-mall',
-        `${dirName}--${variant}`,
-        `${dirName}--${size}`,
+        `badge-mall--${variant}`,
+        `badge-mall--${size}`,
         disabled && 'badge-mall--disabled',
-        hasIcon && iconAlign && `${dirName}--icon-${iconAlign}`,
+        hasIcon && iconAlign && `badge-mall--icon-${iconAlign}`,
         className
       )}
       disabled={disabled}

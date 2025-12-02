@@ -18,9 +18,19 @@ iconEntries.forEach(([name, Icon]) => {
 // Get all icon names - ensure it's always an array
 export const iconNames: string[] = iconEntries.map(([name]) => name).sort();
 
+// Get icon options array for Storybook controls
+export function getIconOptions(): string[] {
+  const validIconNames = Array.isArray(iconNames) && iconNames.length > 0 ? iconNames : [];
+  const fallbackIcons = ['CheckIcon', 'PlusIcon', 'MinusIcon', 'CloseIcon', 'ArrowIcon', 'SearchIcon', 'SettingsIcon', 'TrashIcon'];
+  const allOptions = validIconNames.length > 0 ? validIconNames : fallbackIcons;
+  return ['', ...allOptions];
+}
+
 // Debug: Log icon names count
+console.log('[iconSelector] Total icons found:', iconNames.length);
+console.log('[iconSelector] Sample icons:', iconNames.slice(0, 10));
 if (typeof window !== 'undefined') {
-  console.log('[iconSelector] iconNames loaded:', iconNames.length, 'icons');
+  console.log('[iconSelector] Browser: iconNames loaded:', iconNames.length, 'icons');
 }
 
 // Get icon component by name
@@ -205,40 +215,25 @@ export function IconSelector({ value, onChange }: { value: string; onChange: (va
 
 // Helper to create icon argType for Storybook with visual icon picker
 export function createIconArgType() {
-  // Ensure iconNames is an array and has values
+  const controlOptions = getIconOptions();
   const validIconNames = Array.isArray(iconNames) && iconNames.length > 0 ? iconNames : [];
-  const options = validIconNames.length > 0 ? ['', ...validIconNames] : ['', 'CheckIcon', 'PlusIcon', 'MinusIcon', 'CloseIcon'];
+  const fallbackIcons = ['CheckIcon', 'PlusIcon', 'MinusIcon', 'CloseIcon', 'ArrowIcon', 'SearchIcon', 'SettingsIcon', 'TrashIcon'];
   
-  // Create labels object
-  const labels: Record<string, string> = { '': 'No Icon' };
-  if (validIconNames.length > 0) {
-    validIconNames.forEach(name => {
-      labels[name] = name.replace('Icon', '');
-    });
-  } else {
-    // Fallback labels
-    labels['CheckIcon'] = 'Check';
-    labels['PlusIcon'] = 'Plus';
-    labels['MinusIcon'] = 'Minus';
-    labels['CloseIcon'] = 'Close';
-  }
-  
-  console.log('[createIconArgType] options length:', options.length);
+  console.log('[createIconArgType] options length:', controlOptions.length);
   console.log('[createIconArgType] validIconNames length:', validIconNames.length);
+  console.log('[createIconArgType] First 10 options:', controlOptions.slice(0, 10));
   
+  // Match the exact format used in Button.stories.tsx for other selects
+  // Storybook expects options at the top level when using control: 'select'
   return {
-    control: {
-      type: 'select',
-      options: options,
-      labels: labels,
-    },
+    control: 'select',
+    options: controlOptions,
     table: {
       type: {
         summary: 'Icon from repository',
-        detail: `Select from ${validIconNames.length || options.length - 1} available icons. Use the dropdown to see all icons visually.`,
+        detail: `Select from ${validIconNames.length || fallbackIcons.length} available icons.`,
       },
     },
-    mapping: iconMap,
   };
 }
 
@@ -268,6 +263,7 @@ export function renderIcon(iconName: string | null | undefined, props?: any) {
   if (!iconName) return null;
   const Icon = getIconByName(iconName);
   if (!Icon) return null;
-  return React.createElement(Icon, { size: 24, ...props });
+  // Icons will inherit color from button via CSS currentColor
+  return React.createElement(Icon, { size: 24, color: 'currentColor', ...props });
 }
 

@@ -70,27 +70,29 @@ export const Checkbox = ({
         <label htmlFor={checkboxId} className="checkbox-label">
           <div className="checkbox-check">
             <div className="checkbox-background" />
-            {checked && !indeterminate && (
-              <svg className="checkbox-icon checkbox-icon--check" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M4 8L6.5 10.5L12 5"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            )}
-            {indeterminate && (
-              <svg className="checkbox-icon checkbox-icon--mixed" viewBox="0 0 16 16" fill="none">
-                <path
-                  d="M4 8H12"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                />
-              </svg>
-            )}
+            <div className="checkbox-icon-container">
+              {checked && !indeterminate && (
+                <svg className="checkbox-icon checkbox-icon--check" viewBox="0 0 8 7" fill="none">
+                  <path
+                    d="M0 3.5L2.5 6L8 0.5"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
+              {indeterminate && (
+                <svg className="checkbox-icon checkbox-icon--mixed" viewBox="0 0 8 1" fill="none">
+                  <path
+                    d="M0 0.5H8"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              )}
+            </div>
           </div>
           {label && <span className="checkbox-label-text">{label}</span>}
         </label>

@@ -1,0 +1,10 @@
+/* Import all component CSS files */
+@import './button/button.css';
+@import './badge/badge.css';
+@import './badge-mall/badge-mall.css';
+@import './avatar/avatar.css';
+@import './checkbox/checkbox.css';
+@import './radio-button/radio-button.css';
+@import './segmented-control/segmented-control.css';
+@import './tab/tab.css';
+

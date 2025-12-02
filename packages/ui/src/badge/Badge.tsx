@@ -23,12 +23,9 @@ export type BadgeVariant =
   | 'archived'
   | 'menu';
 
-export type BadgeSize = 'default' | 'large' | 'wide';
-
 export interface BadgeProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'size'> {
   children?: ReactNode;
   variant?: BadgeVariant;
-  size?: BadgeSize;
   icon?: ReactNode;
   iconLead?: boolean; // From Figma component property "🎛️ Icon Lead"
   strong?: boolean; // From Figma component property "🐣 Strong"
@@ -37,7 +34,6 @@ export interface BadgeProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement>
 export const Badge = ({
   children,
   variant = "default",
-  size = "default",
   icon,
   iconLead = false, // From Figma: "🎛️ Icon Lead" property
   strong = false, // From Figma: "🐣 Strong" property
@@ -53,7 +49,6 @@ export const Badge = ({
       className={clsx(
         'badge',
         `badge--${variant}`,
-        `badge--${size}`,
         strong && 'badge--strong',
         disabled && 'badge--disabled',
         hasIcon && 'badge--icon-lead',

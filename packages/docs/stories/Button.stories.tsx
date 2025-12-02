@@ -1,13 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from '@figkit/ui';
 import React from 'react';
-
-// Simple icon component for demonstration
-const PlusIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M6 2V10M2 6H10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
+import { createIconArgType, renderIcon, getIconOptions } from './utils/iconSelector';
 
 const meta = {
   title: 'Components/Button',
@@ -39,12 +33,31 @@ const meta = {
     disabled: {
       control: 'boolean',
     },
+    showIcon: {
+      control: 'boolean',
+      description: 'Enable icon display',
+      table: {
+        category: 'Icon',
+      },
+    },
     icon: {
-      control: false,
+      control: 'select',
+      options: getIconOptions(),
+      description: 'Select an icon from the icon repository (enable "showIcon" first)',
+      table: {
+        type: {
+          summary: 'Icon from repository',
+        },
+        category: 'Icon',
+      },
     },
     iconPosition: {
       control: 'select',
       options: ['left', 'center'],
+      if: { arg: 'showIcon', eq: true },
+      table: {
+        category: 'Icon',
+      },
     },
   },
 } satisfies Meta<typeof Button>;
@@ -58,6 +71,20 @@ export const Primary: Story = {
     children: 'Button',
     variant: 'primary',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -66,6 +93,20 @@ export const Secondary: Story = {
     children: 'Button',
     variant: 'secondary',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -74,6 +115,20 @@ export const FigJam: Story = {
     children: 'Button',
     variant: 'figjam',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -82,6 +137,20 @@ export const Destructive: Story = {
     children: 'Button',
     variant: 'destructive',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -90,6 +159,20 @@ export const SecondaryDestruct: Story = {
     children: 'Button',
     variant: 'secondary-destruct',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -98,6 +181,20 @@ export const Inverse: Story = {
     children: 'Button',
     variant: 'inverse',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -106,6 +203,20 @@ export const Success: Story = {
     children: 'Button',
     variant: 'success',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -114,6 +225,20 @@ export const Link: Story = {
     children: 'Button',
     variant: 'link',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -122,6 +247,20 @@ export const LinkDanger: Story = {
     children: 'Button',
     variant: 'link-danger',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -130,6 +269,20 @@ export const Ghost: Story = {
     children: 'Button',
     variant: 'ghost',
     size: 'default',
+    showIcon: false,
+    icon: '',
+    iconPosition: 'left',
+  },
+  render: (args) => {
+    const { showIcon, ...buttonProps } = args;
+    return (
+      <Button
+        {...buttonProps}
+        icon={showIcon && args.icon ? renderIcon(args.icon) : undefined}
+      >
+        {args.children}
+      </Button>
+    );
   },
 };
 
@@ -217,13 +370,13 @@ export const WithIcons: Story = {
       <div>
         <h3 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: 600 }}>Icon Left (Default)</h3>
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <Button variant="primary" icon={<PlusIcon />} iconPosition="left">
+          <Button variant="primary" icon={renderIcon('PlusIcon')} iconPosition="left">
             Button
           </Button>
-          <Button variant="secondary" icon={<PlusIcon />} iconPosition="left">
+          <Button variant="secondary" icon={renderIcon('CheckIcon')} iconPosition="left">
             Button
           </Button>
-          <Button variant="ghost" icon={<PlusIcon />} iconPosition="left">
+          <Button variant="ghost" icon={renderIcon('ArrowIcon')} iconPosition="left">
             Button
           </Button>
         </div>
@@ -231,13 +384,13 @@ export const WithIcons: Story = {
       <div>
         <h3 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: 600 }}>Icon Center</h3>
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <Button variant="primary" icon={<PlusIcon />} iconPosition="center">
+          <Button variant="primary" icon={renderIcon('PlusIcon')} iconPosition="center">
             Button
           </Button>
-          <Button variant="secondary" icon={<PlusIcon />} iconPosition="center">
+          <Button variant="secondary" icon={renderIcon('CheckIcon')} iconPosition="center">
             Button
           </Button>
-          <Button variant="ghost" icon={<PlusIcon />} iconPosition="center">
+          <Button variant="ghost" icon={renderIcon('ArrowIcon')} iconPosition="center">
             Button
           </Button>
         </div>
@@ -245,11 +398,34 @@ export const WithIcons: Story = {
       <div>
         <h3 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: 600 }}>Large Size with Icons</h3>
         <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-          <Button variant="primary" size="large" icon={<PlusIcon />} iconPosition="left">
+          <Button variant="primary" size="large" icon={renderIcon('PlusIcon')} iconPosition="left">
             Button
           </Button>
-          <Button variant="primary" size="large" icon={<PlusIcon />} iconPosition="center">
+          <Button variant="primary" size="large" icon={renderIcon('CheckIcon')} iconPosition="center">
             Button
+          </Button>
+        </div>
+      </div>
+      <div>
+        <h3 style={{ marginBottom: '12px', fontSize: '14px', fontWeight: 600 }}>Various Icons</h3>
+        <div style={{ display: 'flex', gap: '12px', alignItems: 'center', flexWrap: 'wrap' }}>
+          <Button variant="primary" icon={renderIcon('PlusIcon')} iconPosition="left">
+            Add
+          </Button>
+          <Button variant="primary" icon={renderIcon('CheckIcon')} iconPosition="left">
+            Confirm
+          </Button>
+          <Button variant="primary" icon={renderIcon('CloseIcon')} iconPosition="left">
+            Close
+          </Button>
+          <Button variant="primary" icon={renderIcon('SearchIcon')} iconPosition="left">
+            Search
+          </Button>
+          <Button variant="primary" icon={renderIcon('SettingsIcon')} iconPosition="left">
+            Settings
+          </Button>
+          <Button variant="primary" icon={renderIcon('TrashIcon')} iconPosition="left">
+            Delete
           </Button>
         </div>
       </div>

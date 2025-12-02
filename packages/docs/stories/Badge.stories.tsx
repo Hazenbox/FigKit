@@ -28,10 +28,6 @@ const meta = {
       control: 'select',
       options: ['default', 'brand', 'component', 'danger', 'feedback', 'figjam', 'invert', 'selected', 'success', 'variable', 'variable-selected', 'warn', 'merged', 'archived', 'menu'],
     },
-    size: {
-      control: 'select',
-      options: ['default', 'large', 'wide'],
-    },
     strong: {
       control: 'boolean',
     },
@@ -195,15 +191,6 @@ export const Strong: Story = {
   ),
 };
 
-export const Sizes: Story = {
-  render: () => (
-    <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-      <Badge size="default">Default</Badge>
-      <Badge size="large">Large</Badge>
-      <Badge size="wide" style={{ maxWidth: '200px' }}>Wide</Badge>
-    </div>
-  ),
-};
 
 export const WithIcons: Story = {
   render: () => {

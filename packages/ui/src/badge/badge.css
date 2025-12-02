@@ -182,38 +182,19 @@
   color: var(--color-text-onbrand, #ffffff);
 }
 
-/* Size variants */
-.badge--default {
-  height: 16px;
-  padding: 0 var(--space-1, 4px);
-  font-size: var(--body-small-fontSize, 9px);
-  line-height: var(--body-small-lineHeight, 14px);
-}
-
-.badge--large {
-  height: 20px;
-  padding: 0 var(--space-2, 8px);
-  font-size: var(--body-medium-fontSize, 11px);
-  line-height: var(--body-medium-lineHeight, 16px);
-}
-
-.badge--wide {
-  width: 100%;
-  height: 16px;
-  padding: 0 var(--space-1, 4px);
-  font-size: var(--body-small-fontSize, 9px);
-  line-height: var(--body-small-lineHeight, 14px);
-}
-
-/* Disabled state */
+/* Disabled state - Must override all variant styles */
 .badge:disabled,
-.badge--disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  pointer-events: none;
+.badge.badge--disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
 }
 
 /* Icon alignment */
+.badge--icon-lead {
+  flex-direction: row;
+}
+
 .badge--icon-left {
   flex-direction: row;
 }

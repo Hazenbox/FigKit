@@ -1,71 +1,281 @@
 ---
 title: Button
-description: Button component with multiple variants and sizes
+description: Interactive button component with multiple variants, sizes, and states
 ---
+
+import { Button } from '@figkit/ui';
+import { PlusIcon, CheckIcon, CloseIcon } from '@figkit/ui';
 
 # Button
 
-The Button component is a versatile UI element that supports multiple variants, sizes, and states.
+The Button component is a versatile, accessible UI element used to trigger actions throughout the interface. It supports multiple visual variants, sizes, and states to accommodate various use cases from primary actions to subtle interactions.
 
-## Import
+Buttons provide clear visual feedback for user interactions and follow WCAG 2.1 accessibility guidelines. They can include icons, support keyboard navigation, and adapt to different contexts and brand requirements.
+
+## Sizes
+
+Buttons come in three size variants to accommodate different contexts and hierarchy levels.
+
+### Default (24px)
+
+The standard button size for most use cases.
 
 ```tsx
-import { Button } from '@figkit/ui';
+<Button variant="primary" size="default">
+  Default Button
+</Button>
 ```
 
-## Basic Usage
+### Large (32px)
+
+Larger buttons for prominent actions or when more visual weight is needed.
 
 ```tsx
-<Button variant="primary">Click me</Button>
+<Button variant="primary" size="large">
+  Large Button
+</Button>
+```
+
+### Wide (Full Width)
+
+Full-width buttons for mobile interfaces or when the button should span the container width.
+
+```tsx
+<div style={{ width: '256px' }}>
+  <Button variant="primary" size="wide">
+    Wide Button
+  </Button>
+</div>
+```
+
+## States
+
+Buttons support multiple interactive states to provide clear feedback to users.
+
+### Default
+
+The resting state of the button.
+
+```tsx
+<Button variant="primary">Default</Button>
+```
+
+### Hover
+
+Visual feedback when the user hovers over the button.
+
+```tsx
+<Button variant="primary" style={{ background: 'var(--color-bg-brand-hover, #007be5)' }}>
+  Hover
+</Button>
+```
+
+### Active / Pressed
+
+Visual feedback when the button is being pressed.
+
+```tsx
+<Button variant="primary" style={{ background: 'var(--color-bg-brand-pressed, #007be5)' }}>
+  Active
+</Button>
+```
+
+### Focused
+
+Visual indicator for keyboard navigation focus.
+
+```tsx
+<Button 
+  variant="primary" 
+  style={{ 
+    border: '1px solid var(--color-border-selected, #0d99ff)', 
+    boxShadow: 'inset 0 0 0 2px #ffffff' 
+  }}
+>
+  Focused
+</Button>
+```
+
+### Disabled
+
+Disabled state prevents interaction and reduces visual prominence.
+
+```tsx
+<Button variant="primary" disabled>
+  Disabled
+</Button>
 ```
 
 ## Variants
 
-The Button component supports the following variants:
+Buttons support multiple visual variants to convey different action types and importance levels.
 
-- `primary` - Primary action button
-- `secondary` - Secondary action button
-- `destructive` - Destructive action button
-- `success` - Success action button
-- `inverse` - Inverse style button
-- `figjam` - FigJam brand button
-- `secondary-destruct` - Secondary destructive button
-- `link` - Link style button
-- `link-danger` - Link style danger button
-- `ghost` - Ghost style button
+### Primary
 
-## Sizes
-
-- `default` - Default size
-- `large` - Large size
-- `wide` - Wide size
-
-## Props
-
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `variant` | `'primary' \| 'secondary' \| 'destructive' \| 'success' \| 'inverse' \| 'figjam' \| 'secondary-destruct' \| 'link' \| 'link-danger' \| 'ghost'` | `'primary'` | Button variant |
-| `size` | `'default' \| 'large' \| 'wide'` | `'default'` | Button size |
-| `disabled` | `boolean` | `false` | Disabled state |
-| `icon` | `ReactNode` | - | Icon element |
-| `iconPosition` | `'left' \| 'right'` | `'left'` | Icon position |
-| `children` | `ReactNode` | - | Button content |
-
-## Examples
-
-### Primary Button
+Primary buttons are used for the main action in a flow or interface.
 
 ```tsx
 <Button variant="primary">Primary</Button>
 ```
 
-### Secondary Button
+### Secondary
+
+Secondary buttons are used for supporting actions that are less prominent than primary actions.
 
 ```tsx
 <Button variant="secondary">Secondary</Button>
 ```
 
-### With Icon
+### Destructive
+
+Destructive buttons indicate dangerous or irreversible actions.
+
+```tsx
+<Button variant="destructive">Delete</Button>
+```
+
+### Secondary Destructive
+
+A less prominent variant of destructive buttons for secondary destructive actions.
+
+```tsx
+<Button variant="secondary-destruct">Remove</Button>
+```
+
+### Success
+
+Success buttons indicate positive or confirmatory actions.
+
+```tsx
+<Button variant="success">Confirm</Button>
+```
+
+### FigJam
+
+Brand-specific variant for FigJam contexts.
+
+```tsx
+<Button variant="figjam">FigJam Action</Button>
+```
+
+### Inverse
+
+Inverse buttons for use on dark backgrounds.
+
+```tsx
+<div style={{ background: '#000', padding: '16px' }}>
+  <Button variant="inverse">Inverse</Button>
+</div>
+```
+
+### Link
+
+Link-style buttons for less prominent actions that look like text links.
+
+```tsx
+<Button variant="link">Link Button</Button>
+```
+
+### Link Danger
+
+Link-style buttons for destructive actions.
+
+```tsx
+<Button variant="link-danger">Delete</Button>
+```
+
+### Ghost
+
+Ghost buttons have no background, used for subtle actions.
+
+```tsx
+<Button variant="ghost">Ghost</Button>
+```
+
+## Properties
+
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| `variant` | `'primary' \| 'secondary' \| 'destructive' \| 'success' \| 'inverse' \| 'figjam' \| 'secondary-destruct' \| 'link' \| 'link-danger' \| 'ghost'` | `'primary'` | Visual style variant of the button |
+| `size` | `'default' \| 'large' \| 'wide'` | `'default'` | Size of the button |
+| `disabled` | `boolean` | `false` | Whether the button is disabled |
+| `icon` | `ReactNode` | `undefined` | Optional icon element to display |
+| `iconPosition` | `'left' \| 'center'` | `'left'` | Position of the icon relative to text |
+| `children` | `ReactNode` | - | Button label text content |
+| `onClick` | `(event: MouseEvent<HTMLButtonElement>) => void` | - | Click event handler |
+| `className` | `string` | - | Additional CSS classes |
+| `type` | `'button' \| 'submit' \| 'reset'` | `'button'` | HTML button type attribute |
+
+## Design Tokens
+
+Buttons use the following design tokens for consistent styling:
+
+### Colors
+
+- **Background**: `var(--color-bg-brand-default, #0d99ff)` (Primary)
+- **Background Hover**: `var(--color-bg-brand-hover, #007be5)`
+- **Background Pressed**: `var(--color-bg-brand-pressed, #007be5)`
+- **Text**: `var(--color-text-onbrand, #ffffff)`
+- **Border**: `var(--color-border-default, #e6e6e6)`
+- **Border Focus**: `var(--color-border-selected, #0d99ff)`
+
+### Typography
+
+- **Font Family**: `var(--body-medium-fontFamily, 'Inter')`
+- **Font Size**: `var(--body-medium-fontSize, 11px)`
+- **Font Weight**: `var(--body-medium-fontWeight, 450)`
+- **Line Height**: `var(--body-medium-lineHeight, 16px)`
+
+### Spacing
+
+- **Padding Default**: `0 var(--space-3, 12px)`
+- **Padding Large**: `0 var(--space-4, 16px)`
+- **Icon Gap**: `var(--space-1, 4px)`
+
+### Border Radius
+
+- **Default**: `var(--radius-sm, 2px)`
+
+### Dimensions
+
+- **Height Default**: `24px`
+- **Height Large**: `32px`
+- **Width Wide**: `100%`
+
+## Behavior
+
+### Interaction States
+
+1. **Default**: Button displays in its base state
+2. **Hover**: Background color changes on mouse hover
+3. **Active**: Background color changes when pressed
+4. **Focus**: Border and outline appear for keyboard navigation
+5. **Disabled**: Opacity reduced, pointer events disabled
+
+### Icon Positioning
+
+- **Left**: Icon appears before text (default)
+- **Center**: Icon appears centered, text wraps or is hidden
+
+### Keyboard Navigation
+
+- **Enter/Space**: Activates the button
+- **Tab**: Moves focus to next interactive element
+- **Shift+Tab**: Moves focus to previous interactive element
+
+## Usage
+
+### Basic Button
+
+```tsx
+import { Button } from '@figkit/ui';
+
+<Button variant="primary">
+  Click me
+</Button>
+```
+
+### Button with Icon
 
 ```tsx
 import { Button } from '@figkit/ui';
@@ -76,28 +286,96 @@ import { PlusIcon } from '@figkit/ui';
 </Button>
 ```
 
-### Disabled State
+### Button Sizes
 
 ```tsx
-<Button variant="primary" disabled>
-  Disabled Button
-</Button>
+<div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+  <Button variant="primary" size="default">Default</Button>
+  <Button variant="primary" size="large">Large</Button>
+</div>
 ```
 
-### Large Size
+### All Variants
 
 ```tsx
-<Button variant="primary" size="large">
-  Large Button
+<div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+  <Button variant="primary">Primary</Button>
+  <Button variant="secondary">Secondary</Button>
+  <Button variant="destructive">Destructive</Button>
+  <Button variant="success">Success</Button>
+  <Button variant="figjam">FigJam</Button>
+  <Button variant="inverse">Inverse</Button>
+  <Button variant="link">Link</Button>
+  <Button variant="link-danger">Link Danger</Button>
+  <Button variant="ghost">Ghost</Button>
+</div>
+```
+
+### Controlled Button
+
+```tsx
+import { useState } from 'react';
+
+function MyComponent() {
+  const [count, setCount] = useState(0);
+  
+  return (
+    <Button variant="primary" onClick={() => setCount(count + 1)}>
+      Clicked {count} times
 </Button>
+  );
+}
 ```
 
 ## Accessibility
 
-The Button component follows WCAG 2.1 guidelines:
+The Button component follows WCAG 2.1 Level AA guidelines:
 
-- Keyboard accessible (Enter and Space keys)
-- Proper ARIA attributes
-- Focus indicators
-- Disabled state handling
+### Keyboard Support
 
+- **Enter**: Activates the button
+- **Space**: Activates the button
+- **Tab**: Moves focus to the button
+- **Shift+Tab**: Moves focus away from the button
+
+### ARIA Attributes
+
+- Uses semantic `<button>` element
+- `aria-disabled` is set when disabled
+- `aria-label` can be provided for icon-only buttons
+
+### Focus Management
+
+- Visible focus indicator with border and outline
+- Focus ring uses `var(--color-border-selected, #0d99ff)`
+- Focus outline offset for better visibility
+
+### Screen Reader Support
+
+- Button text is announced by screen readers
+- Disabled state is communicated
+- Icon-only buttons should include `aria-label`
+
+### Best Practices
+
+1. **Clear Labels**: Use descriptive button text that clearly indicates the action
+2. **Icon + Text**: When using icons, include text labels for clarity
+3. **Disabled State**: Clearly communicate why a button is disabled
+4. **Focus Indicators**: Never remove focus indicators
+5. **Keyboard Navigation**: Ensure buttons are reachable via keyboard
+
+### Example: Accessible Button
+
+```tsx
+// Good: Clear label with icon
+<Button variant="primary" icon={<PlusIcon />}>
+  Add New Item
+</Button>
+
+// Good: Icon-only with aria-label
+<Button variant="ghost" icon={<CloseIcon />} aria-label="Close dialog">
+</Button>
+
+// Avoid: Unclear label
+<Button variant="primary">Click</Button>
+```

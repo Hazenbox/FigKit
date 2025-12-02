@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { Checkbox } from '@figkit/ui';
+import { Checkbox } from './Checkbox';
 
 const meta = {
   title: 'Components/Checkbox',
@@ -144,8 +144,8 @@ export const AllStates: Story = {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
         <h3 style={{ fontSize: '13px', fontWeight: 550, margin: 0 }}>Checked</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingLeft: '8px' }}>
-      <Checkbox label="On, Normal" checked />
-      <Checkbox label="On, Normal, Muted" checked muted />
+          <Checkbox label="On, Normal" checked />
+          <Checkbox label="On, Normal, Muted" checked muted />
           <Checkbox label="On, Normal, Ghost" checked ghost />
           <Checkbox label="On, Focused" checked focused />
           <Checkbox label="On, Focused, Muted" checked focused muted />
@@ -157,13 +157,13 @@ export const AllStates: Story = {
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
         <h3 style={{ fontSize: '13px', fontWeight: 550, margin: 0 }}>Unchecked</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', paddingLeft: '8px' }}>
-      <Checkbox label="Off, Normal + Muted" muted />
-      <Checkbox label="Off, Normal, Ghost" ghost />
+          <Checkbox label="Off, Normal + Muted" muted />
+          <Checkbox label="Off, Normal, Ghost" ghost />
           <Checkbox label="Off, Focused, Ghost" focused ghost />
-      <Checkbox label="Off, Focused + Muted" focused />
-      <Checkbox label="Off, Disabled + Muted" disabled />
+          <Checkbox label="Off, Focused + Muted" focused />
+          <Checkbox label="Off, Disabled + Muted" disabled />
         </div>
-      </div>
+    </div>
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
         <h3 style={{ fontSize: '13px', fontWeight: 550, margin: 0 }}>Mixed (Indeterminate)</h3>

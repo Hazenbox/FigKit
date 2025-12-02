@@ -31,7 +31,7 @@ const preview: Preview = {
             'Foundations',
             ['Colors', 'Typography', 'Spacing', 'Border Radius', 'Shadows', 'Layout', 'Dimensions', 'Icons'],
             'Components',
-            ['Avatar', 'Badge', 'Button', 'Checkbox', 'Tab', 'Tabs', 'TextInput'],
+            ['Avatar', 'Badge', 'Button', 'Checkbox', 'RadioButton', 'SegmentedControl', 'Tab', 'Tabs', 'TextInput'],
           ],
         },
     },

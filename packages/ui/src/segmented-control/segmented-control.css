@@ -1,0 +1,166 @@
+/* 100% Figma-to-Code match - All properties extracted from Figma */
+/* Tokenized Segmented Control component using CSS variables */
+
+.segmented-control {
+  display: flex;
+  align-items: flex-start;
+  background: var(--color-bg-secondary, #f5f5f5);
+  overflow: hidden;
+  position: relative;
+  border-radius: var(--radius-md, 5px); /* Extracted from Figma: radius-medium */
+}
+
+.segmented-control-segment {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  min-height: 24px;
+  border: none;
+  background: var(--color-bg-secondary, #f5f5f5);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  outline: none;
+  position: relative;
+}
+
+.segmented-control-segment:focus-visible {
+  outline: 2px solid var(--color-border-selected, #0d99ff);
+  outline-offset: -2px;
+  z-index: 1;
+}
+
+/* Icon variant */
+.segmented-control-segment--icon {
+  min-width: 24px;
+}
+
+.segmented-control-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.segmented-control-icon svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  color: inherit;
+}
+
+.segmented-control-icon path,
+.segmented-control-icon rect,
+.segmented-control-icon circle {
+  fill: currentColor;
+}
+
+/* Label variant */
+.segmented-control-segment--label {
+  padding: var(--space-1, 4px) var(--space-2, 8px);
+  min-width: 0;
+}
+
+.segmented-control-label-text {
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+  font-family: var(--body-medium-fontFamily, 'Inter') !important;
+  font-size: var(--body-medium-fontSize, 11px) !important;
+  font-weight: var(--body-medium-fontWeight, 450) !important;
+  line-height: var(--body-medium-lineHeight, 16px) !important;
+  letter-spacing: 0.055px !important; /* Extracted: 0.055px from Figma */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: none !important;
+  -webkit-text-fill-color: var(--color-text-default, rgba(0, 0, 0, 0.9)) !important;
+}
+
+/* Active segment - extracted from Figma */
+.segmented-control-segment--active {
+  background: var(--color-bg-default, #ffffff);
+  border: 1px solid var(--color-border-default, #e6e6e6);
+  border-radius: var(--radius-md, 5px); /* Rounded corners on all sides regardless of position */
+}
+
+.segmented-control-segment--active .segmented-control-icon {
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
+}
+
+.segmented-control-segment--active .segmented-control-label-text {
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9)) !important;
+}
+
+/* Inactive segment - extracted from Figma */
+.segmented-control-segment:not(.segmented-control-segment--active) {
+  background: var(--color-bg-secondary, #f5f5f5);
+  border: none;
+}
+
+/* Inactive icon color - applies to all icon variants */
+.segmented-control-segment:not(.segmented-control-segment--active) .segmented-control-icon,
+.segmented-control-segment--icon:not(.segmented-control-segment--active) .segmented-control-icon {
+  color: var(--color-icon-secondary, var(--color-text-secondary, rgba(0, 0, 0, 0.5))) !important; /* Extracted from Figma: inactive icon color */
+}
+
+/* Inactive label color - applies to all label variants */
+.segmented-control-segment:not(.segmented-control-segment--active) .segmented-control-label-text,
+.segmented-control-segment--label:not(.segmented-control-segment--active) .segmented-control-label-text {
+  color: var(--color-text-secondary, rgba(0, 0, 0, 0.5)) !important;
+}
+
+/* Disabled state - extracted from Figma */
+.segmented-control--disabled .segmented-control-segment,
+.segmented-control-segment--disabled {
+  cursor: not-allowed;
+  background: var(--color-bg-secondary, #f5f5f5);
+  border: none;
+}
+
+.segmented-control--disabled .segmented-control-segment .segmented-control-icon,
+.segmented-control-segment--disabled .segmented-control-icon {
+  color: var(--color-text-tertiary, rgba(0, 0, 0, 0.3));
+  opacity: 1;
+}
+
+.segmented-control--disabled .segmented-control-segment .segmented-control-label-text,
+.segmented-control-segment--disabled .segmented-control-label-text {
+  color: var(--color-text-tertiary, rgba(0, 0, 0, 0.3)) !important;
+}
+
+/* Hover state for non-disabled segments */
+.segmented-control-segment:not(.segmented-control-segment--disabled):not(.segmented-control-segment--active):hover {
+  background: var(--color-bg-secondary, #f5f5f5);
+}
+
+/* Focused state - extracted from Figma */
+.segmented-control-segment:focus-visible.segmented-control-segment--active {
+  border-color: var(--color-border-selected, #0d99ff);
+}
+
+.segmented-control-segment:focus-visible:not(.segmented-control-segment--active) {
+  border: 1px solid var(--color-border-selected, #0d99ff);
+  background: var(--color-bg-secondary, #f5f5f5);
+}
+
+/* Ensure segments are connected visually */
+.segmented-control-segment:not(:first-child) {
+  margin-left: 0;
+}
+
+.segmented-control-segment--active:not(:first-child) {
+  border-left: 1px solid var(--color-border-default, #e6e6e6);
+}
+
+.segmented-control-segment--active + .segmented-control-segment {
+  border-left: none;
+}
+
+/* Active segments have rounded corners on all sides - removed position-specific rules */
+

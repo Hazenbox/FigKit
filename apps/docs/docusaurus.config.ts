@@ -2,6 +2,7 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 import { config as appConfig } from './src/config';
+import path from 'path';
 
 const config: Config = {
   title: 'FigKit Design System',
@@ -9,6 +10,17 @@ const config: Config = {
   favicon: 'img/favicon.ico',
   
   headTags: [
+    {
+      tagName: 'script',
+      attributes: {
+        type: 'text/javascript',
+      },
+      innerHTML: `
+        // Set design system attributes BEFORE CSS loads
+        document.documentElement.setAttribute('data-brand', 'default');
+        document.documentElement.setAttribute('data-theme', 'light');
+      `,
+    },
     {
       tagName: 'link',
       attributes: {
@@ -28,7 +40,7 @@ const config: Config = {
       tagName: 'link',
       attributes: {
         rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap',
       },
     },
   ],
@@ -68,6 +80,25 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    './src/plugins/page-actions-plugin.ts',
+    function(context, options) {
+      return {
+        name: 'webpack-config-plugin',
+        configureWebpack(config, isServer) {
+          return {
+            resolve: {
+              alias: {
+                '@figkit/themes': path.resolve(__dirname, '../../packages/themes'),
+                '@figkit/ui': path.resolve(__dirname, '../../packages/ui'),
+              },
+            },
+          };
+        },
+      };
+    },
+  ],
+
   themeConfig: {
     image: 'img/docusaurus-social-card.jpg',
     colorMode: {
@@ -78,7 +109,8 @@ const config: Config = {
       title: '',
       logo: {
         alt: 'FigKit Logo',
-        src: 'img/logo.svg',
+        src: 'img/logo-light.svg',
+        srcDark: 'img/logo-dark.svg',
       },
       items: [
         {
