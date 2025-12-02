@@ -63,7 +63,25 @@ console.log('🚀 Starting unified build...\n');
 
 // Step 1: Build tokens and themes
 console.log('📦 Step 1: Building tokens and themes...');
-execSync('pnpm mcp:pull:tokens', { cwd: rootDir, stdio: 'inherit' });
+
+// Check if token files already exist (they're committed to git)
+const tokensDir = join(rootDir, 'packages/tokens/dist');
+const tokenFilesExist = existsSync(tokensDir) && 
+  readdirSync(tokensDir).some(f => f.endsWith('.json'));
+
+if (tokenFilesExist) {
+  console.log('✅ Token files already exist, skipping token generation');
+} else {
+  console.log('⚠️  Token files not found, generating...');
+  try {
+    execSync('pnpm mcp:pull:tokens', { cwd: rootDir, stdio: 'inherit' });
+  } catch (error) {
+    console.error('❌ Token generation failed. Make sure token files are committed to git.');
+    console.error('   Run: pnpm mcp:pull:tokens && git add packages/tokens/dist/ && git commit');
+    process.exit(1);
+  }
+}
+
 execSync('pnpm --filter @figkit/tokens build', { cwd: rootDir, stdio: 'inherit' });
 execSync('pnpm --filter @figkit/themes prepublishOnly', { cwd: rootDir, stdio: 'inherit' });
 execSync('pnpm --filter @figkit/ui build', { cwd: rootDir, stdio: 'inherit' });
