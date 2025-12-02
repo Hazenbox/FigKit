@@ -20,7 +20,7 @@ export const Layout-grid-rowsIcon = ({
       xmlns="http://www.w3.org/2000/svg"
       {...props}
     >
-      <path fillRule="evenodd" clipRule="evenodd" d="M5 5H19V8H5V5ZM5 11H19V14H5V11ZM19 17H5V20H19V17Z" fill="black" fillOpacity="0.9"/>
+      <path fillRule="evenodd" clipRule="evenodd" d="M5 5H19V8H5V5ZM5 11H19V14H5V11ZM19 17H5V20H19V17Z" fill={color}/>
     </svg>
   );
 };
