@@ -95,7 +95,7 @@
 .figkit-button--secondary {
   background-color: transparent;
   border: 1px solid var(--color-border-translucent, rgba(0, 0, 0, 0.1));
-  color: var(--color-text, rgba(0, 0, 0, 0.9));
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
 }
 
 .figkit-button--secondary:hover:not(:disabled) {
@@ -282,7 +282,7 @@
    ========================================================================== */
 .figkit-button--ghost {
   background-color: transparent;
-  color: var(--color-text, rgba(0, 0, 0, 0.9));
+  color: var(--color-text-default, rgba(0, 0, 0, 0.9));
 }
 
 .figkit-button--ghost:hover:not(:disabled) {
