@@ -6,10 +6,8 @@ import {
   Checkbox, 
   Tab, 
   Tabs, 
-  TextInput,
   CheckIcon,
-  PlusIcon,
-  CloseIcon
+  PlusIcon
 } from '@figkit/ui';
 import type { TabsItem } from '@figkit/ui';
 
@@ -58,7 +56,6 @@ export default function TestNpm() {
     { name: 'Button', component: <Button variant="primary">Button</Button> },
     { name: 'Checkbox', component: <Checkbox checked label="Checkbox" /> },
     { name: 'Tab', component: <Tab selected>Tab</Tab> },
-    { name: 'TextInput', component: <TextInput placeholder="Text Input" /> },
   ];
 
   const tabsItems: TabsItem[] = [
@@ -330,26 +327,6 @@ export default function TestNpm() {
                 <Tab badge={5}>Tab with Badge</Tab>
                 <Tab state="Hover">Hover State</Tab>
                 <Tab state="Focused">Focused State</Tab>
-              </div>
-            </div>
-
-            {/* Text Input - All Variants */}
-            <div style={{ 
-              marginBottom: 'var(--space-4, 16px)',
-              paddingBottom: 'var(--space-4, 16px)',
-              borderBottom: '1px solid var(--color-border-default, #e6e6e6)',
-            }}>
-              <h4 style={{ fontSize: '14px', fontWeight: 500, marginBottom: 'var(--space-2, 8px)' }}>Text Input - All Variants</h4>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3, 12px)', maxWidth: '400px' }}>
-                <TextInput placeholder="Default" />
-                <TextInput placeholder="With Label" label="Label" />
-                <TextInput placeholder="With Icon Left" icon={<CheckIcon />} iconPosition="left" />
-                <TextInput placeholder="With Icon Right" icon={<CloseIcon />} iconPosition="right" />
-                <TextInput placeholder="Large Size" size="large" />
-                <TextInput placeholder="Disabled" disabled />
-                <TextInput placeholder="Error State" error helperText="This field has an error" />
-                <TextInput placeholder="With Helper Text" helperText="This is helper text" />
-                <TextInput placeholder="Quick Action" variant="quick-action" />
               </div>
             </div>
 
