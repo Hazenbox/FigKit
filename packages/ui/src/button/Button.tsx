@@ -7,8 +7,16 @@ function clsx(...args: (string | boolean | undefined | null)[]): string {
 }
 
 export type ButtonVariant =
-  | 'input'
-  | 'button';
+  | 'primary'
+  | 'secondary'
+  | 'figjam'
+  | 'destructive'
+  | 'secondary-destruct'
+  | 'inverse'
+  | 'success'
+  | 'link'
+  | 'link-danger'
+  | 'ghost';
 
 export type ButtonSize = 'default' | 'large' | 'wide';
 
@@ -22,8 +30,8 @@ export interface ButtonProps extends Omit<ButtonHTMLAttributes<HTMLButtonElement
 
 export const Button = ({
   children,
-  variant = "input",
-  size = "large",
+  variant = 'primary',
+  size = 'default',
   icon,
   iconPosition = 'left',
   className,
@@ -31,24 +39,27 @@ export const Button = ({
   ...rest
 }: ButtonProps) => {
   const hasIcon = icon !== undefined && icon !== null;
-  const iconAlign = hasIcon ? (iconPosition === 'center' ? 'center' : 'left') : null;
 
   return (
     <button
       className={clsx(
-        'button',
-        `button--${variant}`,
-        `button--${size}`,
-        disabled && 'button--disabled',
-        hasIcon && iconAlign && `button--icon-${iconAlign}`,
+        'figkit-button',
+        `figkit-button--${variant}`,
+        `figkit-button--${size}`,
+        disabled && 'figkit-button--disabled',
+        hasIcon && `figkit-button--icon-${iconPosition}`,
         className
       )}
       disabled={disabled}
       {...rest}
     >
-      {hasIcon && iconAlign === 'left' && <span className="button-icon button-icon--left">{icon}</span>}
-      {hasIcon && iconAlign === 'center' && <span className="button-icon button-icon--center">{icon}</span>}
-      <span className="button-text">{children}</span>
+      {hasIcon && iconPosition === 'left' && (
+        <span className="figkit-button__icon figkit-button__icon--left">{icon}</span>
+      )}
+      {hasIcon && iconPosition === 'center' && (
+        <span className="figkit-button__icon figkit-button__icon--center">{icon}</span>
+      )}
+      <span className="figkit-button__text">{children}</span>
     </button>
   );
 };

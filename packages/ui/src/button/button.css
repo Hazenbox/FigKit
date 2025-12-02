@@ -1,153 +1,353 @@
-/* 100% Figma-to-Code match - All properties extracted from Figma */
-/* Base styles extracted directly from Figma node */
-.button {
-  mix-blend-mode: pass_through;
-    overflow: hidden;
-    border: 1px dashed #9747ff;
-    box-sizing: border-box;
-    border-style: dashed;
-    border-image: repeating-linear-gradient(90deg, #9747ff 0, #9747ff 10px, transparent 10px, transparent 15px) 1;
-    display: flex;
-    flex-direction: column;
-    padding: 16px 16px 16px 16px;
-    gap: 16px;
-    width: 131px;
-    height: 464px;
-    border-radius: 5px;
-}
+/* ==========================================================================
+   Button Component - Figma UI3 Design System
+   Based on: https://www.figma.com/design/zp6BWumXLgpNF4suKk9xTS/UI3--Figma-s-UI-Kit--Community-?node-id=2012-48557
+   ========================================================================== */
 
-.button-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.button-icon {
-  display: flex;
+/* Base Button Styles */
+.figkit-button {
+  /* Reset */
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  
+  /* Layout */
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  gap: var(--space-1, 4px);
+  box-sizing: border-box;
+  
+  /* Typography - Figma body/medium */
+  font-family: var(--font-family, 'Inter', -apple-system, BlinkMacSystemFont, sans-serif);
+  font-size: var(--font-size-body-medium, 11px);
+  font-weight: var(--font-weight-medium, 500);
+  line-height: var(--line-height-body-medium, 16px);
+  letter-spacing: 0.055px;
+  text-decoration: none;
+  white-space: nowrap;
+  
+  /* Transitions */
+  transition: background-color 0.1s ease, border-color 0.1s ease, color 0.1s ease, box-shadow 0.1s ease;
 }
 
-.button-icon--left {
-  margin-right: var(--space-1, 4px);
-}
+/* ==========================================================================
+   Size Variants
+   ========================================================================== */
 
-.button-icon--center {
-  margin: 0 var(--space-1, 4px);
-}
-
-
-
-/* Variant-specific styles extracted from Figma with all states */
-.button--input {
-  mix-blend-mode: pass_through;
-    overflow: hidden;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    padding: 4px 4px 4px 4px;
-    gap: 4px;
-    justify-content: center;
-    width: 92px;
-    height: 24px;
-    border-radius: 5px;
-}
-
-.button--input:focus-visible {
-  mix-blend-mode: pass_through;
-    overflow: hidden;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    padding: 4px 4px 4px 4px;
-    gap: 4px;
-    justify-content: center;
-    width: 99px;
-    height: 24px;
-    border-radius: 5px;
-}
-
-.button--button {
-  mix-blend-mode: pass_through;
-    overflow: hidden;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    padding: 4px 0px 4px 0px;
-    align-items: center;
-    width: 99px;
-    height: 24px;
-    border-radius: 5px;
-}
-
-.button--button:active:not(:disabled):not(.button--disabled) {
-  mix-blend-mode: pass_through;
-    overflow: hidden;
-    background-color: #e5f4ff;
-    border: 1px solid #bde3ff;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    padding: 4px 0px 4px 0px;
-    align-items: center;
-    width: 99px;
-    height: 24px;
-    border-radius: 5px;
-}
-
-.button--button:focus-visible {
-  mix-blend-mode: pass_through;
-    overflow: hidden;
-    border: 1px solid #0d99ff;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    padding: 4px 0px 4px 0px;
-    align-items: center;
-    width: 99px;
-    height: 24px;
-    border-radius: 5px;
-}
-
-
-
-/* Size: Default (24px height) */
-.button--default {
+/* Default Size (24px height) */
+.figkit-button--default {
   height: 24px;
   padding: 0 var(--space-3, 12px);
   border-radius: var(--radius-sm, 2px);
 }
 
-/* Size: Large (32px height) */
-.button--large {
+/* Large Size (32px height) */
+.figkit-button--large {
   height: 32px;
   padding: 0 var(--space-4, 16px);
   border-radius: var(--radius-sm, 2px);
 }
 
-/* Size: Wide (full width, 24px height) */
-.button--wide {
+/* Wide Size (full width, 24px height) */
+.figkit-button--wide {
   width: 100%;
   height: 24px;
   padding: 0 var(--space-3, 12px);
   border-radius: var(--radius-sm, 2px);
 }
 
-/* Disabled state */
-.button:disabled,
-.button--disabled {
-  opacity: 0.5;
+/* ==========================================================================
+   Variant: Primary
+   Background filled button with brand color
+   ========================================================================== */
+.figkit-button--primary {
+  background-color: var(--color-bg-brand, #0d99ff);
+  color: var(--color-text-onbrand, #ffffff);
+}
+
+.figkit-button--primary:hover:not(:disabled) {
+  background-color: var(--color-bg-brand-hover, #0c8ce9);
+}
+
+.figkit-button--primary:active:not(:disabled) {
+  background-color: var(--color-bg-brand-pressed, #007be5);
+}
+
+.figkit-button--primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-bg, #ffffff), 0 0 0 4px var(--color-border-selected, #0d99ff);
+}
+
+/* ==========================================================================
+   Variant: Secondary
+   Border-only button with translucent border
+   ========================================================================== */
+.figkit-button--secondary {
+  background-color: transparent;
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+  color: var(--color-text, rgba(0, 0, 0, 0.9));
+}
+
+.figkit-button--secondary:hover:not(:disabled) {
+  background-color: var(--color-bg-hover, rgba(0, 0, 0, 0.03));
+}
+
+.figkit-button--secondary:active:not(:disabled) {
+  background-color: var(--color-bg-pressed, rgba(0, 0, 0, 0.06));
+}
+
+.figkit-button--secondary:focus-visible {
+  outline: none;
+  border-color: var(--color-border-selected, #0d99ff);
+  box-shadow: 0 0 0 1px var(--color-bg, #ffffff), 0 0 0 3px var(--color-border-selected, #0d99ff);
+}
+
+/* ==========================================================================
+   Variant: FigJam
+   Purple background for FigJam brand
+   ========================================================================== */
+.figkit-button--figjam {
+  background-color: var(--color-bg-figjam, #9747ff);
+  color: var(--color-text-onfigjam, #ffffff);
+}
+
+.figkit-button--figjam:hover:not(:disabled) {
+  background-color: var(--color-bg-figjam-hover, #8b3de8);
+}
+
+.figkit-button--figjam:active:not(:disabled) {
+  background-color: var(--color-bg-figjam-pressed, #7c35d1);
+}
+
+.figkit-button--figjam:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-bg, #ffffff), 0 0 0 4px var(--color-bg-figjam, #9747ff);
+}
+
+/* ==========================================================================
+   Variant: Destructive
+   Red background for dangerous actions
+   ========================================================================== */
+.figkit-button--destructive {
+  background-color: var(--color-bg-danger, #f24822);
+  color: var(--color-text-ondanger, #ffffff);
+}
+
+.figkit-button--destructive:hover:not(:disabled) {
+  background-color: var(--color-bg-danger-hover, #e03e1a);
+}
+
+.figkit-button--destructive:active:not(:disabled) {
+  background-color: var(--color-bg-danger-pressed, #c93615);
+}
+
+.figkit-button--destructive:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-bg, #ffffff), 0 0 0 4px var(--color-bg-danger, #f24822);
+}
+
+/* ==========================================================================
+   Variant: Secondary Destruct
+   Border button with danger styling
+   ========================================================================== */
+.figkit-button--secondary-destruct {
+  background-color: transparent;
+  border: 1px solid var(--color-border-danger, rgba(242, 72, 34, 0.4));
+  color: var(--color-text-danger, #f24822);
+}
+
+.figkit-button--secondary-destruct:hover:not(:disabled) {
+  background-color: var(--color-bg-danger-tertiary, rgba(242, 72, 34, 0.08));
+}
+
+.figkit-button--secondary-destruct:active:not(:disabled) {
+  background-color: var(--color-bg-danger-secondary, rgba(242, 72, 34, 0.12));
+}
+
+.figkit-button--secondary-destruct:focus-visible {
+  outline: none;
+  border-color: var(--color-border-danger, #f24822);
+  box-shadow: 0 0 0 1px var(--color-bg, #ffffff), 0 0 0 3px var(--color-border-danger, #f24822);
+}
+
+/* ==========================================================================
+   Variant: Inverse
+   Dark background for light contexts
+   ========================================================================== */
+.figkit-button--inverse {
+  background-color: var(--color-bg-inverse, #2c2c2c);
+  color: var(--color-text-oninverse, rgba(255, 255, 255, 0.9));
+}
+
+.figkit-button--inverse:hover:not(:disabled) {
+  background-color: var(--color-bg-inverse-hover, #3d3d3d);
+}
+
+.figkit-button--inverse:active:not(:disabled) {
+  background-color: var(--color-bg-inverse-pressed, #1a1a1a);
+}
+
+.figkit-button--inverse:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-bg, #ffffff), 0 0 0 4px var(--color-bg-inverse, #2c2c2c);
+}
+
+/* ==========================================================================
+   Variant: Success
+   Green background for success actions
+   ========================================================================== */
+.figkit-button--success {
+  background-color: var(--color-bg-success, #14ae5c);
+  color: var(--color-text-onsuccess, #ffffff);
+}
+
+.figkit-button--success:hover:not(:disabled) {
+  background-color: var(--color-bg-success-hover, #12a054);
+}
+
+.figkit-button--success:active:not(:disabled) {
+  background-color: var(--color-bg-success-pressed, #0f8f4a);
+}
+
+.figkit-button--success:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-bg, #ffffff), 0 0 0 4px var(--color-bg-success, #14ae5c);
+}
+
+/* ==========================================================================
+   Variant: Link
+   Text-only button styled like a link
+   ========================================================================== */
+.figkit-button--link {
+  background-color: transparent;
+  color: var(--color-text-brand, #007be5);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.figkit-button--link:hover:not(:disabled) {
+  color: var(--color-text-brand-hover, #0c8ce9);
+  text-decoration: underline;
+}
+
+.figkit-button--link:active:not(:disabled) {
+  color: var(--color-text-brand-pressed, #0062b3);
+}
+
+.figkit-button--link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-border-selected, #0d99ff);
+  border-radius: var(--radius-xs, 2px);
+}
+
+/* ==========================================================================
+   Variant: Link Danger
+   Text-only button for dangerous link actions
+   ========================================================================== */
+.figkit-button--link-danger {
+  background-color: transparent;
+  color: var(--color-text-danger, #f24822);
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.figkit-button--link-danger:hover:not(:disabled) {
+  color: var(--color-text-danger-hover, #e03e1a);
+  text-decoration: underline;
+}
+
+.figkit-button--link-danger:active:not(:disabled) {
+  color: var(--color-text-danger-pressed, #c93615);
+}
+
+.figkit-button--link-danger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-border-danger, #f24822);
+  border-radius: var(--radius-xs, 2px);
+}
+
+/* ==========================================================================
+   Variant: Ghost
+   Transparent button that shows hover/active states
+   ========================================================================== */
+.figkit-button--ghost {
+  background-color: transparent;
+  color: var(--color-text, rgba(0, 0, 0, 0.9));
+}
+
+.figkit-button--ghost:hover:not(:disabled) {
+  background-color: var(--color-bg-hover, rgba(0, 0, 0, 0.03));
+}
+
+.figkit-button--ghost:active:not(:disabled) {
+  background-color: var(--color-bg-pressed, rgba(0, 0, 0, 0.06));
+}
+
+.figkit-button--ghost:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--color-border-selected, #0d99ff);
+}
+
+/* ==========================================================================
+   Disabled State
+   Applied to all variants when disabled
+   ========================================================================== */
+.figkit-button:disabled,
+.figkit-button--disabled {
+  opacity: 0.4;
   cursor: not-allowed;
   pointer-events: none;
 }
 
-/* Icon alignment */
-.button--icon-left {
-  flex-direction: row;
+/* ==========================================================================
+   Icon Styles
+   ========================================================================== */
+.figkit-button__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
 }
 
-.button--icon-center {
-  flex-direction: row;
+.figkit-button__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.figkit-button__icon--left {
+  margin-right: var(--space-1, 4px);
+}
+
+.figkit-button__icon--center {
+  /* Center icon is placed before text with standard gap */
+}
+
+/* Icon position variants */
+.figkit-button--icon-left {
+  /* Default - icon on left with text */
+}
+
+.figkit-button--icon-center {
+  /* Icon centered - typically icon-only or icon+text centered */
+}
+
+/* ==========================================================================
+   Text Style
+   ========================================================================== */
+.figkit-button__text {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Large size adjustments */
+.figkit-button--large .figkit-button__icon {
+  width: 16px;
+  height: 16px;
+}
+
+.figkit-button--large .figkit-button__icon--left {
+  margin-right: var(--space-2, 8px);
 }
