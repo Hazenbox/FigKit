@@ -1,5 +1,6 @@
 // Import client-side modules
-import injectPageActions from './components/PageActionsInjector';
+// Note: PageActions is now rendered via DocBreadcrumbs wrapper (src/theme/DocBreadcrumbs/index.tsx)
+// No longer using PageActionsInjector to avoid duplicate Actions buttons
 import setupTabTOCFilter from './components/TabTOCFilter';
 
 console.log('[ClientModules] ===== CLIENT MODULES LOADED =====');
@@ -11,9 +12,6 @@ if (typeof window !== 'undefined') {
   // Set design system brand and theme attributes (required for design tokens)
   document.documentElement.setAttribute('data-brand', 'default');
   document.documentElement.setAttribute('data-theme', 'light');
-  
-  console.log('[ClientModules] Calling injectPageActions...');
-  injectPageActions();
   
   console.log('[ClientModules] Calling setupTabTOCFilter...');
   setupTabTOCFilter();
@@ -77,11 +75,8 @@ if (typeof window !== 'undefined') {
   console.log('[ClientModules] ===== INITIALIZATION COMPLETE =====');
   
   // Expose functions globally for debugging
-  (window as any).debugInjectPageActions = injectPageActions;
   (window as any).debugSetupTabTOCFilter = setupTabTOCFilter;
   
   console.log('[ClientModules] Debug functions available:');
-  console.log('  - window.debugInjectPageActions()');
   console.log('  - window.debugSetupTabTOCFilter()');
-  console.log('  - window.injectPageActions() (if exposed by injector)');
 }
